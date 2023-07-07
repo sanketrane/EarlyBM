@@ -1,0 +1,188 @@
+%:
+% Typeset with XeLaTeX
+% Allows use of system fonts rather than just LaTeX's ones
+% NOTE - if you use TeXShop and Bibdesk (Mac), can complete citations
+%  - open your .bib file, type \citep{xx... and then F5 or Option-Escape
+\documentclass[11pt]{article} % 12pt with Minion Pro
+% for NIH - print this PDF at 104% to be sure it's no more than 15 characters
+%  per inch and no less than 6 lines per inch (with Minion Pro 12pt)
+\usepackage{geometry} % set page layout
+% this gives reasonable margins for NIH forms after the 104% print
+\geometry{left=0.7in,right=0.7in, top=0.7in, bottom=0.7in, letterpaper}  
+\usepackage[xetex]{graphicx} % allows us to manipulate graphics.
+% Replace option [] with pdftex if you don't use Xe(La)TeX
+\usepackage{color}
+%\usepackage{hyperref}
+\usepackage{epstopdf} % automatic conversion of eps to pdf 
+\usepackage{amsmath, amssymb} % Better maths support & more symbols
+\usepackage{enumitem}[shortlabels] % control over indentation for enumerate etc.
+\usepackage{textcomp} % provide lots of new symbols - see textcomp.pdf
+%\usepackage{enumerate}% http://ctan.org/pkg/enumerate
+% line spacing: \doublespacing, \onehalfspacing, \singlespacing
+\usepackage{setspace}
+\singlespacing
+\setstretch{0.95} % shrink line spacing a little bit
+% allows text flowing around figs
+% use \begin{wrapfigure}{x}{width} where x = r(ight) or l(eft)
+\usepackage{wrapfig}
+\usepackage{floatflt}
+\usepackage{relsize}
+\usepackage[parfill]{parskip} % don't indent new paragraphs
+%\usepackage{flafter}  % Don't place figs & tables before their definition 
+\usepackage{verbatim} % allows \begin and \end{comment} regions
+\usepackage{bibentry} % for no bibliography
+\usepackage{booktabs} % makes tables look good
+\usepackage{bm}  % Define \bm{} to use bold math fonts
+% linenumbers in L margin, start & end with \linenumbers \nolinenumbers,
+\usepackage{lineno} % use option [modulo] for steps of 5
+\usepackage[auth-sc]{authblk} % authors & institutions - see authblk.pdf
+\renewcommand\Authands{ and } % separates the last 2 authors in the list
+% control how captions look; here, use small font and indent both margins by 20pt
+% margin option doesn't seem to work with wrapfig
+\usepackage[margin=0pt,size=footnotesize, labelfont=bf, labelsep=colon]{caption}
+
+\usepackage{sidecap}
+%\usepackage[capbesideposition=outside,capbesidesep=quad]{floatrow}
+
+ % Nice tables
+\usepackage{colortbl}% http://ctan.org/pkg/colortbl
+\usepackage{xcolor}% http://ctan.org/pkg/xcolor
+\colorlet{tablerowcolor}{gray!10} % Table row separator colour = 10% gray
+\newcommand{\rowcol}{\rowcolor{tablerowcolor}}
+ 
+\usepackage{multicol}
+
+
+\usepackage{gensymb} % for degree and SI units>
+ 
+%:FONT
+% If you don't want to use system fonts, replace from here to 'Citation style' with \usepackage{Palatino} or similar
+\usepackage[no-math]{fontspec} % 'no-math' = keep computer modern for math fonts unless you say differently below
+\usepackage{xunicode} % needed by XeTeX for handling all the system fonts nicely
+\usepackage[no-sscript]{xltxtra} 
+%\setmonofont[Scale=0.8]{Lucida Sans} % typeface for \tt commands
+%\setsansfont[BoldFont={Lucida Sans Demibold Roman}, ItalicFont={Lucida Sans Italic}]{Lucida Sans} %my choice of sans-serif font
+\defaultfontfeatures{Mapping=tex-text} % convert LaTeX specials (``quotes'' --- dashes etc.) to unicode, to preserve them
+%\setmainfont[BoldFont={Minion Pro Bold.otf}, ItalicFont={Minion Pro Italic.otf}]{Minion Pro Reg.otf} %%% for overleaf
+%\setmainfont{Utopia Std}
+\setmainfont{Palatino Linotype}
+%\setmainfont{Minion Pro}
+
+%:CITATION STYLE
+% natbib package: square,curly, angle(brackets)
+% colon (default), comma (to separate multiple citations)
+% authoryear (default),numbers (citations style)
+% super (for superscripted numerical citations, as in Nature)
+% sort (orders multiple cites into order of appearance in ref list, or year of pub if authoryear)
+% sort&compress: as sort, + multiple citations compressed (as 3-6, 15)
+\usepackage[numbers,super,sort&compress]{natbib}
+\usepackage{hyperref}
+\hypersetup{
+%allbordercolors = {white},
+allbordercolors = {white}
+}
+
+
+%:NUMBERING STYLE FOR BIBLIOGRAPHY
+% (e.g, here it will be 1. and not [1] as in standard LaTeX)
+\makeatletter
+\renewcommand\@biblabel[1]{#1.}
+\makeatother
+
+%:SHORTCUT COMMANDS
+% Maths
+\newcommand{\ddt}[1]{\ensuremath{\frac{{\rm d}#1}{{\rm d}t}}}  % d/dt
+\newcommand{\dd}[2]{\ensuremath{\frac{{\rm d}#1}{{\rm d}#2}}} % dy by dx  - \dd{y}{x}
+\newcommand{\ddsq}[2]{\ensuremath{\frac{{\rm d}^2#1}{{\rm d}#2^2}}} % second deriv
+\newcommand{\pp}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}} % partial \pp{y}{x}
+\newcommand{\ppsq}[2]{\ensuremath{\frac{\partial^2 #1}{\partial {#2}^2}}}
+\newcommand{\scinot}[2]{\ensuremath{#1 \times 10^{#2}$}}
+\newcommand{\superscript}[1]{\ensuremath{^{\textrm{#1}}}} %normal (non-math) font for super/subscripts in text
+\newcommand{\subscript}[1]{\ensuremath{_{\textrm{#1}}}}
+\newcommand{\posi}{\ensuremath{^+}}
+\newcommand{\nega}{\ensuremath{^-}}
+\newcommand{\probP}{\text{I\kern-0.15em P}}
+\newcommand{\expE}{\text{I\kern-0.15em E}}
+
+% Text
+\newcommand{\tighten}{\vspace{-0.35cm}}
+\newcommand{\tightenabit}{\vspace{-0.15cm}}
+
+
+% how to highlight my name in reference lists - choose one of the following
+\newcommand{\myemphasis}[1]{\textbf{\underline{#1}}} 
+%\newcommand{\myemphasis}[1]{\textsc{#1}} % small caps
+%\newcommand{\myemphasis}[1]{\textbf{#1}} % bold
+
+% how you want volume of journals to look
+\newcommand{\volume}[1]{\textbf{#1}} 
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+
+% Formatting
+\newcommand{\para}[1]{\vspace*{-4.5mm}\paragraph{#1}}
+
+% Editing
+\usepackage{color}
+\definecolor{mygray}{rgb}{0.2, 0.2, 0.2}
+\newcommand{\red}[1]{{\color{red}{#1}}}
+\newcommand{\blue}[1]{{\color{blue}{#1}}}
+\newcommand{\cyan}[1]{{\color{cyan}{#1}}}
+\newcommand{\gray}[1]{{\color{mygray}{#1}}}
+
+% Standard stuff
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bea}{\begin{eqnarray}}
+\newcommand{\eea}{\end{eqnarray}}
+
+\renewcommand\refname{Cited literature}
+
+%% \begin{graybox} text \end{graybox} for text with a background colour
+%\definecolor{MyGray}{rgb}{0.96,0.97,0.98}
+%\definecolor{MyGray}{rgb}{0.96,0.90,0.98}
+%\makeatletter\newenvironment{graybox}{%
+%   \begin{lrbox}
+%   {\@tempboxa}\begin{minipage}[r]{0.98\columnwidth}}{\end{minipage}\end{lrbox}%
+%   \colorbox{MyGray}{\usebox{\@tempboxa}}
+%}\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{empheq}
+\usepackage[most]{tcolorbox}
+
+\newtcbox{\mymath}[1][]{%
+    nobeforeafter, math upper, tcbox raise base,
+    enhanced, colframe=blue!30!black,
+    colback=blue!30, boxrule=0.65pt,
+    #1}
+
+\usepackage{url}
+\usepackage{fancyhdr}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\textit{\gray{}}}
+\rfoot{Page \thepage \quad  \today}
+
+\subsection*{Math for modeling extent of proliferation from BrdU labeling data}
+
+\vspace{0.4cm}
+
+
+We model the dynamics of labelled cells in the Pre-B cell stage.
+
+
+
+
+
+\end{document}
+
+
+
+
