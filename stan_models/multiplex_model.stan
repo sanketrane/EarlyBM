@@ -2,7 +2,8 @@ functions{
   // function that describes the changes in CAR+ counts in FO B cells
   real eps_function(real time, real[] params){
     real r_eps = params[1];
-    real value = exp(-r_eps * time);
+    //real value = exp(-r_eps * time);
+    real value = 1.0/(1+(time/r_eps)^1);
     return value;
    }
 
@@ -12,6 +13,7 @@ functions{
      real rho = parms[2];
      real delta = parms[3];
      real rho_dko = parms[4];
+     real alpha = parms[5];
 
      real x_pos= 131619;
      real x_neg = 378491.4;
