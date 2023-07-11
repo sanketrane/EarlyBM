@@ -106,13 +106,15 @@ counts_df %>%
   group_by(Genotype, pop_id, BrdU_status) %>%
   summarise(mean_c = mean(cell_counts))
 
-# stan model
-# library(rstan)
-# stanmodel <- "stan_models/multiplex_model.stan"
-# expose_stan_functions(stanmodel)
-# 
-# params <- c(0.3, 0.2, 0.1, 0.1)
-# ypred <- solve_ODE_sys(solve_time, init_cond, parms = params)
+##stan model
+library(rstan)
+stanmodel <- "stan_models/multiplex_model.stan"
+expose_stan_functions(stanmodel)
+
+solve_time <- c(4, 18, 30)
+init_cond <- c(0, 0, 372151, 0, 0, 83027, 0, 0, 4318182, 0, 0, 607546)
+params <- c(6, 0.2, 0.01, 0.02, 0.1, 0.01, 0.05)
+ypred <- solve_ODE_sys(solve_time, init_cond, parms = params)
 
 
 

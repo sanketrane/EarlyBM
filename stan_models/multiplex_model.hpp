@@ -8,129 +8,191 @@ using namespace stan::math;
 
 
 stan::math::profile_map profiles__;
-static constexpr std::array<const char*, 122> locations_array__ = 
+static constexpr std::array<const char*, 184> locations_array__ = 
 {" (found before start of program)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 65, column 2 to column 22)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 66, column 2 to column 24)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 67, column 2 to column 26)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 68, column 2 to column 24)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 71, column 2 to column 25)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 72, column 2 to column 25)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 77, column 2 to column 26)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 78, column 2 to column 29)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 79, column 2 to column 30)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 80, column 2 to column 16)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 81, column 2 to column 20)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 84, column 2 to column 21)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 85, column 2 to column 21)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 91, column 2 to column 22)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 92, column 2 to column 37)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 93, column 2 to column 39)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 94, column 2 to column 24)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 95, column 2 to column 24)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 96, column 2 to column 41)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 97, column 2 to column 42)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 100, column 2 to column 25)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 101, column 2 to column 25)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 102, column 2 to column 25)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 103, column 2 to column 25)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 108, column 2 to column 27)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 109, column 2 to column 34)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 110, column 2 to column 35)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 111, column 2 to column 34)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 112, column 2 to column 35)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 113, column 2 to column 16)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 114, column 2 to column 21)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 117, column 2 to column 21)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 118, column 2 to column 21)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 119, column 2 to column 24)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 120, column 2 to column 21)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 121, column 2 to column 21)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 122, column 2 to column 23)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 123, column 2 to column 21)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 124, column 2 to column 21)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 125, column 2 to column 25)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 126, column 2 to column 22)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 127, column 2 to column 22)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 128, column 2 to column 25)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 130, column 2 to column 19)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 131, column 2 to column 17)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 132, column 2 to column 19)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 133, column 2 to column 21)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 134, column 2 to column 19)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 135, column 2 to column 20)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 136, column 2 to column 23)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 138, column 2 to column 23)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 140, column 2 to column 62)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 143, column 4 to column 162)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 144, column 4 to column 162)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 142, column 22 to line 145, column 3)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 142, column 2 to line 145, column 3)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 147, column 4 to column 163)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 148, column 4 to column 168)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 146, column 22 to line 149, column 3)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 146, column 2 to line 149, column 3)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 176, column 3 to column 32)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 178, column 3 to column 30)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 178, column 31 to column 58)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 178, column 59 to column 86)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 178, column 87 to column 114)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 180, column 3 to column 35)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 180, column 36 to column 68)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 180, column 69 to column 102)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 180, column 103 to column 136)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 182, column 3 to column 28)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 182, column 29 to column 54)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 182, column 55 to column 80)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 182, column 81 to column 106)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 184, column 3 to column 28)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 184, column 29 to column 54)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 184, column 55 to column 80)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 184, column 81 to column 106)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 187, column 3 to column 29)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 188, column 3 to column 65)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 193, column 5 to column 118)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 194, column 5 to column 118)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 195, column 5 to column 82)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 196, column 5 to column 82)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 198, column 5 to column 118)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 199, column 5 to column 122)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 200, column 5 to column 83)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 201, column 5 to column 83)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 191, column 23 to line 202, column 4)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 191, column 3 to line 202, column 4)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 206, column 5 to column 72)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 207, column 5 to column 72)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 208, column 5 to column 93)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 209, column 5 to column 93)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 205, column 24 to line 210, column 4)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 205, column 3 to line 210, column 4)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 214, column 5 to column 74)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 215, column 5 to column 95)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 216, column 5 to column 74)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 217, column 5 to column 95)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 213, column 24 to line 218, column 4)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 213, column 3 to line 218, column 4)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 154, column 2 to column 23)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 155, column 2 to column 25)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 156, column 2 to column 27)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 157, column 2 to column 29)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 158, column 2 to column 27)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 159, column 2 to column 28)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 160, column 2 to column 31)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 162, column 2 to column 26)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 163, column 2 to column 26)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 164, column 2 to column 26)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 165, column 2 to column 26)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 168, column 2 to column 55)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 169, column 2 to column 55)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 170, column 2 to column 57)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 171, column 2 to column 57)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 75, column 2 to column 26)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 76, column 2 to column 26)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 77, column 2 to column 27)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 78, column 2 to column 26)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 79, column 30 to column 37)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 79, column 2 to column 39)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 80, column 30 to column 37)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 80, column 2 to column 39)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 81, column 29 to column 37)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 81, column 2 to column 39)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 82, column 31 to column 38)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 82, column 2 to column 40)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 83, column 32 to column 39)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 83, column 2 to column 41)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 84, column 31 to column 38)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 84, column 2 to column 40)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 85, column 32 to column 39)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 85, column 2 to column 41)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 86, column 15 to column 22)",
  " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 86, column 2 to column 24)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 87, column 2 to column 21)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 88, column 2 to column 21)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 89, column 2 to column 23)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 91, column 2 to column 17)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 92, column 2 to column 19)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 93, column 2 to column 21)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 94, column 2 to column 18)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 96, column 2 to column 23)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 98, column 2 to column 62)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 99, column 2 to column 15)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 102, column 4 to column 157)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 101, column 22 to line 103, column 3)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 101, column 2 to line 103, column 3)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 105, column 4 to column 158)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 104, column 22 to line 106, column 3)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 104, column 2 to line 106, column 3)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 126, column 3 to column 31)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 128, column 3 to column 30)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 128, column 31 to column 58)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 130, column 3 to column 30)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 130, column 31 to column 59)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 132, column 3 to column 28)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 132, column 29 to column 54)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 134, column 3 to column 28)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 134, column 29 to column 54)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 134, column 55 to column 80)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 134, column 81 to column 106)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 137, column 3 to column 29)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 138, column 3 to column 65)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 143, column 5 to column 118)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 144, column 5 to column 77)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 146, column 5 to column 118)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 147, column 5 to column 78)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 141, column 23 to line 148, column 4)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 141, column 3 to line 148, column 4)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 152, column 5 to column 62)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 153, column 5 to column 83)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 151, column 24 to line 154, column 4)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 151, column 3 to line 154, column 4)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 158, column 5 to column 64)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 159, column 5 to column 85)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 157, column 24 to line 160, column 4)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 157, column 3 to line 160, column 4)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 111, column 2 to column 25)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 112, column 2 to column 27)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 113, column 2 to column 29)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 116, column 2 to column 26)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 117, column 2 to column 26)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 120, column 2 to column 55)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 121, column 2 to column 57)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 51, column 2 to column 26)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 52, column 2 to column 26)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 53, column 2 to column 27)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 54, column 2 to column 26)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 55, column 30 to column 37)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 55, column 2 to column 39)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 56, column 30 to column 37)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 56, column 2 to column 39)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 57, column 29 to column 37)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 57, column 2 to column 39)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 58, column 26 to column 33)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 58, column 2 to column 35)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 59, column 27 to column 34)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 59, column 2 to column 36)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 60, column 15 to column 22)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 60, column 2 to column 24)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 77, column 13 to column 21)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 78, column 20 to column 27)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 79, column 21 to column 28)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 126, column 19 to column 26)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 128, column 21 to column 28)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 128, column 49 to column 56)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 130, column 21 to column 28)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 130, column 50 to column 57)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 132, column 10 to column 17)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 132, column 36 to column 43)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 134, column 10 to column 17)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 134, column 36 to column 43)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 134, column 62 to column 69)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 134, column 88 to column 95)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 108, column 13 to column 21)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 109, column 25 to column 32)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 110, column 26 to column 33)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 111, column 25 to column 32)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 112, column 26 to column 33)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 176, column 19 to column 26)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 178, column 21 to column 28)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 178, column 49 to column 56)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 178, column 77 to column 84)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 178, column 105 to column 112)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 180, column 26 to column 33)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 180, column 59 to column 66)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 180, column 93 to column 100)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 180, column 127 to column 134)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 182, column 10 to column 17)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 182, column 36 to column 43)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 182, column 62 to column 69)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 182, column 88 to column 95)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 184, column 10 to column 17)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 184, column 36 to column 43)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 184, column 62 to column 69)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 184, column 88 to column 95)",
  " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 4, column 4 to column 27)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 5, column 4 to column 36)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 6, column 4 to column 17)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 3, column 45 to line 7, column 4)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 12, column 5 to column 25)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 13, column 5 to column 27)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 14, column 5 to column 29)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 16, column 5 to column 24)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 17, column 5 to column 27)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 19, column 5 to column 67)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 20, column 5 to column 75)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 21, column 5 to column 22)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 24, column 5 to column 18)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 26, column 5 to column 151)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 28, column 5 to column 161)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 30, column 5 to column 139)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 33, column 5 to column 155)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 35, column 5 to column 165)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 37, column 5 to column 143)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 38, column 5 to column 17)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 10, column 81 to line 39, column 4)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 43, column 5 to column 35)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 44, column 16 to column 22)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 44, column 5 to column 27)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 45, column 5 to column 88)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 46, column 5 to column 18)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 41, column 76 to line 47, column 4)"};
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 6, column 4 to column 40)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 7, column 4 to column 17)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 3, column 45 to line 8, column 4)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 13, column 5 to column 25)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 14, column 5 to column 27)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 15, column 5 to column 29)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 16, column 5 to column 27)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 17, column 5 to column 28)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 18, column 5 to column 31)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 20, column 5 to column 24)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 21, column 5 to column 27)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 27, column 5 to column 59)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 28, column 5 to column 66)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 29, column 5 to column 55)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 30, column 5 to column 61)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 31, column 5 to column 20)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 34, column 5 to column 19)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 36, column 5 to column 156)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 38, column 5 to column 169)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 40, column 5 to column 146)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 43, column 5 to column 168)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 45, column 5 to column 180)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 47, column 5 to column 158)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 50, column 5 to column 146)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 52, column 5 to column 153)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 54, column 5 to column 142)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 57, column 5 to column 163)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 59, column 5 to column 169)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 61, column 5 to column 159)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 62, column 5 to column 17)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 11, column 81 to line 63, column 4)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 67, column 5 to column 35)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 68, column 16 to column 22)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 68, column 5 to column 28)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 69, column 5 to column 88)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 70, column 5 to column 18)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 65, column 76 to line 71, column 4)"};
 
 struct ODE_sys_functor__ {
   template <typename T0__, typename T1__, typename T2__, typename T3__,
@@ -176,13 +238,13 @@ template <typename T0__, typename T1__,
     (void) DUMMY_VAR__;  // suppress unused var warning
     try {
       local_scalar_t__ r_eps = DUMMY_VAR__;
-      current_statement__ = 95;
+      current_statement__ = 146;
       r_eps = stan::model::rvalue(params, "params",
                 stan::model::index_uni(1));
       local_scalar_t__ value = DUMMY_VAR__;
-      current_statement__ = 96;
-      value = stan::math::exp((-r_eps * time));
-      current_statement__ = 97;
+      current_statement__ = 147;
+      value = (1.0 / (1 + stan::math::pow((time / r_eps), 1)));
+      current_statement__ = 148;
       return value;
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -205,62 +267,71 @@ template <typename T0__, typename T1__, typename T2__, typename T3__,
     (void) DUMMY_VAR__;  // suppress unused var warning
     try {
       local_scalar_t__ rho = DUMMY_VAR__;
-      current_statement__ = 99;
+      current_statement__ = 150;
       rho = stan::model::rvalue(parms, "parms", stan::model::index_uni(2));
       local_scalar_t__ delta = DUMMY_VAR__;
-      current_statement__ = 100;
+      current_statement__ = 151;
       delta = stan::model::rvalue(parms, "parms", stan::model::index_uni(3));
       local_scalar_t__ rho_dko = DUMMY_VAR__;
-      current_statement__ = 101;
+      current_statement__ = 152;
       rho_dko = stan::model::rvalue(parms, "parms",
                   stan::model::index_uni(4));
+      local_scalar_t__ alpha = DUMMY_VAR__;
+      current_statement__ = 153;
+      alpha = stan::model::rvalue(parms, "parms", stan::model::index_uni(5));
+      local_scalar_t__ lambda = DUMMY_VAR__;
+      current_statement__ = 154;
+      lambda = stan::model::rvalue(parms, "parms", stan::model::index_uni(6));
+      local_scalar_t__ alpha_dko = DUMMY_VAR__;
+      current_statement__ = 155;
+      alpha_dko = stan::model::rvalue(parms, "parms",
+                    stan::model::index_uni(7));
       local_scalar_t__ x_pos = DUMMY_VAR__;
-      current_statement__ = 102;
+      current_statement__ = 156;
       x_pos = 131619;
       local_scalar_t__ x_neg = DUMMY_VAR__;
-      current_statement__ = 103;
+      current_statement__ = 157;
       x_neg = 378491.4;
       local_scalar_t__ phi = DUMMY_VAR__;
-      current_statement__ = 104;
-      phi = (((rho - delta) *
-               ((stan::model::rvalue(y, "y", stan::model::index_uni(1)) +
-                  stan::model::rvalue(y, "y", stan::model::index_uni(2))) +
-                 stan::model::rvalue(y, "y", stan::model::index_uni(3)))) /
-              (x_pos + x_neg));
+      current_statement__ = 158;
+      phi = (((rho - delta) * 372151) / (x_pos + x_neg));
       local_scalar_t__ phi_dko = DUMMY_VAR__;
-      current_statement__ = 105;
-      phi_dko = (((rho_dko - delta) *
-                   ((stan::model::rvalue(y, "y", stan::model::index_uni(4)) +
-                      stan::model::rvalue(y, "y", stan::model::index_uni(5)))
-                     +
-                     stan::model::rvalue(y, "y", stan::model::index_uni(6))))
-                  / (x_pos + x_neg));
-      local_scalar_t__ alpha = DUMMY_VAR__;
-      current_statement__ = 106;
-      alpha = 0.0;
+      current_statement__ = 159;
+      phi_dko = (((rho_dko - delta) * 83027) / (x_pos + x_neg));
+      local_scalar_t__ mu = DUMMY_VAR__;
+      current_statement__ = 160;
+      mu = (((alpha - lambda) * 4318182) / 372151);
+      local_scalar_t__ mu_dko = DUMMY_VAR__;
+      current_statement__ = 161;
+      mu_dko = (((alpha_dko - lambda) * 607546) / 83027);
+      local_scalar_t__ psi = DUMMY_VAR__;
+      current_statement__ = 162;
+      psi = 0.0;
       std::vector<local_scalar_t__> dydt =
-         std::vector<local_scalar_t__>(6, DUMMY_VAR__);
-      current_statement__ = 108;
+         std::vector<local_scalar_t__>(12, DUMMY_VAR__);
+      current_statement__ = 164;
       stan::model::assign(dydt,
-        (((((phi * alpha) * x_pos) +
+        (((((phi * psi) * x_pos) +
             ((rho * eps_function(time, parms, pstream__)) *
               ((2 * stan::model::rvalue(y, "y", stan::model::index_uni(2))) +
                 stan::model::rvalue(y, "y", stan::model::index_uni(1))))) -
            ((rho * (1 - eps_function(time, parms, pstream__))) *
              stan::model::rvalue(y, "y", stan::model::index_uni(1)))) -
-          (delta * stan::model::rvalue(y, "y", stan::model::index_uni(1)))),
+          ((mu + delta) *
+            stan::model::rvalue(y, "y", stan::model::index_uni(1)))),
         "assigning variable dydt", stan::model::index_uni(1));
-      current_statement__ = 109;
+      current_statement__ = 165;
       stan::model::assign(dydt,
-        (((((phi * (1 - alpha)) * x_pos) +
-            (((2 * rho) * eps_function(time, parms, pstream__)) *
-              (stan::model::rvalue(y, "y", stan::model::index_uni(3)) -
+        (((((phi * (1 - psi)) * x_pos) +
+            ((rho * eps_function(time, parms, pstream__)) *
+              ((2 * stan::model::rvalue(y, "y", stan::model::index_uni(3))) -
                 stan::model::rvalue(y, "y", stan::model::index_uni(2))))) +
-           (((2 * rho) * (1 - eps_function(time, parms, pstream__))) *
-             stan::model::rvalue(y, "y", stan::model::index_uni(1)))) -
-          (delta * stan::model::rvalue(y, "y", stan::model::index_uni(2)))),
+           ((rho * (1 - eps_function(time, parms, pstream__))) *
+             (2 * stan::model::rvalue(y, "y", stan::model::index_uni(1))))) -
+          ((mu + delta) *
+            stan::model::rvalue(y, "y", stan::model::index_uni(2)))),
         "assigning variable dydt", stan::model::index_uni(2));
-      current_statement__ = 110;
+      current_statement__ = 166;
       stan::model::assign(dydt,
         ((((phi * x_neg) -
             ((rho * eps_function(time, parms, pstream__)) *
@@ -268,39 +339,109 @@ template <typename T0__, typename T1__, typename T2__, typename T3__,
            ((rho * (1 - eps_function(time, parms, pstream__))) *
              (stan::model::rvalue(y, "y", stan::model::index_uni(2)) +
                stan::model::rvalue(y, "y", stan::model::index_uni(3))))) -
-          (delta * stan::model::rvalue(y, "y", stan::model::index_uni(3)))),
+          ((mu + delta) *
+            stan::model::rvalue(y, "y", stan::model::index_uni(3)))),
         "assigning variable dydt", stan::model::index_uni(3));
-      current_statement__ = 111;
+      current_statement__ = 167;
       stan::model::assign(dydt,
-        (((((phi_dko * alpha) * x_pos) +
-            ((rho * eps_function(time, parms, pstream__)) *
+        (((((phi_dko * psi) * x_pos) +
+            ((rho_dko * eps_function(time, parms, pstream__)) *
               ((2 * stan::model::rvalue(y, "y", stan::model::index_uni(5))) +
                 stan::model::rvalue(y, "y", stan::model::index_uni(4))))) -
-           ((rho * (1 - eps_function(time, parms, pstream__))) *
+           ((rho_dko * (1 - eps_function(time, parms, pstream__))) *
              stan::model::rvalue(y, "y", stan::model::index_uni(4)))) -
-          (delta * stan::model::rvalue(y, "y", stan::model::index_uni(4)))),
+          ((mu + delta) *
+            stan::model::rvalue(y, "y", stan::model::index_uni(4)))),
         "assigning variable dydt", stan::model::index_uni(4));
-      current_statement__ = 112;
+      current_statement__ = 168;
       stan::model::assign(dydt,
-        (((((phi_dko * (1 - alpha)) * x_pos) +
-            (((2 * rho) * eps_function(time, parms, pstream__)) *
-              (stan::model::rvalue(y, "y", stan::model::index_uni(6)) -
+        (((((phi_dko * (1 - psi)) * x_pos) +
+            ((rho_dko * eps_function(time, parms, pstream__)) *
+              ((2 * stan::model::rvalue(y, "y", stan::model::index_uni(6))) -
                 stan::model::rvalue(y, "y", stan::model::index_uni(5))))) +
-           (((2 * rho) * (1 - eps_function(time, parms, pstream__))) *
-             stan::model::rvalue(y, "y", stan::model::index_uni(4)))) -
-          (delta * stan::model::rvalue(y, "y", stan::model::index_uni(5)))),
+           ((rho_dko * (1 - eps_function(time, parms, pstream__))) *
+             (2 * stan::model::rvalue(y, "y", stan::model::index_uni(4))))) -
+          ((mu + delta) *
+            stan::model::rvalue(y, "y", stan::model::index_uni(5)))),
         "assigning variable dydt", stan::model::index_uni(5));
-      current_statement__ = 113;
+      current_statement__ = 169;
       stan::model::assign(dydt,
         ((((phi_dko * x_neg) -
-            ((rho * eps_function(time, parms, pstream__)) *
+            ((rho_dko * eps_function(time, parms, pstream__)) *
               stan::model::rvalue(y, "y", stan::model::index_uni(6)))) +
-           ((rho * (1 - eps_function(time, parms, pstream__))) *
+           ((rho_dko * (1 - eps_function(time, parms, pstream__))) *
              (stan::model::rvalue(y, "y", stan::model::index_uni(5)) +
                stan::model::rvalue(y, "y", stan::model::index_uni(6))))) -
-          (delta * stan::model::rvalue(y, "y", stan::model::index_uni(6)))),
+          ((mu + delta) *
+            stan::model::rvalue(y, "y", stan::model::index_uni(6)))),
         "assigning variable dydt", stan::model::index_uni(6));
-      current_statement__ = 114;
+      current_statement__ = 170;
+      stan::model::assign(dydt,
+        ((((mu * stan::model::rvalue(y, "y", stan::model::index_uni(1))) +
+            ((alpha * eps_function(time, parms, pstream__)) *
+              ((2 * stan::model::rvalue(y, "y", stan::model::index_uni(8))) +
+                stan::model::rvalue(y, "y", stan::model::index_uni(7))))) -
+           ((alpha * (1 - eps_function(time, parms, pstream__))) *
+             stan::model::rvalue(y, "y", stan::model::index_uni(7)))) -
+          (lambda * stan::model::rvalue(y, "y", stan::model::index_uni(7)))),
+        "assigning variable dydt", stan::model::index_uni(7));
+      current_statement__ = 171;
+      stan::model::assign(dydt,
+        ((((mu * stan::model::rvalue(y, "y", stan::model::index_uni(2))) +
+            ((alpha * eps_function(time, parms, pstream__)) *
+              ((2 * stan::model::rvalue(y, "y", stan::model::index_uni(9))) -
+                stan::model::rvalue(y, "y", stan::model::index_uni(8))))) +
+           ((alpha * (1 - eps_function(time, parms, pstream__))) *
+             (2 * stan::model::rvalue(y, "y", stan::model::index_uni(7))))) -
+          (lambda * stan::model::rvalue(y, "y", stan::model::index_uni(8)))),
+        "assigning variable dydt", stan::model::index_uni(8));
+      current_statement__ = 172;
+      stan::model::assign(dydt,
+        ((((mu * stan::model::rvalue(y, "y", stan::model::index_uni(3))) -
+            ((alpha * eps_function(time, parms, pstream__)) *
+              stan::model::rvalue(y, "y", stan::model::index_uni(9)))) +
+           ((alpha * (1 - eps_function(time, parms, pstream__))) *
+             (stan::model::rvalue(y, "y", stan::model::index_uni(8)) +
+               stan::model::rvalue(y, "y", stan::model::index_uni(9))))) -
+          (lambda * stan::model::rvalue(y, "y", stan::model::index_uni(9)))),
+        "assigning variable dydt", stan::model::index_uni(9));
+      current_statement__ = 173;
+      stan::model::assign(dydt,
+        ((((mu_dko * stan::model::rvalue(y, "y", stan::model::index_uni(4)))
+            +
+            ((alpha_dko * eps_function(time, parms, pstream__)) *
+              ((2 * stan::model::rvalue(y, "y", stan::model::index_uni(11)))
+                + stan::model::rvalue(y, "y", stan::model::index_uni(10)))))
+           -
+           ((alpha_dko * (1 - eps_function(time, parms, pstream__))) *
+             stan::model::rvalue(y, "y", stan::model::index_uni(10)))) -
+          (lambda * stan::model::rvalue(y, "y", stan::model::index_uni(10)))),
+        "assigning variable dydt", stan::model::index_uni(10));
+      current_statement__ = 174;
+      stan::model::assign(dydt,
+        ((((mu_dko * stan::model::rvalue(y, "y", stan::model::index_uni(5)))
+            +
+            ((alpha_dko * eps_function(time, parms, pstream__)) *
+              ((2 * stan::model::rvalue(y, "y", stan::model::index_uni(12)))
+                - stan::model::rvalue(y, "y", stan::model::index_uni(11)))))
+           +
+           ((alpha_dko * (1 - eps_function(time, parms, pstream__))) *
+             (2 * stan::model::rvalue(y, "y", stan::model::index_uni(10)))))
+          -
+          (lambda * stan::model::rvalue(y, "y", stan::model::index_uni(11)))),
+        "assigning variable dydt", stan::model::index_uni(11));
+      current_statement__ = 175;
+      stan::model::assign(dydt,
+        ((((mu_dko * stan::model::rvalue(y, "y", stan::model::index_uni(6)))
+            -
+            ((alpha_dko * eps_function(time, parms, pstream__)) *
+              stan::model::rvalue(y, "y", stan::model::index_uni(12)))) +
+           ((alpha_dko * (1 - eps_function(time, parms, pstream__))) *
+             (stan::model::rvalue(y, "y", stan::model::index_uni(11)) +
+               stan::model::rvalue(y, "y", stan::model::index_uni(12))))) -
+          (lambda * stan::model::rvalue(y, "y", stan::model::index_uni(12)))),
+        "assigning variable dydt", stan::model::index_uni(12));
+      current_statement__ = 176;
       return dydt;
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -322,19 +463,19 @@ template <typename T0__, typename T1__, typename T2__,
     (void) DUMMY_VAR__;  // suppress unused var warning
     try {
       int numdim = std::numeric_limits<int>::min();
-      current_statement__ = 116;
+      current_statement__ = 178;
       numdim = stan::math::size(solve_time);
-      current_statement__ = 117;
+      current_statement__ = 179;
       stan::math::validate_non_negative_index("y_sol", "numdim", numdim);
       std::vector<std::vector<local_scalar_t__>> y_sol =
          std::vector<std::vector<local_scalar_t__>>(numdim, 
-           std::vector<local_scalar_t__>(6, DUMMY_VAR__));
-      current_statement__ = 119;
+           std::vector<local_scalar_t__>(12, DUMMY_VAR__));
+      current_statement__ = 181;
       stan::model::assign(y_sol,
         stan::math::integrate_ode_rk45(ODE_sys_functor__(), init_cond, 0.0,
           solve_time, parms, std::vector<double>{0.0}, std::vector<int>{0},
           pstream__), "assigning variable y_sol");
-      current_statement__ = 120;
+      current_statement__ = 182;
       return y_sol;
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -390,8 +531,10 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
   std::vector<int> time_index1;
   std::vector<int> time_index2;
   std::vector<double> solve_time;
-  std::vector<double> BrdU_wt;
-  std::vector<double> BrdU_dko;
+  std::vector<double> largePreB_wt;
+  std::vector<double> largePreB_dko;
+  std::vector<double> smallPreB_wt;
+  std::vector<double> smallPreB_dko;
   std::vector<double> ts_pred; 
   
  
@@ -420,80 +563,80 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
     try {
       int pos__ = std::numeric_limits<int>::min();
       pos__ = 1;
-      current_statement__ = 65;
+      current_statement__ = 104;
       context__.validate_dims("data initialization","numObs1","int",
            std::vector<size_t>{});
       numObs1 = std::numeric_limits<int>::min();
       
       
-      current_statement__ = 65;
+      current_statement__ = 104;
       numObs1 = context__.vals_i("numObs1")[(1 - 1)];
-      current_statement__ = 65;
+      current_statement__ = 104;
       stan::math::check_greater_or_equal(function__, "numObs1", numObs1, 1);
-      current_statement__ = 66;
+      current_statement__ = 105;
       context__.validate_dims("data initialization","numObs2","int",
            std::vector<size_t>{});
       numObs2 = std::numeric_limits<int>::min();
       
       
-      current_statement__ = 66;
+      current_statement__ = 105;
       numObs2 = context__.vals_i("numObs2")[(1 - 1)];
-      current_statement__ = 66;
+      current_statement__ = 105;
       stan::math::check_greater_or_equal(function__, "numObs2", numObs2, 1);
-      current_statement__ = 67;
+      current_statement__ = 106;
       context__.validate_dims("data initialization","n_shards","int",
            std::vector<size_t>{});
       n_shards = std::numeric_limits<int>::min();
       
       
-      current_statement__ = 67;
+      current_statement__ = 106;
       n_shards = context__.vals_i("n_shards")[(1 - 1)];
-      current_statement__ = 67;
+      current_statement__ = 106;
       stan::math::check_greater_or_equal(function__, "n_shards", n_shards, 1);
-      current_statement__ = 68;
+      current_statement__ = 107;
       context__.validate_dims("data initialization","numPred","int",
            std::vector<size_t>{});
       numPred = std::numeric_limits<int>::min();
       
       
-      current_statement__ = 68;
+      current_statement__ = 107;
       numPred = context__.vals_i("numPred")[(1 - 1)];
-      current_statement__ = 68;
+      current_statement__ = 107;
       stan::math::check_greater_or_equal(function__, "numPred", numPred, 1);
-      current_statement__ = 69;
+      current_statement__ = 108;
       stan::math::validate_non_negative_index("time_index1", "numObs1",
                                               numObs1);
-      current_statement__ = 70;
+      current_statement__ = 109;
       context__.validate_dims("data initialization","time_index1","int",
            std::vector<size_t>{static_cast<size_t>(numObs1)});
       time_index1 = 
         std::vector<int>(numObs1, std::numeric_limits<int>::min());
       
       
-      current_statement__ = 70;
+      current_statement__ = 109;
       time_index1 = context__.vals_i("time_index1");
-      current_statement__ = 70;
+      current_statement__ = 109;
       stan::math::check_greater_or_equal(function__, "time_index1",
                                             time_index1, 1);
-      current_statement__ = 71;
+      current_statement__ = 110;
       stan::math::validate_non_negative_index("time_index2", "numObs2",
                                               numObs2);
-      current_statement__ = 72;
+      current_statement__ = 111;
       context__.validate_dims("data initialization","time_index2","int",
            std::vector<size_t>{static_cast<size_t>(numObs2)});
       time_index2 = 
         std::vector<int>(numObs2, std::numeric_limits<int>::min());
       
       
-      current_statement__ = 72;
+      current_statement__ = 111;
       time_index2 = context__.vals_i("time_index2");
-      current_statement__ = 72;
+      current_statement__ = 111;
       stan::math::check_greater_or_equal(function__, "time_index2",
                                             time_index2, 1);
-      current_statement__ = 73;
+      current_statement__ = 112;
       stan::math::validate_non_negative_index("solve_time", "n_shards",
                                               n_shards);
-      current_statement__ = 74;
+      current_statement__ = 113;
       context__.validate_dims("data initialization","solve_time","double",
            std::vector<size_t>{static_cast<size_t>(n_shards)});
       solve_time = 
@@ -501,42 +644,78 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
           std::numeric_limits<double>::quiet_NaN());
       
       
-      current_statement__ = 74;
+      current_statement__ = 113;
       solve_time = context__.vals_r("solve_time");
-      current_statement__ = 74;
+      current_statement__ = 113;
       stan::math::check_greater_or_equal(function__, "solve_time",
                                             solve_time, 0);
-      current_statement__ = 75;
-      stan::math::validate_non_negative_index("BrdU_wt", "numObs1", numObs1);
-      current_statement__ = 76;
-      context__.validate_dims("data initialization","BrdU_wt","double",
+      current_statement__ = 114;
+      stan::math::validate_non_negative_index("largePreB_wt", "numObs1",
+                                              numObs1);
+      current_statement__ = 115;
+      context__.validate_dims("data initialization","largePreB_wt","double",
            std::vector<size_t>{static_cast<size_t>(numObs1)});
-      BrdU_wt = 
+      largePreB_wt = 
         std::vector<double>(numObs1, 
           std::numeric_limits<double>::quiet_NaN());
       
       
-      current_statement__ = 76;
-      BrdU_wt = context__.vals_r("BrdU_wt");
-      current_statement__ = 76;
-      stan::math::check_greater_or_equal(function__, "BrdU_wt", BrdU_wt, 0);
-      current_statement__ = 77;
-      stan::math::validate_non_negative_index("BrdU_dko", "numObs2", numObs2);
-      current_statement__ = 78;
-      context__.validate_dims("data initialization","BrdU_dko","double",
+      current_statement__ = 115;
+      largePreB_wt = context__.vals_r("largePreB_wt");
+      current_statement__ = 115;
+      stan::math::check_greater_or_equal(function__, "largePreB_wt",
+                                            largePreB_wt, 0);
+      current_statement__ = 116;
+      stan::math::validate_non_negative_index("largePreB_dko", "numObs2",
+                                              numObs2);
+      current_statement__ = 117;
+      context__.validate_dims("data initialization","largePreB_dko","double",
            std::vector<size_t>{static_cast<size_t>(numObs2)});
-      BrdU_dko = 
+      largePreB_dko = 
         std::vector<double>(numObs2, 
           std::numeric_limits<double>::quiet_NaN());
       
       
-      current_statement__ = 78;
-      BrdU_dko = context__.vals_r("BrdU_dko");
-      current_statement__ = 78;
-      stan::math::check_greater_or_equal(function__, "BrdU_dko", BrdU_dko, 0);
-      current_statement__ = 79;
+      current_statement__ = 117;
+      largePreB_dko = context__.vals_r("largePreB_dko");
+      current_statement__ = 117;
+      stan::math::check_greater_or_equal(function__, "largePreB_dko",
+                                            largePreB_dko, 0);
+      current_statement__ = 118;
+      stan::math::validate_non_negative_index("smallPreB_wt", "numObs1",
+                                              numObs1);
+      current_statement__ = 119;
+      context__.validate_dims("data initialization","smallPreB_wt","double",
+           std::vector<size_t>{static_cast<size_t>(numObs1)});
+      smallPreB_wt = 
+        std::vector<double>(numObs1, 
+          std::numeric_limits<double>::quiet_NaN());
+      
+      
+      current_statement__ = 119;
+      smallPreB_wt = context__.vals_r("smallPreB_wt");
+      current_statement__ = 119;
+      stan::math::check_greater_or_equal(function__, "smallPreB_wt",
+                                            smallPreB_wt, 0);
+      current_statement__ = 120;
+      stan::math::validate_non_negative_index("smallPreB_dko", "numObs2",
+                                              numObs2);
+      current_statement__ = 121;
+      context__.validate_dims("data initialization","smallPreB_dko","double",
+           std::vector<size_t>{static_cast<size_t>(numObs2)});
+      smallPreB_dko = 
+        std::vector<double>(numObs2, 
+          std::numeric_limits<double>::quiet_NaN());
+      
+      
+      current_statement__ = 121;
+      smallPreB_dko = context__.vals_r("smallPreB_dko");
+      current_statement__ = 121;
+      stan::math::check_greater_or_equal(function__, "smallPreB_dko",
+                                            smallPreB_dko, 0);
+      current_statement__ = 122;
       stan::math::validate_non_negative_index("ts_pred", "numPred", numPred);
-      current_statement__ = 80;
+      current_statement__ = 123;
       context__.validate_dims("data initialization","ts_pred","double",
            std::vector<size_t>{static_cast<size_t>(numPred)});
       ts_pred = 
@@ -544,47 +723,69 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
           std::numeric_limits<double>::quiet_NaN());
       
       
-      current_statement__ = 80;
+      current_statement__ = 123;
       ts_pred = context__.vals_r("ts_pred");
-      current_statement__ = 81;
+      current_statement__ = 124;
       stan::math::validate_non_negative_index("y_hat", "n_shards", n_shards);
-      current_statement__ = 82;
-      stan::math::validate_non_negative_index("BrdU_wt_mean", "numObs1",
+      current_statement__ = 125;
+      stan::math::validate_non_negative_index("largePreB_wt_mean", "numObs1",
                                               numObs1);
-      current_statement__ = 83;
-      stan::math::validate_non_negative_index("BrdU_dko_mean", "numObs2",
-                                              numObs2);
-      current_statement__ = 84;
+      current_statement__ = 126;
+      stan::math::validate_non_negative_index("largePreB_dko_mean",
+                                              "numObs2", numObs2);
+      current_statement__ = 127;
+      stan::math::validate_non_negative_index("smallPreB_wt_mean", "numObs1",
+                                              numObs1);
+      current_statement__ = 128;
+      stan::math::validate_non_negative_index("smallPreB_dko_mean",
+                                              "numObs2", numObs2);
+      current_statement__ = 129;
       stan::math::validate_non_negative_index("y_hat_pred", "numPred",
                                               numPred);
-      current_statement__ = 85;
+      current_statement__ = 130;
       stan::math::validate_non_negative_index("y1_mean_pred", "numPred",
                                               numPred);
-      current_statement__ = 86;
+      current_statement__ = 131;
       stan::math::validate_non_negative_index("y2_mean_pred", "numPred",
                                               numPred);
-      current_statement__ = 87;
-      stan::math::validate_non_negative_index("BrdU_wt_pred", "numPred",
+      current_statement__ = 132;
+      stan::math::validate_non_negative_index("y3_mean_pred", "numPred",
                                               numPred);
-      current_statement__ = 88;
-      stan::math::validate_non_negative_index("BrdU_dko_pred", "numPred",
+      current_statement__ = 133;
+      stan::math::validate_non_negative_index("y4_mean_pred", "numPred",
                                               numPred);
-      current_statement__ = 89;
+      current_statement__ = 134;
+      stan::math::validate_non_negative_index("largePreB_wt_pred", "numPred",
+                                              numPred);
+      current_statement__ = 135;
+      stan::math::validate_non_negative_index("smallPreB_wt_pred", "numPred",
+                                              numPred);
+      current_statement__ = 136;
+      stan::math::validate_non_negative_index("largePreB_dko_pred",
+                                              "numPred", numPred);
+      current_statement__ = 137;
+      stan::math::validate_non_negative_index("smallPreB_dko_pred",
+                                              "numPred", numPred);
+      current_statement__ = 138;
       stan::math::validate_non_negative_index("resid_d1", "numObs1", numObs1);
-      current_statement__ = 90;
+      current_statement__ = 139;
       stan::math::validate_non_negative_index("resid_d2", "numObs1", numObs1);
-      current_statement__ = 91;
+      current_statement__ = 140;
+      stan::math::validate_non_negative_index("resid_d3", "numObs2", numObs2);
+      current_statement__ = 141;
+      stan::math::validate_non_negative_index("resid_d4", "numObs2", numObs2);
+      current_statement__ = 142;
       stan::math::validate_non_negative_index("log_lik1", "numObs1", numObs1);
-      current_statement__ = 92;
+      current_statement__ = 143;
       stan::math::validate_non_negative_index("log_lik2", "numObs1", numObs1);
-      current_statement__ = 93;
+      current_statement__ = 144;
       stan::math::validate_non_negative_index("log_lik3", "numObs2", numObs2);
-      current_statement__ = 94;
+      current_statement__ = 145;
       stan::math::validate_non_negative_index("log_lik4", "numObs2", numObs2);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
     }
-    num_params_r__ = 1 + 1 + 1 + 1 + 1 + 1;
+    num_params_r__ = 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1;
     
   }
   
@@ -610,85 +811,131 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
       current_statement__ = 1;
       rho = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(0,
               lp__);
-      local_scalar_t__ delta = DUMMY_VAR__;
-      current_statement__ = 2;
-      delta = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
-                0, lp__);
       local_scalar_t__ rho_dko = DUMMY_VAR__;
+      current_statement__ = 2;
+      rho_dko = in__.template read_constrain_lub<local_scalar_t__, 
+                  jacobian__>(0, rho, lp__);
+      local_scalar_t__ delta = DUMMY_VAR__;
       current_statement__ = 3;
-      rho_dko = in__.template read_constrain_lb<local_scalar_t__, 
-                  jacobian__>(0, lp__);
+      delta = in__.template read_constrain_lub<local_scalar_t__, jacobian__>(
+                0, rho_dko, lp__);
       local_scalar_t__ r_eps = DUMMY_VAR__;
       current_statement__ = 4;
       r_eps = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
                 0, lp__);
-      local_scalar_t__ sigma1 = DUMMY_VAR__;
+      local_scalar_t__ alpha = DUMMY_VAR__;
       current_statement__ = 5;
+      alpha = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
+                0, lp__);
+      local_scalar_t__ alpha_dko = DUMMY_VAR__;
+      current_statement__ = 6;
+      alpha_dko = in__.template read_constrain_lub<local_scalar_t__, 
+                    jacobian__>(0, alpha, lp__);
+      local_scalar_t__ lambda = DUMMY_VAR__;
+      current_statement__ = 7;
+      lambda = in__.template read_constrain_lub<local_scalar_t__, 
+                 jacobian__>(0, alpha_dko, lp__);
+      local_scalar_t__ sigma1 = DUMMY_VAR__;
+      current_statement__ = 8;
       sigma1 = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
                  0, lp__);
       local_scalar_t__ sigma2 = DUMMY_VAR__;
-      current_statement__ = 6;
+      current_statement__ = 9;
       sigma2 = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
+                 0, lp__);
+      local_scalar_t__ sigma3 = DUMMY_VAR__;
+      current_statement__ = 10;
+      sigma3 = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
+                 0, lp__);
+      local_scalar_t__ sigma4 = DUMMY_VAR__;
+      current_statement__ = 11;
+      sigma4 = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
                  0, lp__);
       std::vector<std::vector<local_scalar_t__>> y_hat =
          std::vector<std::vector<local_scalar_t__>>(n_shards, 
-           std::vector<local_scalar_t__>(6, DUMMY_VAR__));
-      std::vector<local_scalar_t__> BrdU_wt_mean =
+           std::vector<local_scalar_t__>(12, DUMMY_VAR__));
+      std::vector<local_scalar_t__> largePreB_wt_mean =
          std::vector<local_scalar_t__>(numObs1, DUMMY_VAR__);
-      std::vector<local_scalar_t__> BrdU_dko_mean =
+      std::vector<local_scalar_t__> largePreB_dko_mean =
+         std::vector<local_scalar_t__>(numObs2, DUMMY_VAR__);
+      std::vector<local_scalar_t__> smallPreB_wt_mean =
+         std::vector<local_scalar_t__>(numObs1, DUMMY_VAR__);
+      std::vector<local_scalar_t__> smallPreB_dko_mean =
          std::vector<local_scalar_t__>(numObs2, DUMMY_VAR__);
       std::vector<local_scalar_t__> parms =
-         std::vector<local_scalar_t__>(4, DUMMY_VAR__);
+         std::vector<local_scalar_t__>(7, DUMMY_VAR__);
       std::vector<local_scalar_t__> init_cond =
-         std::vector<local_scalar_t__>(6, DUMMY_VAR__);
-      current_statement__ = 12;
+         std::vector<local_scalar_t__>(12, DUMMY_VAR__);
+      current_statement__ = 19;
       stan::model::assign(init_cond, 0.0,
         "assigning variable init_cond", stan::model::index_uni(1));
-      current_statement__ = 13;
+      current_statement__ = 20;
       stan::model::assign(init_cond, 0.0,
         "assigning variable init_cond", stan::model::index_uni(2));
-      current_statement__ = 14;
+      current_statement__ = 21;
       stan::model::assign(init_cond, 372151,
         "assigning variable init_cond", stan::model::index_uni(3));
-      current_statement__ = 15;
+      current_statement__ = 22;
       stan::model::assign(init_cond, 0.0,
         "assigning variable init_cond", stan::model::index_uni(4));
-      current_statement__ = 16;
+      current_statement__ = 23;
       stan::model::assign(init_cond, 0.0,
         "assigning variable init_cond", stan::model::index_uni(5));
-      current_statement__ = 17;
+      current_statement__ = 24;
       stan::model::assign(init_cond, 83027,
         "assigning variable init_cond", stan::model::index_uni(6));
-      current_statement__ = 18;
-      stan::model::assign(parms, rho,
+      current_statement__ = 25;
+      stan::model::assign(init_cond, 0.0,
+        "assigning variable init_cond", stan::model::index_uni(7));
+      current_statement__ = 26;
+      stan::model::assign(init_cond, 0.0,
+        "assigning variable init_cond", stan::model::index_uni(8));
+      current_statement__ = 27;
+      stan::model::assign(init_cond, 4318182,
+        "assigning variable init_cond", stan::model::index_uni(9));
+      current_statement__ = 28;
+      stan::model::assign(init_cond, 0.0,
+        "assigning variable init_cond", stan::model::index_uni(10));
+      current_statement__ = 29;
+      stan::model::assign(init_cond, 0.0,
+        "assigning variable init_cond", stan::model::index_uni(11));
+      current_statement__ = 30;
+      stan::model::assign(init_cond, 607546,
+        "assigning variable init_cond", stan::model::index_uni(12));
+      current_statement__ = 31;
+      stan::model::assign(parms, r_eps,
         "assigning variable parms", stan::model::index_uni(1));
-      current_statement__ = 19;
-      stan::model::assign(parms, delta,
+      current_statement__ = 32;
+      stan::model::assign(parms, rho,
         "assigning variable parms", stan::model::index_uni(2));
-      current_statement__ = 20;
-      stan::model::assign(parms, rho_dko,
+      current_statement__ = 33;
+      stan::model::assign(parms, delta,
         "assigning variable parms", stan::model::index_uni(3));
-      current_statement__ = 21;
-      stan::model::assign(parms, 0.3,
+      current_statement__ = 34;
+      stan::model::assign(parms, rho_dko,
         "assigning variable parms", stan::model::index_uni(4));
-      current_statement__ = 22;
+      current_statement__ = 35;
+      stan::model::assign(parms, alpha,
+        "assigning variable parms", stan::model::index_uni(5));
+      current_statement__ = 36;
+      stan::model::assign(parms, lambda,
+        "assigning variable parms", stan::model::index_uni(6));
+      current_statement__ = 37;
+      stan::model::assign(parms, alpha_dko,
+        "assigning variable parms", stan::model::index_uni(7));
+      current_statement__ = 38;
       stan::model::assign(y_hat, init_cond,
         "assigning variable y_hat", stan::model::index_uni(1));
-      current_statement__ = 23;
+      current_statement__ = 39;
       stan::model::assign(y_hat,
         solve_ODE_sys(
           stan::model::rvalue(solve_time, "solve_time",
             stan::model::index_min(2)), init_cond, parms, pstream__),
         "assigning variable y_hat", stan::model::index_min(2));
-      current_statement__ = 24;
-      if (pstream__) {
-        stan::math::stan_print(pstream__, y_hat);
-        stan::math::stan_print(pstream__, "\n");
-      }
-      current_statement__ = 27;
+      current_statement__ = 43;
       for (int i = 1; i <= numObs1; ++i) {
-        current_statement__ = 25;
-        stan::model::assign(BrdU_wt_mean,
+        current_statement__ = 40;
+        stan::model::assign(largePreB_wt_mean,
           ((stan::model::rvalue(y_hat, "y_hat",
               stan::model::index_uni(stan::model::rvalue(time_index1,
                                        "time_index1",
@@ -714,12 +961,40 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
                                          "time_index1",
                                          stan::model::index_uni(i))),
                   stan::model::index_uni(3)))),
-          "assigning variable BrdU_wt_mean", stan::model::index_uni(i));
+          "assigning variable largePreB_wt_mean", stan::model::index_uni(i));
+        current_statement__ = 41;
+        stan::model::assign(smallPreB_wt_mean,
+          ((stan::model::rvalue(y_hat, "y_hat",
+              stan::model::index_uni(stan::model::rvalue(time_index1,
+                                       "time_index1",
+                                       stan::model::index_uni(i))),
+                stan::model::index_uni(7)) +
+             stan::model::rvalue(y_hat, "y_hat",
+               stan::model::index_uni(stan::model::rvalue(time_index1,
+                                        "time_index1",
+                                        stan::model::index_uni(i))),
+                 stan::model::index_uni(8))) /
+            ((stan::model::rvalue(y_hat, "y_hat",
+                stan::model::index_uni(stan::model::rvalue(time_index1,
+                                         "time_index1",
+                                         stan::model::index_uni(i))),
+                  stan::model::index_uni(7)) +
+               stan::model::rvalue(y_hat, "y_hat",
+                 stan::model::index_uni(stan::model::rvalue(time_index1,
+                                          "time_index1",
+                                          stan::model::index_uni(i))),
+                   stan::model::index_uni(8))) +
+              stan::model::rvalue(y_hat, "y_hat",
+                stan::model::index_uni(stan::model::rvalue(time_index1,
+                                         "time_index1",
+                                         stan::model::index_uni(i))),
+                  stan::model::index_uni(9)))),
+          "assigning variable smallPreB_wt_mean", stan::model::index_uni(i));
       }
-      current_statement__ = 30;
+      current_statement__ = 47;
       for (int i = 1; i <= numObs2; ++i) {
-        current_statement__ = 28;
-        stan::model::assign(BrdU_dko_mean,
+        current_statement__ = 44;
+        stan::model::assign(largePreB_dko_mean,
           ((stan::model::rvalue(y_hat, "y_hat",
               stan::model::index_uni(stan::model::rvalue(time_index2,
                                        "time_index2",
@@ -745,27 +1020,75 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
                                          "time_index2",
                                          stan::model::index_uni(i))),
                   stan::model::index_uni(6)))),
-          "assigning variable BrdU_dko_mean", stan::model::index_uni(i));
+          "assigning variable largePreB_dko_mean", stan::model::index_uni(i));
+        current_statement__ = 45;
+        stan::model::assign(smallPreB_dko_mean,
+          ((stan::model::rvalue(y_hat, "y_hat",
+              stan::model::index_uni(stan::model::rvalue(time_index2,
+                                       "time_index2",
+                                       stan::model::index_uni(i))),
+                stan::model::index_uni(10)) +
+             stan::model::rvalue(y_hat, "y_hat",
+               stan::model::index_uni(stan::model::rvalue(time_index2,
+                                        "time_index2",
+                                        stan::model::index_uni(i))),
+                 stan::model::index_uni(11))) /
+            ((stan::model::rvalue(y_hat, "y_hat",
+                stan::model::index_uni(stan::model::rvalue(time_index2,
+                                         "time_index2",
+                                         stan::model::index_uni(i))),
+                  stan::model::index_uni(10)) +
+               stan::model::rvalue(y_hat, "y_hat",
+                 stan::model::index_uni(stan::model::rvalue(time_index2,
+                                          "time_index2",
+                                          stan::model::index_uni(i))),
+                   stan::model::index_uni(11))) +
+              stan::model::rvalue(y_hat, "y_hat",
+                stan::model::index_uni(stan::model::rvalue(time_index2,
+                                         "time_index2",
+                                         stan::model::index_uni(i))),
+                  stan::model::index_uni(12)))),
+          "assigning variable smallPreB_dko_mean", stan::model::index_uni(i));
       }
       {
-        current_statement__ = 58;
+        current_statement__ = 89;
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(r_eps, 5, 1));
+        current_statement__ = 90;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(rho, 0.2, 0.5));
-        current_statement__ = 59;
+        current_statement__ = 91;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(delta, 0.1, 0.5));
-        current_statement__ = 60;
+        current_statement__ = 92;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(rho_dko, 0.1, 0.5));
-        current_statement__ = 61;
+        current_statement__ = 93;
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(alpha, 0.2, 0.5));
+        current_statement__ = 94;
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(lambda, 0.1, 0.5));
+        current_statement__ = 95;
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(alpha_dko, 0.1, 0.5));
+        current_statement__ = 96;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(sigma1, 0, 2.5));
-        current_statement__ = 62;
+        current_statement__ = 97;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(sigma2, 0, 2.5));
-        current_statement__ = 63;
+        current_statement__ = 98;
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(sigma3, 0, 2.5));
+        current_statement__ = 99;
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(sigma4, 0, 2.5));
+        current_statement__ = 100;
         lp_accum__.add(
-          stan::math::normal_lpdf<propto__>(stan::math::logit(BrdU_wt),
-            stan::math::logit(BrdU_wt_mean), sigma1));
-        current_statement__ = 64;
+          stan::math::normal_lpdf<propto__>(largePreB_wt, largePreB_wt_mean,
+            sigma1));
+        current_statement__ = 101;
         lp_accum__.add(
-          stan::math::normal_lpdf<propto__>(stan::math::logit(BrdU_dko),
-            stan::math::logit(BrdU_dko_mean), sigma2));
+          stan::math::normal_lpdf<propto__>(smallPreB_wt, smallPreB_wt_mean,
+            sigma2));
+        current_statement__ = 102;
+        lp_accum__.add(
+          stan::math::normal_lpdf<propto__>(largePreB_dko,
+            largePreB_dko_mean, sigma3));
+        current_statement__ = 103;
+        lp_accum__.add(
+          stan::math::normal_lpdf<propto__>(smallPreB_dko,
+            smallPreB_dko_mean, sigma4));
       }
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -803,98 +1126,151 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
       current_statement__ = 1;
       rho = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(0,
               lp__);
-      double delta = std::numeric_limits<double>::quiet_NaN();
-      current_statement__ = 2;
-      delta = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
-                0, lp__);
       double rho_dko = std::numeric_limits<double>::quiet_NaN();
+      current_statement__ = 2;
+      rho_dko = in__.template read_constrain_lub<local_scalar_t__, 
+                  jacobian__>(0, rho, lp__);
+      double delta = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 3;
-      rho_dko = in__.template read_constrain_lb<local_scalar_t__, 
-                  jacobian__>(0, lp__);
+      delta = in__.template read_constrain_lub<local_scalar_t__, jacobian__>(
+                0, rho_dko, lp__);
       double r_eps = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 4;
       r_eps = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
                 0, lp__);
-      double sigma1 = std::numeric_limits<double>::quiet_NaN();
+      double alpha = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 5;
+      alpha = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
+                0, lp__);
+      double alpha_dko = std::numeric_limits<double>::quiet_NaN();
+      current_statement__ = 6;
+      alpha_dko = in__.template read_constrain_lub<local_scalar_t__, 
+                    jacobian__>(0, alpha, lp__);
+      double lambda = std::numeric_limits<double>::quiet_NaN();
+      current_statement__ = 7;
+      lambda = in__.template read_constrain_lub<local_scalar_t__, 
+                 jacobian__>(0, alpha_dko, lp__);
+      double sigma1 = std::numeric_limits<double>::quiet_NaN();
+      current_statement__ = 8;
       sigma1 = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
                  0, lp__);
       double sigma2 = std::numeric_limits<double>::quiet_NaN();
-      current_statement__ = 6;
+      current_statement__ = 9;
       sigma2 = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
+                 0, lp__);
+      double sigma3 = std::numeric_limits<double>::quiet_NaN();
+      current_statement__ = 10;
+      sigma3 = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
+                 0, lp__);
+      double sigma4 = std::numeric_limits<double>::quiet_NaN();
+      current_statement__ = 11;
+      sigma4 = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
                  0, lp__);
       std::vector<std::vector<double>> y_hat =
          std::vector<std::vector<double>>(n_shards, 
-           std::vector<double>(6, std::numeric_limits<double>::quiet_NaN()));
-      std::vector<double> BrdU_wt_mean =
+           std::vector<double>(12, std::numeric_limits<double>::quiet_NaN()));
+      std::vector<double> largePreB_wt_mean =
          std::vector<double>(numObs1, 
            std::numeric_limits<double>::quiet_NaN());
-      std::vector<double> BrdU_dko_mean =
+      std::vector<double> largePreB_dko_mean =
+         std::vector<double>(numObs2, 
+           std::numeric_limits<double>::quiet_NaN());
+      std::vector<double> smallPreB_wt_mean =
+         std::vector<double>(numObs1, 
+           std::numeric_limits<double>::quiet_NaN());
+      std::vector<double> smallPreB_dko_mean =
          std::vector<double>(numObs2, 
            std::numeric_limits<double>::quiet_NaN());
       std::vector<double> parms =
-         std::vector<double>(4, std::numeric_limits<double>::quiet_NaN());
+         std::vector<double>(7, std::numeric_limits<double>::quiet_NaN());
       std::vector<double> init_cond =
-         std::vector<double>(6, std::numeric_limits<double>::quiet_NaN());
+         std::vector<double>(12, std::numeric_limits<double>::quiet_NaN());
       out__.write(rho);
-      out__.write(delta);
       out__.write(rho_dko);
+      out__.write(delta);
       out__.write(r_eps);
+      out__.write(alpha);
+      out__.write(alpha_dko);
+      out__.write(lambda);
       out__.write(sigma1);
       out__.write(sigma2);
+      out__.write(sigma3);
+      out__.write(sigma4);
       if (stan::math::logical_negation((stan::math::primitive_value(
             emit_transformed_parameters__) || stan::math::primitive_value(
             emit_generated_quantities__)))) {
         return ;
       } 
-      current_statement__ = 12;
+      current_statement__ = 19;
       stan::model::assign(init_cond, 0.0,
         "assigning variable init_cond", stan::model::index_uni(1));
-      current_statement__ = 13;
+      current_statement__ = 20;
       stan::model::assign(init_cond, 0.0,
         "assigning variable init_cond", stan::model::index_uni(2));
-      current_statement__ = 14;
+      current_statement__ = 21;
       stan::model::assign(init_cond, 372151,
         "assigning variable init_cond", stan::model::index_uni(3));
-      current_statement__ = 15;
+      current_statement__ = 22;
       stan::model::assign(init_cond, 0.0,
         "assigning variable init_cond", stan::model::index_uni(4));
-      current_statement__ = 16;
+      current_statement__ = 23;
       stan::model::assign(init_cond, 0.0,
         "assigning variable init_cond", stan::model::index_uni(5));
-      current_statement__ = 17;
+      current_statement__ = 24;
       stan::model::assign(init_cond, 83027,
         "assigning variable init_cond", stan::model::index_uni(6));
-      current_statement__ = 18;
-      stan::model::assign(parms, rho,
+      current_statement__ = 25;
+      stan::model::assign(init_cond, 0.0,
+        "assigning variable init_cond", stan::model::index_uni(7));
+      current_statement__ = 26;
+      stan::model::assign(init_cond, 0.0,
+        "assigning variable init_cond", stan::model::index_uni(8));
+      current_statement__ = 27;
+      stan::model::assign(init_cond, 4318182,
+        "assigning variable init_cond", stan::model::index_uni(9));
+      current_statement__ = 28;
+      stan::model::assign(init_cond, 0.0,
+        "assigning variable init_cond", stan::model::index_uni(10));
+      current_statement__ = 29;
+      stan::model::assign(init_cond, 0.0,
+        "assigning variable init_cond", stan::model::index_uni(11));
+      current_statement__ = 30;
+      stan::model::assign(init_cond, 607546,
+        "assigning variable init_cond", stan::model::index_uni(12));
+      current_statement__ = 31;
+      stan::model::assign(parms, r_eps,
         "assigning variable parms", stan::model::index_uni(1));
-      current_statement__ = 19;
-      stan::model::assign(parms, delta,
+      current_statement__ = 32;
+      stan::model::assign(parms, rho,
         "assigning variable parms", stan::model::index_uni(2));
-      current_statement__ = 20;
-      stan::model::assign(parms, rho_dko,
+      current_statement__ = 33;
+      stan::model::assign(parms, delta,
         "assigning variable parms", stan::model::index_uni(3));
-      current_statement__ = 21;
-      stan::model::assign(parms, 0.3,
+      current_statement__ = 34;
+      stan::model::assign(parms, rho_dko,
         "assigning variable parms", stan::model::index_uni(4));
-      current_statement__ = 22;
+      current_statement__ = 35;
+      stan::model::assign(parms, alpha,
+        "assigning variable parms", stan::model::index_uni(5));
+      current_statement__ = 36;
+      stan::model::assign(parms, lambda,
+        "assigning variable parms", stan::model::index_uni(6));
+      current_statement__ = 37;
+      stan::model::assign(parms, alpha_dko,
+        "assigning variable parms", stan::model::index_uni(7));
+      current_statement__ = 38;
       stan::model::assign(y_hat, init_cond,
         "assigning variable y_hat", stan::model::index_uni(1));
-      current_statement__ = 23;
+      current_statement__ = 39;
       stan::model::assign(y_hat,
         solve_ODE_sys(
           stan::model::rvalue(solve_time, "solve_time",
             stan::model::index_min(2)), init_cond, parms, pstream__),
         "assigning variable y_hat", stan::model::index_min(2));
-      current_statement__ = 24;
-      if (pstream__) {
-        stan::math::stan_print(pstream__, y_hat);
-        stan::math::stan_print(pstream__, "\n");
-      }
-      current_statement__ = 27;
+      current_statement__ = 43;
       for (int i = 1; i <= numObs1; ++i) {
-        current_statement__ = 25;
-        stan::model::assign(BrdU_wt_mean,
+        current_statement__ = 40;
+        stan::model::assign(largePreB_wt_mean,
           ((stan::model::rvalue(y_hat, "y_hat",
               stan::model::index_uni(stan::model::rvalue(time_index1,
                                        "time_index1",
@@ -920,12 +1296,40 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
                                          "time_index1",
                                          stan::model::index_uni(i))),
                   stan::model::index_uni(3)))),
-          "assigning variable BrdU_wt_mean", stan::model::index_uni(i));
+          "assigning variable largePreB_wt_mean", stan::model::index_uni(i));
+        current_statement__ = 41;
+        stan::model::assign(smallPreB_wt_mean,
+          ((stan::model::rvalue(y_hat, "y_hat",
+              stan::model::index_uni(stan::model::rvalue(time_index1,
+                                       "time_index1",
+                                       stan::model::index_uni(i))),
+                stan::model::index_uni(7)) +
+             stan::model::rvalue(y_hat, "y_hat",
+               stan::model::index_uni(stan::model::rvalue(time_index1,
+                                        "time_index1",
+                                        stan::model::index_uni(i))),
+                 stan::model::index_uni(8))) /
+            ((stan::model::rvalue(y_hat, "y_hat",
+                stan::model::index_uni(stan::model::rvalue(time_index1,
+                                         "time_index1",
+                                         stan::model::index_uni(i))),
+                  stan::model::index_uni(7)) +
+               stan::model::rvalue(y_hat, "y_hat",
+                 stan::model::index_uni(stan::model::rvalue(time_index1,
+                                          "time_index1",
+                                          stan::model::index_uni(i))),
+                   stan::model::index_uni(8))) +
+              stan::model::rvalue(y_hat, "y_hat",
+                stan::model::index_uni(stan::model::rvalue(time_index1,
+                                         "time_index1",
+                                         stan::model::index_uni(i))),
+                  stan::model::index_uni(9)))),
+          "assigning variable smallPreB_wt_mean", stan::model::index_uni(i));
       }
-      current_statement__ = 30;
+      current_statement__ = 47;
       for (int i = 1; i <= numObs2; ++i) {
-        current_statement__ = 28;
-        stan::model::assign(BrdU_dko_mean,
+        current_statement__ = 44;
+        stan::model::assign(largePreB_dko_mean,
           ((stan::model::rvalue(y_hat, "y_hat",
               stan::model::index_uni(stan::model::rvalue(time_index2,
                                        "time_index2",
@@ -951,16 +1355,46 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
                                          "time_index2",
                                          stan::model::index_uni(i))),
                   stan::model::index_uni(6)))),
-          "assigning variable BrdU_dko_mean", stan::model::index_uni(i));
+          "assigning variable largePreB_dko_mean", stan::model::index_uni(i));
+        current_statement__ = 45;
+        stan::model::assign(smallPreB_dko_mean,
+          ((stan::model::rvalue(y_hat, "y_hat",
+              stan::model::index_uni(stan::model::rvalue(time_index2,
+                                       "time_index2",
+                                       stan::model::index_uni(i))),
+                stan::model::index_uni(10)) +
+             stan::model::rvalue(y_hat, "y_hat",
+               stan::model::index_uni(stan::model::rvalue(time_index2,
+                                        "time_index2",
+                                        stan::model::index_uni(i))),
+                 stan::model::index_uni(11))) /
+            ((stan::model::rvalue(y_hat, "y_hat",
+                stan::model::index_uni(stan::model::rvalue(time_index2,
+                                         "time_index2",
+                                         stan::model::index_uni(i))),
+                  stan::model::index_uni(10)) +
+               stan::model::rvalue(y_hat, "y_hat",
+                 stan::model::index_uni(stan::model::rvalue(time_index2,
+                                          "time_index2",
+                                          stan::model::index_uni(i))),
+                   stan::model::index_uni(11))) +
+              stan::model::rvalue(y_hat, "y_hat",
+                stan::model::index_uni(stan::model::rvalue(time_index2,
+                                         "time_index2",
+                                         stan::model::index_uni(i))),
+                  stan::model::index_uni(12)))),
+          "assigning variable smallPreB_dko_mean", stan::model::index_uni(i));
       }
       if (emit_transformed_parameters__) {
-        for (int sym1__ = 1; sym1__ <= 6; ++sym1__) {
+        for (int sym1__ = 1; sym1__ <= 12; ++sym1__) {
           for (int sym2__ = 1; sym2__ <= n_shards; ++sym2__) {
             out__.write(y_hat[(sym2__ - 1)][(sym1__ - 1)]);
           }
         }
-        out__.write(BrdU_wt_mean);
-        out__.write(BrdU_dko_mean);
+        out__.write(largePreB_wt_mean);
+        out__.write(largePreB_dko_mean);
+        out__.write(smallPreB_wt_mean);
+        out__.write(smallPreB_dko_mean);
         out__.write(parms);
         out__.write(init_cond);
       } 
@@ -969,17 +1403,29 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
       } 
       std::vector<std::vector<double>> y_hat_pred =
          std::vector<std::vector<double>>(numPred, 
-           std::vector<double>(6, std::numeric_limits<double>::quiet_NaN()));
+           std::vector<double>(12, std::numeric_limits<double>::quiet_NaN()));
       std::vector<double> y1_mean_pred =
          std::vector<double>(numPred, 
            std::numeric_limits<double>::quiet_NaN());
       std::vector<double> y2_mean_pred =
          std::vector<double>(numPred, 
            std::numeric_limits<double>::quiet_NaN());
-      std::vector<double> BrdU_wt_pred =
+      std::vector<double> y3_mean_pred =
          std::vector<double>(numPred, 
            std::numeric_limits<double>::quiet_NaN());
-      std::vector<double> BrdU_dko_pred =
+      std::vector<double> y4_mean_pred =
+         std::vector<double>(numPred, 
+           std::numeric_limits<double>::quiet_NaN());
+      std::vector<double> largePreB_wt_pred =
+         std::vector<double>(numPred, 
+           std::numeric_limits<double>::quiet_NaN());
+      std::vector<double> smallPreB_wt_pred =
+         std::vector<double>(numPred, 
+           std::numeric_limits<double>::quiet_NaN());
+      std::vector<double> largePreB_dko_pred =
+         std::vector<double>(numPred, 
+           std::numeric_limits<double>::quiet_NaN());
+      std::vector<double> smallPreB_dko_pred =
          std::vector<double>(numPred, 
            std::numeric_limits<double>::quiet_NaN());
       Eigen::Matrix<double, -1, 1> resid_d1 =
@@ -987,6 +1433,12 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
            std::numeric_limits<double>::quiet_NaN());
       Eigen::Matrix<double, -1, 1> resid_d2 =
          Eigen::Matrix<double, -1, 1>::Constant(numObs1,
+           std::numeric_limits<double>::quiet_NaN());
+      Eigen::Matrix<double, -1, 1> resid_d3 =
+         Eigen::Matrix<double, -1, 1>::Constant(numObs2,
+           std::numeric_limits<double>::quiet_NaN());
+      Eigen::Matrix<double, -1, 1> resid_d4 =
+         Eigen::Matrix<double, -1, 1>::Constant(numObs2,
            std::numeric_limits<double>::quiet_NaN());
       Eigen::Matrix<double, -1, 1> log_lik1 =
          Eigen::Matrix<double, -1, 1>::Constant(numObs1,
@@ -1000,18 +1452,18 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
       Eigen::Matrix<double, -1, 1> log_lik4 =
          Eigen::Matrix<double, -1, 1>::Constant(numObs2,
            std::numeric_limits<double>::quiet_NaN());
-      current_statement__ = 42;
+      current_statement__ = 65;
       stan::model::assign(y_hat_pred, init_cond,
         "assigning variable y_hat_pred", stan::model::index_uni(1));
-      current_statement__ = 43;
+      current_statement__ = 66;
       stan::model::assign(y_hat_pred,
         solve_ODE_sys(
           stan::model::rvalue(ts_pred, "ts_pred", stan::model::index_min(2)),
           init_cond, parms, pstream__),
         "assigning variable y_hat_pred", stan::model::index_min(2));
-      current_statement__ = 49;
+      current_statement__ = 76;
       for (int i = 1; i <= numPred; ++i) {
-        current_statement__ = 44;
+        current_statement__ = 67;
         stan::model::assign(y1_mean_pred,
           ((stan::model::rvalue(y_hat_pred, "y_hat_pred",
               stan::model::index_uni(i), stan::model::index_uni(1)) +
@@ -1024,16 +1476,37 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
               stan::model::rvalue(y_hat_pred, "y_hat_pred",
                 stan::model::index_uni(i), stan::model::index_uni(3)))),
           "assigning variable y1_mean_pred", stan::model::index_uni(i));
-        current_statement__ = 45;
-        stan::model::assign(BrdU_wt_pred,
+        current_statement__ = 68;
+        stan::model::assign(y2_mean_pred,
+          ((stan::model::rvalue(y_hat_pred, "y_hat_pred",
+              stan::model::index_uni(i), stan::model::index_uni(7)) +
+             stan::model::rvalue(y_hat_pred, "y_hat_pred",
+               stan::model::index_uni(i), stan::model::index_uni(8))) /
+            ((stan::model::rvalue(y_hat_pred, "y_hat_pred",
+                stan::model::index_uni(i), stan::model::index_uni(7)) +
+               stan::model::rvalue(y_hat_pred, "y_hat_pred",
+                 stan::model::index_uni(i), stan::model::index_uni(8))) +
+              stan::model::rvalue(y_hat_pred, "y_hat_pred",
+                stan::model::index_uni(i), stan::model::index_uni(9)))),
+          "assigning variable y2_mean_pred", stan::model::index_uni(i));
+        current_statement__ = 69;
+        stan::model::assign(largePreB_wt_pred,
           stan::math::inv_logit(
             stan::math::normal_rng(
               stan::math::logit(
                 stan::model::rvalue(y1_mean_pred, "y1_mean_pred",
                   stan::model::index_uni(i))), sigma1, base_rng__)),
-          "assigning variable BrdU_wt_pred", stan::model::index_uni(i));
-        current_statement__ = 46;
-        stan::model::assign(y2_mean_pred,
+          "assigning variable largePreB_wt_pred", stan::model::index_uni(i));
+        current_statement__ = 70;
+        stan::model::assign(smallPreB_wt_pred,
+          stan::math::inv_logit(
+            stan::math::normal_rng(
+              stan::math::logit(
+                stan::model::rvalue(y2_mean_pred, "y2_mean_pred",
+                  stan::model::index_uni(i))), sigma2, base_rng__)),
+          "assigning variable smallPreB_wt_pred", stan::model::index_uni(i));
+        current_statement__ = 71;
+        stan::model::assign(y3_mean_pred,
           ((stan::model::rvalue(y_hat_pred, "y_hat_pred",
               stan::model::index_uni(i), stan::model::index_uni(4)) +
              stan::model::rvalue(y_hat_pred, "y_hat_pred",
@@ -1044,71 +1517,136 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
                  stan::model::index_uni(i), stan::model::index_uni(5))) +
               stan::model::rvalue(y_hat_pred, "y_hat_pred",
                 stan::model::index_uni(i), stan::model::index_uni(6)))),
-          "assigning variable y2_mean_pred", stan::model::index_uni(i));
-        current_statement__ = 47;
-        stan::model::assign(BrdU_dko_pred,
+          "assigning variable y3_mean_pred", stan::model::index_uni(i));
+        current_statement__ = 72;
+        stan::model::assign(y4_mean_pred,
+          ((stan::model::rvalue(y_hat_pred, "y_hat_pred",
+              stan::model::index_uni(i), stan::model::index_uni(10)) +
+             stan::model::rvalue(y_hat_pred, "y_hat_pred",
+               stan::model::index_uni(i), stan::model::index_uni(11))) /
+            ((stan::model::rvalue(y_hat_pred, "y_hat_pred",
+                stan::model::index_uni(i), stan::model::index_uni(10)) +
+               stan::model::rvalue(y_hat_pred, "y_hat_pred",
+                 stan::model::index_uni(i), stan::model::index_uni(5))) +
+              stan::model::rvalue(y_hat_pred, "y_hat_pred",
+                stan::model::index_uni(i), stan::model::index_uni(12)))),
+          "assigning variable y4_mean_pred", stan::model::index_uni(i));
+        current_statement__ = 73;
+        stan::model::assign(largePreB_dko_pred,
           stan::math::inv_logit(
             stan::math::normal_rng(
               stan::math::logit(
-                stan::model::rvalue(y2_mean_pred, "y2_mean_pred",
-                  stan::model::index_uni(i))), sigma2, base_rng__)),
-          "assigning variable BrdU_dko_pred", stan::model::index_uni(i));
+                stan::model::rvalue(y3_mean_pred, "y3_mean_pred",
+                  stan::model::index_uni(i))), sigma3, base_rng__)),
+          "assigning variable largePreB_dko_pred", stan::model::index_uni(i));
+        current_statement__ = 74;
+        stan::model::assign(smallPreB_dko_pred,
+          stan::math::inv_logit(
+            stan::math::normal_rng(
+              stan::math::logit(
+                stan::model::rvalue(y4_mean_pred, "y4_mean_pred",
+                  stan::model::index_uni(i))), sigma4, base_rng__)),
+          "assigning variable smallPreB_dko_pred", stan::model::index_uni(i));
       }
-      current_statement__ = 53;
+      current_statement__ = 82;
       for (int n = 1; n <= numObs1; ++n) {
-        current_statement__ = 50;
+        current_statement__ = 77;
         stan::model::assign(resid_d1,
           (stan::math::logit(
-             stan::model::rvalue(BrdU_wt, "BrdU_wt",
+             stan::model::rvalue(largePreB_wt, "largePreB_wt",
                stan::model::index_uni(n))) -
             stan::math::logit(
-              stan::model::rvalue(BrdU_wt_mean, "BrdU_wt_mean",
+              stan::model::rvalue(largePreB_wt_mean, "largePreB_wt_mean",
                 stan::model::index_uni(n)))),
           "assigning variable resid_d1", stan::model::index_uni(n));
-        current_statement__ = 51;
+        current_statement__ = 78;
+        stan::model::assign(resid_d1,
+          (stan::math::logit(
+             stan::model::rvalue(smallPreB_wt, "smallPreB_wt",
+               stan::model::index_uni(n))) -
+            stan::math::logit(
+              stan::model::rvalue(smallPreB_wt_mean, "smallPreB_wt_mean",
+                stan::model::index_uni(n)))),
+          "assigning variable resid_d1", stan::model::index_uni(n));
+        current_statement__ = 79;
         stan::model::assign(log_lik1,
           stan::math::normal_lpdf<false>(
             stan::math::logit(
-              stan::model::rvalue(BrdU_wt, "BrdU_wt",
+              stan::model::rvalue(largePreB_wt, "largePreB_wt",
                 stan::model::index_uni(n))),
             stan::math::logit(
-              stan::model::rvalue(BrdU_wt_mean, "BrdU_wt_mean",
+              stan::model::rvalue(largePreB_wt_mean, "largePreB_wt_mean",
                 stan::model::index_uni(n))), sigma1),
           "assigning variable log_lik1", stan::model::index_uni(n));
-      }
-      current_statement__ = 57;
-      for (int n = 1; n <= numObs2; ++n) {
-        current_statement__ = 54;
-        stan::model::assign(resid_d1,
-          (stan::math::logit(
-             stan::model::rvalue(BrdU_dko, "BrdU_dko",
-               stan::model::index_uni(n))) -
-            stan::math::logit(
-              stan::model::rvalue(BrdU_dko_mean, "BrdU_dko_mean",
-                stan::model::index_uni(n)))),
-          "assigning variable resid_d1", stan::model::index_uni(n));
-        current_statement__ = 55;
+        current_statement__ = 80;
         stan::model::assign(log_lik1,
           stan::math::normal_lpdf<false>(
             stan::math::logit(
-              stan::model::rvalue(BrdU_dko, "BrdU_dko",
+              stan::model::rvalue(smallPreB_wt, "smallPreB_wt",
                 stan::model::index_uni(n))),
             stan::math::logit(
-              stan::model::rvalue(BrdU_dko_mean, "BrdU_dko_mean",
+              stan::model::rvalue(smallPreB_wt_mean, "smallPreB_wt_mean",
                 stan::model::index_uni(n))), sigma2),
           "assigning variable log_lik1", stan::model::index_uni(n));
       }
-      for (int sym1__ = 1; sym1__ <= 6; ++sym1__) {
+      current_statement__ = 88;
+      for (int n = 1; n <= numObs2; ++n) {
+        current_statement__ = 83;
+        stan::model::assign(resid_d1,
+          (stan::math::logit(
+             stan::model::rvalue(largePreB_dko, "largePreB_dko",
+               stan::model::index_uni(n))) -
+            stan::math::logit(
+              stan::model::rvalue(largePreB_dko_mean, "largePreB_dko_mean",
+                stan::model::index_uni(n)))),
+          "assigning variable resid_d1", stan::model::index_uni(n));
+        current_statement__ = 84;
+        stan::model::assign(log_lik1,
+          stan::math::normal_lpdf<false>(
+            stan::math::logit(
+              stan::model::rvalue(largePreB_dko, "largePreB_dko",
+                stan::model::index_uni(n))),
+            stan::math::logit(
+              stan::model::rvalue(largePreB_dko_mean, "largePreB_dko_mean",
+                stan::model::index_uni(n))), sigma3),
+          "assigning variable log_lik1", stan::model::index_uni(n));
+        current_statement__ = 85;
+        stan::model::assign(resid_d1,
+          (stan::math::logit(
+             stan::model::rvalue(smallPreB_dko, "smallPreB_dko",
+               stan::model::index_uni(n))) -
+            stan::math::logit(
+              stan::model::rvalue(smallPreB_dko_mean, "smallPreB_dko_mean",
+                stan::model::index_uni(n)))),
+          "assigning variable resid_d1", stan::model::index_uni(n));
+        current_statement__ = 86;
+        stan::model::assign(log_lik1,
+          stan::math::normal_lpdf<false>(
+            stan::math::logit(
+              stan::model::rvalue(smallPreB_dko, "smallPreB_dko",
+                stan::model::index_uni(n))),
+            stan::math::logit(
+              stan::model::rvalue(smallPreB_dko_mean, "smallPreB_dko_mean",
+                stan::model::index_uni(n))), sigma4),
+          "assigning variable log_lik1", stan::model::index_uni(n));
+      }
+      for (int sym1__ = 1; sym1__ <= 12; ++sym1__) {
         for (int sym2__ = 1; sym2__ <= numPred; ++sym2__) {
           out__.write(y_hat_pred[(sym2__ - 1)][(sym1__ - 1)]);
         }
       }
       out__.write(y1_mean_pred);
       out__.write(y2_mean_pred);
-      out__.write(BrdU_wt_pred);
-      out__.write(BrdU_dko_pred);
+      out__.write(y3_mean_pred);
+      out__.write(y4_mean_pred);
+      out__.write(largePreB_wt_pred);
+      out__.write(smallPreB_wt_pred);
+      out__.write(largePreB_dko_pred);
+      out__.write(smallPreB_dko_pred);
       out__.write(resid_d1);
       out__.write(resid_d2);
+      out__.write(resid_d3);
+      out__.write(resid_d4);
       out__.write(log_lik1);
       out__.write(log_lik2);
       out__.write(log_lik3);
@@ -1136,21 +1674,36 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
       local_scalar_t__ rho = DUMMY_VAR__;
       rho = in__.read<local_scalar_t__>();
       out__.write_free_lb(0, rho);
-      local_scalar_t__ delta = DUMMY_VAR__;
-      delta = in__.read<local_scalar_t__>();
-      out__.write_free_lb(0, delta);
       local_scalar_t__ rho_dko = DUMMY_VAR__;
       rho_dko = in__.read<local_scalar_t__>();
-      out__.write_free_lb(0, rho_dko);
+      out__.write_free_lub(0, rho, rho_dko);
+      local_scalar_t__ delta = DUMMY_VAR__;
+      delta = in__.read<local_scalar_t__>();
+      out__.write_free_lub(0, rho_dko, delta);
       local_scalar_t__ r_eps = DUMMY_VAR__;
       r_eps = in__.read<local_scalar_t__>();
       out__.write_free_lb(0, r_eps);
+      local_scalar_t__ alpha = DUMMY_VAR__;
+      alpha = in__.read<local_scalar_t__>();
+      out__.write_free_lb(0, alpha);
+      local_scalar_t__ alpha_dko = DUMMY_VAR__;
+      alpha_dko = in__.read<local_scalar_t__>();
+      out__.write_free_lub(0, alpha, alpha_dko);
+      local_scalar_t__ lambda = DUMMY_VAR__;
+      lambda = in__.read<local_scalar_t__>();
+      out__.write_free_lub(0, alpha_dko, lambda);
       local_scalar_t__ sigma1 = DUMMY_VAR__;
       sigma1 = in__.read<local_scalar_t__>();
       out__.write_free_lb(0, sigma1);
       local_scalar_t__ sigma2 = DUMMY_VAR__;
       sigma2 = in__.read<local_scalar_t__>();
       out__.write_free_lb(0, sigma2);
+      local_scalar_t__ sigma3 = DUMMY_VAR__;
+      sigma3 = in__.read<local_scalar_t__>();
+      out__.write_free_lb(0, sigma3);
+      local_scalar_t__ sigma4 = DUMMY_VAR__;
+      sigma4 = in__.read<local_scalar_t__>();
+      out__.write_free_lb(0, sigma4);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
     }
@@ -1158,11 +1711,15 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
     
   inline void get_param_names(std::vector<std::string>& names__) const {
     
-    names__ = std::vector<std::string>{"rho", "delta", "rho_dko", "r_eps",
-      "sigma1", "sigma2", "y_hat", "BrdU_wt_mean", "BrdU_dko_mean", "parms",
-      "init_cond", "y_hat_pred", "y1_mean_pred", "y2_mean_pred",
-      "BrdU_wt_pred", "BrdU_dko_pred", "resid_d1", "resid_d2", "log_lik1",
-      "log_lik2", "log_lik3", "log_lik4"};
+    names__ = std::vector<std::string>{"rho", "rho_dko", "delta", "r_eps",
+      "alpha", "alpha_dko", "lambda", "sigma1", "sigma2", "sigma3", "sigma4",
+      "y_hat", "largePreB_wt_mean", "largePreB_dko_mean",
+      "smallPreB_wt_mean", "smallPreB_dko_mean", "parms", "init_cond",
+      "y_hat_pred", "y1_mean_pred", "y2_mean_pred", "y3_mean_pred",
+      "y4_mean_pred", "largePreB_wt_pred", "smallPreB_wt_pred",
+      "largePreB_dko_pred", "smallPreB_dko_pred", "resid_d1", "resid_d2",
+      "resid_d3", "resid_d4", "log_lik1", "log_lik2", "log_lik3",
+      "log_lik4"};
     
     } // get_param_names() 
     
@@ -1170,21 +1727,31 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
     
     dimss__ = std::vector<std::vector<size_t>>{std::vector<size_t>{},
       std::vector<size_t>{}, std::vector<size_t>{}, std::vector<size_t>{
-      }, std::vector<size_t>{}, std::vector<size_t>{},
+      }, std::vector<size_t>{}, std::vector<size_t>{}, std::vector<size_t>{
+      }, std::vector<size_t>{}, std::vector<size_t>{}, std::vector<size_t>{
+      }, std::vector<size_t>{},
       std::vector<size_t>{static_cast<size_t>(n_shards),
-                          static_cast<size_t>(6)},
+                          static_cast<size_t>(12)},
       std::vector<size_t>{static_cast<size_t>(numObs1)},
       std::vector<size_t>{static_cast<size_t>(numObs2)},
-      std::vector<size_t>{static_cast<size_t>(4)},
-      std::vector<size_t>{static_cast<size_t>(6)},
+      std::vector<size_t>{static_cast<size_t>(numObs1)},
+      std::vector<size_t>{static_cast<size_t>(numObs2)},
+      std::vector<size_t>{static_cast<size_t>(7)},
+      std::vector<size_t>{static_cast<size_t>(12)},
       std::vector<size_t>{static_cast<size_t>(numPred),
-                          static_cast<size_t>(6)},
+                          static_cast<size_t>(12)},
+      std::vector<size_t>{static_cast<size_t>(numPred)},
+      std::vector<size_t>{static_cast<size_t>(numPred)},
+      std::vector<size_t>{static_cast<size_t>(numPred)},
+      std::vector<size_t>{static_cast<size_t>(numPred)},
       std::vector<size_t>{static_cast<size_t>(numPred)},
       std::vector<size_t>{static_cast<size_t>(numPred)},
       std::vector<size_t>{static_cast<size_t>(numPred)},
       std::vector<size_t>{static_cast<size_t>(numPred)},
       std::vector<size_t>{static_cast<size_t>(numObs1)},
       std::vector<size_t>{static_cast<size_t>(numObs1)},
+      std::vector<size_t>{static_cast<size_t>(numObs2)},
+      std::vector<size_t>{static_cast<size_t>(numObs2)},
       std::vector<size_t>{static_cast<size_t>(numObs1)},
       std::vector<size_t>{static_cast<size_t>(numObs1)},
       std::vector<size_t>{static_cast<size_t>(numObs2)},
@@ -1199,13 +1766,18 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
     final {
     
     param_names__.emplace_back(std::string() + "rho");
-    param_names__.emplace_back(std::string() + "delta");
     param_names__.emplace_back(std::string() + "rho_dko");
+    param_names__.emplace_back(std::string() + "delta");
     param_names__.emplace_back(std::string() + "r_eps");
+    param_names__.emplace_back(std::string() + "alpha");
+    param_names__.emplace_back(std::string() + "alpha_dko");
+    param_names__.emplace_back(std::string() + "lambda");
     param_names__.emplace_back(std::string() + "sigma1");
     param_names__.emplace_back(std::string() + "sigma2");
+    param_names__.emplace_back(std::string() + "sigma3");
+    param_names__.emplace_back(std::string() + "sigma4");
     if (emit_transformed_parameters__) {
-      for (int sym1__ = 1; sym1__ <= 6; ++sym1__) {
+      for (int sym1__ = 1; sym1__ <= 12; ++sym1__) {
         {
           for (int sym2__ = 1; sym2__ <= n_shards; ++sym2__) {
             {
@@ -1216,20 +1788,30 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
       }
       for (int sym1__ = 1; sym1__ <= numObs1; ++sym1__) {
         {
-          param_names__.emplace_back(std::string() + "BrdU_wt_mean" + '.' + std::to_string(sym1__));
+          param_names__.emplace_back(std::string() + "largePreB_wt_mean" + '.' + std::to_string(sym1__));
         } 
       }
       for (int sym1__ = 1; sym1__ <= numObs2; ++sym1__) {
         {
-          param_names__.emplace_back(std::string() + "BrdU_dko_mean" + '.' + std::to_string(sym1__));
+          param_names__.emplace_back(std::string() + "largePreB_dko_mean" + '.' + std::to_string(sym1__));
         } 
       }
-      for (int sym1__ = 1; sym1__ <= 4; ++sym1__) {
+      for (int sym1__ = 1; sym1__ <= numObs1; ++sym1__) {
+        {
+          param_names__.emplace_back(std::string() + "smallPreB_wt_mean" + '.' + std::to_string(sym1__));
+        } 
+      }
+      for (int sym1__ = 1; sym1__ <= numObs2; ++sym1__) {
+        {
+          param_names__.emplace_back(std::string() + "smallPreB_dko_mean" + '.' + std::to_string(sym1__));
+        } 
+      }
+      for (int sym1__ = 1; sym1__ <= 7; ++sym1__) {
         {
           param_names__.emplace_back(std::string() + "parms" + '.' + std::to_string(sym1__));
         } 
       }
-      for (int sym1__ = 1; sym1__ <= 6; ++sym1__) {
+      for (int sym1__ = 1; sym1__ <= 12; ++sym1__) {
         {
           param_names__.emplace_back(std::string() + "init_cond" + '.' + std::to_string(sym1__));
         } 
@@ -1237,7 +1819,7 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
     }
     
     if (emit_generated_quantities__) {
-      for (int sym1__ = 1; sym1__ <= 6; ++sym1__) {
+      for (int sym1__ = 1; sym1__ <= 12; ++sym1__) {
         {
           for (int sym2__ = 1; sym2__ <= numPred; ++sym2__) {
             {
@@ -1258,12 +1840,32 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
       }
       for (int sym1__ = 1; sym1__ <= numPred; ++sym1__) {
         {
-          param_names__.emplace_back(std::string() + "BrdU_wt_pred" + '.' + std::to_string(sym1__));
+          param_names__.emplace_back(std::string() + "y3_mean_pred" + '.' + std::to_string(sym1__));
         } 
       }
       for (int sym1__ = 1; sym1__ <= numPred; ++sym1__) {
         {
-          param_names__.emplace_back(std::string() + "BrdU_dko_pred" + '.' + std::to_string(sym1__));
+          param_names__.emplace_back(std::string() + "y4_mean_pred" + '.' + std::to_string(sym1__));
+        } 
+      }
+      for (int sym1__ = 1; sym1__ <= numPred; ++sym1__) {
+        {
+          param_names__.emplace_back(std::string() + "largePreB_wt_pred" + '.' + std::to_string(sym1__));
+        } 
+      }
+      for (int sym1__ = 1; sym1__ <= numPred; ++sym1__) {
+        {
+          param_names__.emplace_back(std::string() + "smallPreB_wt_pred" + '.' + std::to_string(sym1__));
+        } 
+      }
+      for (int sym1__ = 1; sym1__ <= numPred; ++sym1__) {
+        {
+          param_names__.emplace_back(std::string() + "largePreB_dko_pred" + '.' + std::to_string(sym1__));
+        } 
+      }
+      for (int sym1__ = 1; sym1__ <= numPred; ++sym1__) {
+        {
+          param_names__.emplace_back(std::string() + "smallPreB_dko_pred" + '.' + std::to_string(sym1__));
         } 
       }
       for (int sym1__ = 1; sym1__ <= numObs1; ++sym1__) {
@@ -1274,6 +1876,16 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
       for (int sym1__ = 1; sym1__ <= numObs1; ++sym1__) {
         {
           param_names__.emplace_back(std::string() + "resid_d2" + '.' + std::to_string(sym1__));
+        } 
+      }
+      for (int sym1__ = 1; sym1__ <= numObs2; ++sym1__) {
+        {
+          param_names__.emplace_back(std::string() + "resid_d3" + '.' + std::to_string(sym1__));
+        } 
+      }
+      for (int sym1__ = 1; sym1__ <= numObs2; ++sym1__) {
+        {
+          param_names__.emplace_back(std::string() + "resid_d4" + '.' + std::to_string(sym1__));
         } 
       }
       for (int sym1__ = 1; sym1__ <= numObs1; ++sym1__) {
@@ -1307,13 +1919,18 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
     final {
     
     param_names__.emplace_back(std::string() + "rho");
-    param_names__.emplace_back(std::string() + "delta");
     param_names__.emplace_back(std::string() + "rho_dko");
+    param_names__.emplace_back(std::string() + "delta");
     param_names__.emplace_back(std::string() + "r_eps");
+    param_names__.emplace_back(std::string() + "alpha");
+    param_names__.emplace_back(std::string() + "alpha_dko");
+    param_names__.emplace_back(std::string() + "lambda");
     param_names__.emplace_back(std::string() + "sigma1");
     param_names__.emplace_back(std::string() + "sigma2");
+    param_names__.emplace_back(std::string() + "sigma3");
+    param_names__.emplace_back(std::string() + "sigma4");
     if (emit_transformed_parameters__) {
-      for (int sym1__ = 1; sym1__ <= 6; ++sym1__) {
+      for (int sym1__ = 1; sym1__ <= 12; ++sym1__) {
         {
           for (int sym2__ = 1; sym2__ <= n_shards; ++sym2__) {
             {
@@ -1324,20 +1941,30 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
       }
       for (int sym1__ = 1; sym1__ <= numObs1; ++sym1__) {
         {
-          param_names__.emplace_back(std::string() + "BrdU_wt_mean" + '.' + std::to_string(sym1__));
+          param_names__.emplace_back(std::string() + "largePreB_wt_mean" + '.' + std::to_string(sym1__));
         } 
       }
       for (int sym1__ = 1; sym1__ <= numObs2; ++sym1__) {
         {
-          param_names__.emplace_back(std::string() + "BrdU_dko_mean" + '.' + std::to_string(sym1__));
+          param_names__.emplace_back(std::string() + "largePreB_dko_mean" + '.' + std::to_string(sym1__));
         } 
       }
-      for (int sym1__ = 1; sym1__ <= 4; ++sym1__) {
+      for (int sym1__ = 1; sym1__ <= numObs1; ++sym1__) {
+        {
+          param_names__.emplace_back(std::string() + "smallPreB_wt_mean" + '.' + std::to_string(sym1__));
+        } 
+      }
+      for (int sym1__ = 1; sym1__ <= numObs2; ++sym1__) {
+        {
+          param_names__.emplace_back(std::string() + "smallPreB_dko_mean" + '.' + std::to_string(sym1__));
+        } 
+      }
+      for (int sym1__ = 1; sym1__ <= 7; ++sym1__) {
         {
           param_names__.emplace_back(std::string() + "parms" + '.' + std::to_string(sym1__));
         } 
       }
-      for (int sym1__ = 1; sym1__ <= 6; ++sym1__) {
+      for (int sym1__ = 1; sym1__ <= 12; ++sym1__) {
         {
           param_names__.emplace_back(std::string() + "init_cond" + '.' + std::to_string(sym1__));
         } 
@@ -1345,7 +1972,7 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
     }
     
     if (emit_generated_quantities__) {
-      for (int sym1__ = 1; sym1__ <= 6; ++sym1__) {
+      for (int sym1__ = 1; sym1__ <= 12; ++sym1__) {
         {
           for (int sym2__ = 1; sym2__ <= numPred; ++sym2__) {
             {
@@ -1366,12 +1993,32 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
       }
       for (int sym1__ = 1; sym1__ <= numPred; ++sym1__) {
         {
-          param_names__.emplace_back(std::string() + "BrdU_wt_pred" + '.' + std::to_string(sym1__));
+          param_names__.emplace_back(std::string() + "y3_mean_pred" + '.' + std::to_string(sym1__));
         } 
       }
       for (int sym1__ = 1; sym1__ <= numPred; ++sym1__) {
         {
-          param_names__.emplace_back(std::string() + "BrdU_dko_pred" + '.' + std::to_string(sym1__));
+          param_names__.emplace_back(std::string() + "y4_mean_pred" + '.' + std::to_string(sym1__));
+        } 
+      }
+      for (int sym1__ = 1; sym1__ <= numPred; ++sym1__) {
+        {
+          param_names__.emplace_back(std::string() + "largePreB_wt_pred" + '.' + std::to_string(sym1__));
+        } 
+      }
+      for (int sym1__ = 1; sym1__ <= numPred; ++sym1__) {
+        {
+          param_names__.emplace_back(std::string() + "smallPreB_wt_pred" + '.' + std::to_string(sym1__));
+        } 
+      }
+      for (int sym1__ = 1; sym1__ <= numPred; ++sym1__) {
+        {
+          param_names__.emplace_back(std::string() + "largePreB_dko_pred" + '.' + std::to_string(sym1__));
+        } 
+      }
+      for (int sym1__ = 1; sym1__ <= numPred; ++sym1__) {
+        {
+          param_names__.emplace_back(std::string() + "smallPreB_dko_pred" + '.' + std::to_string(sym1__));
         } 
       }
       for (int sym1__ = 1; sym1__ <= numObs1; ++sym1__) {
@@ -1382,6 +2029,16 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
       for (int sym1__ = 1; sym1__ <= numObs1; ++sym1__) {
         {
           param_names__.emplace_back(std::string() + "resid_d2" + '.' + std::to_string(sym1__));
+        } 
+      }
+      for (int sym1__ = 1; sym1__ <= numObs2; ++sym1__) {
+        {
+          param_names__.emplace_back(std::string() + "resid_d3" + '.' + std::to_string(sym1__));
+        } 
+      }
+      for (int sym1__ = 1; sym1__ <= numObs2; ++sym1__) {
+        {
+          param_names__.emplace_back(std::string() + "resid_d4" + '.' + std::to_string(sym1__));
         } 
       }
       for (int sym1__ = 1; sym1__ <= numObs1; ++sym1__) {
@@ -1410,13 +2067,13 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
     
   inline std::string get_constrained_sizedtypes() const {
     
-    return std::string("[{\"name\":\"rho\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"delta\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"rho_dko\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"r_eps\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma1\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma2\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"y_hat\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_shards) + ",\"element_type\":{\"name\":\"array\",\"length\":" + std::to_string(6) + ",\"element_type\":{\"name\":\"real\"}}},\"block\":\"transformed_parameters\"},{\"name\":\"BrdU_wt_mean\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numObs1) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"transformed_parameters\"},{\"name\":\"BrdU_dko_mean\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numObs2) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"transformed_parameters\"},{\"name\":\"parms\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(4) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"transformed_parameters\"},{\"name\":\"init_cond\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(6) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"transformed_parameters\"},{\"name\":\"y_hat_pred\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numPred) + ",\"element_type\":{\"name\":\"array\",\"length\":" + std::to_string(6) + ",\"element_type\":{\"name\":\"real\"}}},\"block\":\"generated_quantities\"},{\"name\":\"y1_mean_pred\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numPred) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"generated_quantities\"},{\"name\":\"y2_mean_pred\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numPred) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"generated_quantities\"},{\"name\":\"BrdU_wt_pred\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numPred) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"generated_quantities\"},{\"name\":\"BrdU_dko_pred\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numPred) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"generated_quantities\"},{\"name\":\"resid_d1\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(numObs1) + "},\"block\":\"generated_quantities\"},{\"name\":\"resid_d2\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(numObs1) + "},\"block\":\"generated_quantities\"},{\"name\":\"log_lik1\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(numObs1) + "},\"block\":\"generated_quantities\"},{\"name\":\"log_lik2\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(numObs1) + "},\"block\":\"generated_quantities\"},{\"name\":\"log_lik3\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(numObs2) + "},\"block\":\"generated_quantities\"},{\"name\":\"log_lik4\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(numObs2) + "},\"block\":\"generated_quantities\"}]");
+    return std::string("[{\"name\":\"rho\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"rho_dko\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"delta\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"r_eps\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"alpha_dko\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"lambda\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma1\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma2\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma3\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma4\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"y_hat\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_shards) + ",\"element_type\":{\"name\":\"array\",\"length\":" + std::to_string(12) + ",\"element_type\":{\"name\":\"real\"}}},\"block\":\"transformed_parameters\"},{\"name\":\"largePreB_wt_mean\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numObs1) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"transformed_parameters\"},{\"name\":\"largePreB_dko_mean\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numObs2) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"transformed_parameters\"},{\"name\":\"smallPreB_wt_mean\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numObs1) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"transformed_parameters\"},{\"name\":\"smallPreB_dko_mean\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numObs2) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"transformed_parameters\"},{\"name\":\"parms\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(7) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"transformed_parameters\"},{\"name\":\"init_cond\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(12) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"transformed_parameters\"},{\"name\":\"y_hat_pred\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numPred) + ",\"element_type\":{\"name\":\"array\",\"length\":" + std::to_string(12) + ",\"element_type\":{\"name\":\"real\"}}},\"block\":\"generated_quantities\"},{\"name\":\"y1_mean_pred\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numPred) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"generated_quantities\"},{\"name\":\"y2_mean_pred\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numPred) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"generated_quantities\"},{\"name\":\"y3_mean_pred\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numPred) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"generated_quantities\"},{\"name\":\"y4_mean_pred\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numPred) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"generated_quantities\"},{\"name\":\"largePreB_wt_pred\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numPred) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"generated_quantities\"},{\"name\":\"smallPreB_wt_pred\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numPred) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"generated_quantities\"},{\"name\":\"largePreB_dko_pred\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numPred) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"generated_quantities\"},{\"name\":\"smallPreB_dko_pred\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numPred) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"generated_quantities\"},{\"name\":\"resid_d1\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(numObs1) + "},\"block\":\"generated_quantities\"},{\"name\":\"resid_d2\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(numObs1) + "},\"block\":\"generated_quantities\"},{\"name\":\"resid_d3\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(numObs2) + "},\"block\":\"generated_quantities\"},{\"name\":\"resid_d4\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(numObs2) + "},\"block\":\"generated_quantities\"},{\"name\":\"log_lik1\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(numObs1) + "},\"block\":\"generated_quantities\"},{\"name\":\"log_lik2\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(numObs1) + "},\"block\":\"generated_quantities\"},{\"name\":\"log_lik3\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(numObs2) + "},\"block\":\"generated_quantities\"},{\"name\":\"log_lik4\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(numObs2) + "},\"block\":\"generated_quantities\"}]");
     
     } // get_constrained_sizedtypes() 
     
   inline std::string get_unconstrained_sizedtypes() const {
     
-    return std::string("[{\"name\":\"rho\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"delta\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"rho_dko\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"r_eps\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma1\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma2\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"y_hat\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_shards) + ",\"element_type\":{\"name\":\"array\",\"length\":" + std::to_string(6) + ",\"element_type\":{\"name\":\"real\"}}},\"block\":\"transformed_parameters\"},{\"name\":\"BrdU_wt_mean\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numObs1) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"transformed_parameters\"},{\"name\":\"BrdU_dko_mean\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numObs2) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"transformed_parameters\"},{\"name\":\"parms\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(4) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"transformed_parameters\"},{\"name\":\"init_cond\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(6) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"transformed_parameters\"},{\"name\":\"y_hat_pred\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numPred) + ",\"element_type\":{\"name\":\"array\",\"length\":" + std::to_string(6) + ",\"element_type\":{\"name\":\"real\"}}},\"block\":\"generated_quantities\"},{\"name\":\"y1_mean_pred\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numPred) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"generated_quantities\"},{\"name\":\"y2_mean_pred\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numPred) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"generated_quantities\"},{\"name\":\"BrdU_wt_pred\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numPred) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"generated_quantities\"},{\"name\":\"BrdU_dko_pred\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numPred) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"generated_quantities\"},{\"name\":\"resid_d1\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(numObs1) + "},\"block\":\"generated_quantities\"},{\"name\":\"resid_d2\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(numObs1) + "},\"block\":\"generated_quantities\"},{\"name\":\"log_lik1\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(numObs1) + "},\"block\":\"generated_quantities\"},{\"name\":\"log_lik2\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(numObs1) + "},\"block\":\"generated_quantities\"},{\"name\":\"log_lik3\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(numObs2) + "},\"block\":\"generated_quantities\"},{\"name\":\"log_lik4\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(numObs2) + "},\"block\":\"generated_quantities\"}]");
+    return std::string("[{\"name\":\"rho\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"rho_dko\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"delta\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"r_eps\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"alpha_dko\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"lambda\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma1\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma2\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma3\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma4\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"y_hat\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(n_shards) + ",\"element_type\":{\"name\":\"array\",\"length\":" + std::to_string(12) + ",\"element_type\":{\"name\":\"real\"}}},\"block\":\"transformed_parameters\"},{\"name\":\"largePreB_wt_mean\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numObs1) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"transformed_parameters\"},{\"name\":\"largePreB_dko_mean\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numObs2) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"transformed_parameters\"},{\"name\":\"smallPreB_wt_mean\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numObs1) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"transformed_parameters\"},{\"name\":\"smallPreB_dko_mean\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numObs2) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"transformed_parameters\"},{\"name\":\"parms\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(7) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"transformed_parameters\"},{\"name\":\"init_cond\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(12) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"transformed_parameters\"},{\"name\":\"y_hat_pred\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numPred) + ",\"element_type\":{\"name\":\"array\",\"length\":" + std::to_string(12) + ",\"element_type\":{\"name\":\"real\"}}},\"block\":\"generated_quantities\"},{\"name\":\"y1_mean_pred\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numPred) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"generated_quantities\"},{\"name\":\"y2_mean_pred\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numPred) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"generated_quantities\"},{\"name\":\"y3_mean_pred\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numPred) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"generated_quantities\"},{\"name\":\"y4_mean_pred\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numPred) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"generated_quantities\"},{\"name\":\"largePreB_wt_pred\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numPred) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"generated_quantities\"},{\"name\":\"smallPreB_wt_pred\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numPred) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"generated_quantities\"},{\"name\":\"largePreB_dko_pred\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numPred) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"generated_quantities\"},{\"name\":\"smallPreB_dko_pred\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(numPred) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"generated_quantities\"},{\"name\":\"resid_d1\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(numObs1) + "},\"block\":\"generated_quantities\"},{\"name\":\"resid_d2\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(numObs1) + "},\"block\":\"generated_quantities\"},{\"name\":\"resid_d3\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(numObs2) + "},\"block\":\"generated_quantities\"},{\"name\":\"resid_d4\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(numObs2) + "},\"block\":\"generated_quantities\"},{\"name\":\"log_lik1\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(numObs1) + "},\"block\":\"generated_quantities\"},{\"name\":\"log_lik2\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(numObs1) + "},\"block\":\"generated_quantities\"},{\"name\":\"log_lik3\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(numObs2) + "},\"block\":\"generated_quantities\"},{\"name\":\"log_lik4\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(numObs2) + "},\"block\":\"generated_quantities\"}]");
     
     } // get_unconstrained_sizedtypes() 
     
@@ -1430,12 +2087,15 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
                             const bool emit_generated_quantities = true,
                             std::ostream* pstream = nullptr) const {
       const size_t num_params__ = 
-  (((((1 + 1) + 1) + 1) + 1) + 1);
+  ((((((((((1 + 1) + 1) + 1) + 1) + 1) + 1) + 1) + 1) + 1) + 1);
       const size_t num_transformed = emit_transformed_parameters * 
-  (((((n_shards * 6) + numObs1) + numObs2) + 4) + 6);
+  (((((((n_shards * 12) + numObs1) + numObs2) + numObs1) + numObs2) + 7) +
+    12);
       const size_t num_gen_quantities = emit_generated_quantities * 
-  (((((((((((numPred * 6) + numPred) + numPred) + numPred) + numPred) +
-         numObs1) + numObs1) + numObs1) + numObs1) + numObs2) + numObs2);
+  (((((((((((((((((numPred * 12) + numPred) + numPred) + numPred) + numPred)
+               + numPred) + numPred) + numPred) + numPred) + numObs1) +
+          numObs1) + numObs2) + numObs2) + numObs1) + numObs1) + numObs2) +
+    numObs2);
       const size_t num_to_write = num_params__ + num_transformed +
         num_gen_quantities;
       std::vector<int> params_i;
@@ -1453,12 +2113,15 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
                             bool emit_generated_quantities = true,
                             std::ostream* pstream = nullptr) const {
       const size_t num_params__ = 
-  (((((1 + 1) + 1) + 1) + 1) + 1);
+  ((((((((((1 + 1) + 1) + 1) + 1) + 1) + 1) + 1) + 1) + 1) + 1);
       const size_t num_transformed = emit_transformed_parameters * 
-  (((((n_shards * 6) + numObs1) + numObs2) + 4) + 6);
+  (((((((n_shards * 12) + numObs1) + numObs2) + numObs1) + numObs2) + 7) +
+    12);
       const size_t num_gen_quantities = emit_generated_quantities * 
-  (((((((((((numPred * 6) + numPred) + numPred) + numPred) + numPred) +
-         numObs1) + numObs1) + numObs1) + numObs1) + numObs2) + numObs2);
+  (((((((((((((((((numPred * 12) + numPred) + numPred) + numPred) + numPred)
+               + numPred) + numPred) + numPred) + numPred) + numObs1) +
+          numObs1) + numObs2) + numObs2) + numObs1) + numObs1) + numObs2) +
+    numObs2);
       const size_t num_to_write = num_params__ + num_transformed +
         num_gen_quantities;
       vars = std::vector<double>(num_to_write,
@@ -1496,10 +2159,11 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
                               std::vector<int>& params_i,
                               std::vector<double>& vars,
                               std::ostream* pstream__ = nullptr) const {
-     constexpr std::array<const char*, 6> names__{"rho", "delta", "rho_dko",
-      "r_eps", "sigma1", "sigma2"};
-      const std::array<Eigen::Index, 6> constrain_param_sizes__{1, 1, 
-       1, 1, 1, 1};
+     constexpr std::array<const char*, 11> names__{"rho", "rho_dko", "delta",
+      "r_eps", "alpha", "alpha_dko", "lambda", "sigma1", "sigma2", "sigma3",
+      "sigma4"};
+      const std::array<Eigen::Index, 11> constrain_param_sizes__{1, 1, 
+       1, 1, 1, 1, 1, 1, 1, 1, 1};
       const auto num_constrained_params__ = std::accumulate(
         constrain_param_sizes__.begin(), constrain_param_sizes__.end(), 0);
     
