@@ -171,49 +171,49 @@ model{
   (smallPreB_dko) ~ normal((smallPreB_dko_mean), sigma4);
 }
 
-generated quantities{
-   // ODE predictions
-   real y_hat_pred[numPred, 12];
-   // variables for model predictions
-   real y1_mean_pred[numPred]; real y2_mean_pred[numPred]; real y3_mean_pred[numPred]; real y4_mean_pred[numPred];
-   // variables for model predictions with stdev
-   real largePreB_wt_pred[numPred]; real smallPreB_wt_pred[numPred]; real largePreB_dko_pred[numPred]; real smallPreB_dko_pred[numPred];
-   // Residuals
-   vector[numObs1] resid_d1; vector[numObs1] resid_d2; vector[numObs2] resid_d3; vector[numObs2] resid_d4; 
-   // log likelihoods
-   vector[numObs1] log_lik1; vector[numObs1] log_lik2; vector[numObs2] log_lik3; vector[numObs2] log_lik4;
+// generated quantities{
+//    // ODE predictions
+//    real y_hat_pred[numPred, 12];
+//    // variables for model predictions
+//    real y1_mean_pred[numPred]; real y2_mean_pred[numPred]; real y3_mean_pred[numPred]; real y4_mean_pred[numPred];
+//    // variables for model predictions with stdev
+//    //real largePreB_wt_pred[numPred]; real smallPreB_wt_pred[numPred]; real largePreB_dko_pred[numPred]; real smallPreB_dko_pred[numPred];
+//    // Residuals
+//    vector[numObs1] resid_d1; vector[numObs1] resid_d2; vector[numObs2] resid_d3; vector[numObs2] resid_d4; 
+//    // log likelihoods
+//    vector[numObs1] log_lik1; vector[numObs1] log_lik2; vector[numObs2] log_lik3; vector[numObs2] log_lik4;
 
-   //ODE solution
-   y_hat_pred[1] = init_cond;
-   y_hat_pred[2:] = solve_ODE_sys(ts_pred[2:], init_cond, parms);
+//    //ODE solution
+//    y_hat_pred[1] = init_cond;
+//    y_hat_pred[2:] = solve_ODE_sys(ts_pred[2:], init_cond, parms);
 
-   // model predictions with stdev
-   for (i in 1:numPred){
-     //WT predictions
-     y1_mean_pred[i] = (y_hat_pred[i, 1] + y_hat_pred[i, 2])/(y_hat_pred[i, 1] + y_hat_pred[i, 2] + y_hat_pred[i, 3]); // large Pre B
-     y2_mean_pred[i] = (y_hat_pred[i, 7] + y_hat_pred[i, 8])/(y_hat_pred[i, 7] + y_hat_pred[i, 8] + y_hat_pred[i, 9]); // small Pre B
-     largePreB_wt_pred[i] = inv_logit(normal_rng(logit(y1_mean_pred[i]), sigma1));
-     smallPreB_wt_pred[i] = inv_logit(normal_rng(logit(y2_mean_pred[i]), sigma2));
-     //dKO predictions
-     y3_mean_pred[i] = (y_hat_pred[i, 4] + y_hat_pred[i, 5])/(y_hat_pred[i, 4] + y_hat_pred[i, 5] + y_hat_pred[i, 6]); // large Pre B
-     y4_mean_pred[i] = (y_hat_pred[i, 10] + y_hat_pred[i, 11])/(y_hat_pred[i, 10] + y_hat_pred[i, 5] + y_hat_pred[i, 12]); // small Pre B
-     largePreB_dko_pred[i] = inv_logit(normal_rng(logit(y3_mean_pred[i]), sigma3));
-     smallPreB_dko_pred[i] = inv_logit(normal_rng(logit(y4_mean_pred[i]), sigma4));
-   }
+//    // model predictions with stdev
+//    for (i in 1:numPred){
+//      //WT predictions
+//      y1_mean_pred[i] = (y_hat_pred[i, 1] + y_hat_pred[i, 2])/(y_hat_pred[i, 1] + y_hat_pred[i, 2] + y_hat_pred[i, 3]); // large Pre B
+//      y2_mean_pred[i] = (y_hat_pred[i, 7] + y_hat_pred[i, 8])/(y_hat_pred[i, 7] + y_hat_pred[i, 8] + y_hat_pred[i, 9]); // small Pre B
+//      //largePreB_wt_pred[i] = inv_logit(normal_rng(logit(y1_mean_pred[i]), sigma1));
+//      //smallPreB_wt_pred[i] = inv_logit(normal_rng(logit(y2_mean_pred[i]), sigma2));
+//      //dKO predictions
+//      y3_mean_pred[i] = (y_hat_pred[i, 4] + y_hat_pred[i, 5])/(y_hat_pred[i, 4] + y_hat_pred[i, 5] + y_hat_pred[i, 6]); // large Pre B
+//      y4_mean_pred[i] = (y_hat_pred[i, 10] + y_hat_pred[i, 11])/(y_hat_pred[i, 10] + y_hat_pred[i, 5] + y_hat_pred[i, 12]); // small Pre B
+//      //largePreB_dko_pred[i] = inv_logit(normal_rng(logit(y3_mean_pred[i]), sigma3));
+//      //smallPreB_dko_pred[i] = inv_logit(normal_rng(logit(y4_mean_pred[i]), sigma4));
+//    }
 
-   // calculating the log predictive accuracy for each point
-   for (n in 1:numObs1) {
-     resid_d1[n] = logit(largePreB_wt[n]) - logit(largePreB_wt_mean[n]);
-     resid_d1[n] = logit(smallPreB_wt[n]) - logit(smallPreB_wt_mean[n]);
-     log_lik1[n] = normal_lpdf(logit(largePreB_wt[n]) | logit(largePreB_wt_mean[n]), sigma1);
-     log_lik1[n] = normal_lpdf(logit(smallPreB_wt[n]) | logit(smallPreB_wt_mean[n]), sigma2);
-   }
+//    // calculating the log predictive accuracy for each point
+//    for (n in 1:numObs1) {
+//      resid_d1[n] = logit(largePreB_wt[n]) - logit(largePreB_wt_mean[n]);
+//      resid_d2[n] = logit(smallPreB_wt[n]) - logit(smallPreB_wt_mean[n]);
+//      log_lik1[n] = normal_lpdf(logit(largePreB_wt[n]) | logit(largePreB_wt_mean[n]), sigma1);
+//      log_lik2[n] = normal_lpdf(logit(smallPreB_wt[n]) | logit(smallPreB_wt_mean[n]), sigma2);
+//    }
 
-   // calculating the log predictive accuracy for each point
-   for (n in 1:numObs2) {
-     resid_d1[n] = logit(largePreB_dko[n]) - logit(largePreB_dko_mean[n]);
-     log_lik1[n] = normal_lpdf(logit(largePreB_dko[n]) | logit(largePreB_dko_mean[n]), sigma3);
-     resid_d1[n] = logit(smallPreB_dko[n]) - logit(smallPreB_dko_mean[n]);
-     log_lik1[n] = normal_lpdf(logit(smallPreB_dko[n]) | logit(smallPreB_dko_mean[n]), sigma4);
-   }
-}
+//    // calculating the log predictive accuracy for each point
+//    for (n in 1:numObs2) {
+//      resid_d3[n] = logit(largePreB_dko[n]) - logit(largePreB_dko_mean[n]);
+//      resid_d4[n] = logit(smallPreB_dko[n]) - logit(smallPreB_dko_mean[n]);
+//      log_lik3[n] = normal_lpdf(logit(largePreB_dko[n]) | logit(largePreB_dko_mean[n]), sigma3);
+//      log_lik4[n] = normal_lpdf(logit(smallPreB_dko[n]) | logit(smallPreB_dko_mean[n]), sigma4);
+//    }
+// }

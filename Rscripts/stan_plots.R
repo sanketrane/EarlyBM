@@ -5,12 +5,11 @@ gc()
 library(rstan)
 library(loo)
 library(tidyverse)
+library(readxl)
 ####################################################################################
 
 ## model specific details that needs to be change for every run
-modelName <- "Null_timeinflux1"
-data_der <- "Bcell_imm_data.csv"    
-data_der2 <- "N2KO_imm_data.csv"    
+modelName <- "multiplex_model"
 
 ## Setting all the directories for opeartions
 projectDir <- getwd()
@@ -46,9 +45,13 @@ nPost <- nrow(fit)
 ################################################################################################
 ################################################################################################
 
-## loading required datasets for plotting
-imm_data <- read_csv(file.path(dataDir, data_der))
-imm_N2ko_data <- read_csv(file.path(dataDir, data_der2))
+fracs_df <- read_excel("datafiles/BrdU_data.xlsx", sheet =2) %>%
+  mutate(across("Sample", str_replace_all, c("Stain 2 BM development" = "", " " = "_")),
+         across("Experiment_Date", str_replace, "2014-", "")) %>%
+  unite(sample_id, Experiment_Date, Sample) %>%
+  select(sample_id, Time_h, Genotype, 
+         BrdU_Pro_B, BrdU_large_pre_B, BrdU_small_pre_B) %>%
+  gather(-c(sample_id, Time_h, Genotype), key = 'subpop', value = "prop_brdu")
 
 # ################################################################################################
 # calculating PSIS-L00-CV for the fit
@@ -86,8 +89,13 @@ write.table(ploocv, file = file.path(outputDir, 'timeinfluxfit', "stat_table_MZB
 ################################################################################################
 ################################################################################################
 ## posterior predictive distributions
+### parameters table
+ptable <- monitor(as.array(fit, pars = parametersToPlot), warmup = 0, print = FALSE)
+out_table <- ptable[1:num_pars, c(1, 3, 4, 8)]
+write.csv(out_table, file = file.path(outputDir, paste0('params_', modelName, "_", data_derived1, ".csv")))
+
 # time sequence for predictions 
-ts_pred <- seq(4, 30, length.out = 500)
+ts_pred <- 10^seq(log10(0.1), log10(30), length.out = 300)
 numPred <- length(ts_pred)
 
 

@@ -60,6 +60,9 @@ stan_rdump(c("numObs1",  "numObs2", "n_shards", "solve_time", "time_index1", "ti
 
 
 
+read_rdump(file.path('datafiles', paste0('brdu_stanfit',".Rdump")))
+
+
 
 
 

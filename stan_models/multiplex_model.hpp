@@ -93,8 +93,8 @@ static constexpr std::array<const char*, 184> locations_array__ =
  " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 205, column 24 to line 210, column 4)",
  " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 205, column 3 to line 210, column 4)",
  " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 214, column 5 to column 74)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 215, column 5 to column 95)",
- " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 216, column 5 to column 74)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 215, column 5 to column 74)",
+ " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 216, column 5 to column 95)",
  " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 217, column 5 to column 95)",
  " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 213, column 24 to line 218, column 4)",
  " (in 'EarlyB_BM/stan_models/multiplex_model.stan', line 213, column 3 to line 218, column 4)",
@@ -1560,14 +1560,14 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
                 stan::model::index_uni(n)))),
           "assigning variable resid_d1", stan::model::index_uni(n));
         current_statement__ = 78;
-        stan::model::assign(resid_d1,
+        stan::model::assign(resid_d2,
           (stan::math::logit(
              stan::model::rvalue(smallPreB_wt, "smallPreB_wt",
                stan::model::index_uni(n))) -
             stan::math::logit(
               stan::model::rvalue(smallPreB_wt_mean, "smallPreB_wt_mean",
                 stan::model::index_uni(n)))),
-          "assigning variable resid_d1", stan::model::index_uni(n));
+          "assigning variable resid_d2", stan::model::index_uni(n));
         current_statement__ = 79;
         stan::model::assign(log_lik1,
           stan::math::normal_lpdf<false>(
@@ -1579,7 +1579,7 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
                 stan::model::index_uni(n))), sigma1),
           "assigning variable log_lik1", stan::model::index_uni(n));
         current_statement__ = 80;
-        stan::model::assign(log_lik1,
+        stan::model::assign(log_lik2,
           stan::math::normal_lpdf<false>(
             stan::math::logit(
               stan::model::rvalue(smallPreB_wt, "smallPreB_wt",
@@ -1587,21 +1587,30 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
             stan::math::logit(
               stan::model::rvalue(smallPreB_wt_mean, "smallPreB_wt_mean",
                 stan::model::index_uni(n))), sigma2),
-          "assigning variable log_lik1", stan::model::index_uni(n));
+          "assigning variable log_lik2", stan::model::index_uni(n));
       }
       current_statement__ = 88;
       for (int n = 1; n <= numObs2; ++n) {
         current_statement__ = 83;
-        stan::model::assign(resid_d1,
+        stan::model::assign(resid_d3,
           (stan::math::logit(
              stan::model::rvalue(largePreB_dko, "largePreB_dko",
                stan::model::index_uni(n))) -
             stan::math::logit(
               stan::model::rvalue(largePreB_dko_mean, "largePreB_dko_mean",
                 stan::model::index_uni(n)))),
-          "assigning variable resid_d1", stan::model::index_uni(n));
+          "assigning variable resid_d3", stan::model::index_uni(n));
         current_statement__ = 84;
-        stan::model::assign(log_lik1,
+        stan::model::assign(resid_d4,
+          (stan::math::logit(
+             stan::model::rvalue(smallPreB_dko, "smallPreB_dko",
+               stan::model::index_uni(n))) -
+            stan::math::logit(
+              stan::model::rvalue(smallPreB_dko_mean, "smallPreB_dko_mean",
+                stan::model::index_uni(n)))),
+          "assigning variable resid_d4", stan::model::index_uni(n));
+        current_statement__ = 85;
+        stan::model::assign(log_lik3,
           stan::math::normal_lpdf<false>(
             stan::math::logit(
               stan::model::rvalue(largePreB_dko, "largePreB_dko",
@@ -1609,18 +1618,9 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
             stan::math::logit(
               stan::model::rvalue(largePreB_dko_mean, "largePreB_dko_mean",
                 stan::model::index_uni(n))), sigma3),
-          "assigning variable log_lik1", stan::model::index_uni(n));
-        current_statement__ = 85;
-        stan::model::assign(resid_d1,
-          (stan::math::logit(
-             stan::model::rvalue(smallPreB_dko, "smallPreB_dko",
-               stan::model::index_uni(n))) -
-            stan::math::logit(
-              stan::model::rvalue(smallPreB_dko_mean, "smallPreB_dko_mean",
-                stan::model::index_uni(n)))),
-          "assigning variable resid_d1", stan::model::index_uni(n));
+          "assigning variable log_lik3", stan::model::index_uni(n));
         current_statement__ = 86;
-        stan::model::assign(log_lik1,
+        stan::model::assign(log_lik4,
           stan::math::normal_lpdf<false>(
             stan::math::logit(
               stan::model::rvalue(smallPreB_dko, "smallPreB_dko",
@@ -1628,7 +1628,7 @@ class multiplex_model_model final : public model_base_crtp<multiplex_model_model
             stan::math::logit(
               stan::model::rvalue(smallPreB_dko_mean, "smallPreB_dko_mean",
                 stan::model::index_uni(n))), sigma4),
-          "assigning variable log_lik1", stan::model::index_uni(n));
+          "assigning variable log_lik4", stan::model::index_uni(n));
       }
       for (int sym1__ = 1; sym1__ <= 12; ++sym1__) {
         for (int sym2__ = 1; sym2__ <= numPred; ++sym2__) {
