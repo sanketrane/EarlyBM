@@ -9,7 +9,7 @@ library(readxl)
 ####################################################################################
 
 ## model specific details that needs to be change for every run
-modelName <- "multiplex_model"
+modelName <- "simple_multiplex_model"
 
 ## Setting all the directories for opeartions
 projectDir <- getwd()
@@ -25,18 +25,18 @@ LooDir <- file.path('loo_fit')
 source(file.path(toolsDir, "stanTools.R"))                # save results in new folder
 
 # compiling multiple stan objects together that ran on different nodes
-stanfit1 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_1", ".csv")))
+stanfit1 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_", ".csv")))
 stanfit2 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_2",".csv")))
 stanfit3 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_3", ".csv")))
 stanfit4 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_4",".csv")))
 stanfit5 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_5", ".csv")))
 stanfit6 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_6",".csv")))
 
-fit <- sflist2stanfit(list(stanfit1, stanfit2, stanfit3, stanfit4, stanfit5, stanfit6))
+fit <- sflist2stanfit(list(stanfit1))
 
 # finding the parameters used in the model 
 # using the last parameter("sigma4") in the array to get the total number of parameters set in the model
-num_pars <- which(fit@model_pars %in% "sigma3")      # the variable "sigma4" will change depdending on the data used
+num_pars <- which(fit@model_pars %in% "sigma2")      # the variable "sigma4" will change depdending on the data used
 parametersToPlot <- fit@model_pars[1:num_pars]
 
 # number of post-burnin samples that are used for plotting 
@@ -162,52 +162,20 @@ Y4pred <- as.data.frame(fit, pars = "y4_mean_pred") %>%
             ub = quantile(value, probs = 0.955)) %>%
   bind_cols("timeseries" = ts_pred)
 
-GCcounts_pred <- as.data.frame(fit, pars = "CAR_GCcounts_pred") %>%
-  gather(factor_key = TRUE) %>%
-  group_by(key) %>%
-  summarize(lb = quantile(value, probs = 0.045),
-            median = quantile(value, probs = 0.5),
-            ub = quantile(value, probs = 0.955))%>%
-  bind_cols("timeseries" = ts_pred)
 
-MZcounts_pred <- as.data.frame(fit, pars = "CAR_MZcounts_pred") %>%
-  gather(factor_key = TRUE) %>%
-  group_by(key) %>%
-  summarize(lb = quantile(value, probs = 0.045),
-            median = quantile(value, probs = 0.5),
-            ub = quantile(value, probs = 0.955))%>%
-  bind_cols("timeseries" = ts_pred)
+### data munging
 
-
-GCN2counts_pred <- as.data.frame(fit, pars = "CAR_GCN2counts_pred") %>%
-  gather(factor_key = TRUE) %>%
-  group_by(key) %>%
-  summarize(lb = quantile(value, probs = 0.045),
-            median = quantile(value, probs = 0.5),
-            ub = quantile(value, probs = 0.955))%>%
-  bind_cols("timeseries" = ts_pred)
-
-
-MZN2counts_pred <- as.data.frame(fit, pars = "CAR_MZN2counts_pred") %>%
-  gather(factor_key = TRUE) %>%
-  group_by(key) %>%
-  summarize(lb = quantile(value, probs = 0.045),
-            median = quantile(value, probs = 0.5),
-            ub = quantile(value, probs = 0.955))%>%
-  bind_cols("timeseries" = ts_pred)
-
-
+brdu_plot <- fracs_df %>%
+  filter(subpop == "BrdU_large_pre_B") 
 
 #### plots
-p1 <- ggplot() +
+ggplot() +
   #geom_hline(yintercept = exp(10.8))+
-  geom_line(data = Y2pred, aes(x = timeseries, y = median), col =2) +
-  geom_ribbon(data = Y2pred, aes(x = timeseries, ymin = lb, ymax = ub), fill=2, alpha = 0.25)+
-  geom_line(data = Y4pred, aes(x = timeseries, y = median), col =4) +
-  geom_ribbon(data = Y4pred, aes(x = timeseries, ymin = lb, ymax = ub), fill=4, alpha = 0.25)+
-  #geom_ribbon(data = MZfractions_pred, aes(x = timeseries, ymin = lb, ymax = ub), fill=2, alpha = 0.25)+
-  geom_point(data = imm_data, aes(x = days_post_imm, y = CARpos_MZB), col=2) +
-  geom_point(data = imm_N2ko_data, aes(x = days_post_imm, y = CARpos_MZB), col=4) +
+  geom_line(data = Y1pred, aes(x = timeseries, y = median*100), col =2) +
+  geom_ribbon(data = Y1pred, aes(x = timeseries, ymin = lb*100, ymax = ub*100), fill=2, alpha = 0.25)+
+  geom_line(data = Y2pred, aes(x = timeseries, y = median*100), col =4) +
+  geom_ribbon(data = Y2pred, aes(x = timeseries, ymin = lb*100, ymax = ub*100), fill=4, alpha = 0.25)+
+  geom_point(data =brdu_plot, aes(x = Time_h, y = prop_brdu, col=Genotype)) 
   labs(title=paste("CAR positive MZ B cells"),  y=NULL, x="Days post immunization") + 
   xlim(0, 30) +
   scale_y_continuous(limits = c(2e3, 3e5), trans="log10", breaks=c(1e4, 1e5, 1e6, 1e3, 1e8), minor_breaks = log10minorbreaks, labels =fancy_scientific) +
