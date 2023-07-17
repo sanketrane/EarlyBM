@@ -107,14 +107,14 @@ counts_df %>%
   summarise(mean_c = mean(cell_counts))
 
 ##stan model
-library(rstan)
-stanmodel <- "stan_models/Simple_multiplex_model.stan"
-expose_stan_functions(stanmodel)
-
-solve_time <- c(4, 18, 30)
-init_cond <- c(0, 0, 372151, 0, 0, 83027) #, 0, 0, 4318182, 0, 0, 607546)
-params <- c(6, 0.2, 0.01, 0.02)#, 0.1, 0.01, 0.05)
-ypred <- solve_ODE_sys(solve_time, init_cond, parms = params)
+# library(rstan)
+# stanmodel <- "stan_models/Simple_multiplex_model.stan"
+# expose_stan_functions(stanmodel)
+# 
+# solve_time <- c(4, 18, 30)
+# init_cond <- c(0, 0, 372151, 0, 0, 83027) #, 0, 0, 4318182, 0, 0, 607546)
+# params <- c(6, 0.2, 0.01, 0.02)#, 0.1, 0.01, 0.05)
+# ypred <- solve_ODE_sys(solve_time, init_cond, parms = params)
 
 
 
@@ -156,26 +156,18 @@ time_index2 <- purrr::map_dbl(large_preB_dko$Time_h, function(x) which(x == solv
 eps_func_exp <- function(Time, r_eps){
   exp(-r_eps * Time)
 }
-ts_pred <- 10^seq(log10(0.01), log10(30), length.out = 300)
-eps_vec <- sapply(ts_pred, eps_func_exp, r_eps = 1.06)
-
-ggplot()+
-  geom_line(aes(x = ts_pred, y=eps_vec))
 
 eps_func_hill <- function(Time, r_eps){
   1/(1+ (Time/r_eps)^1)
 }
-eps_vec_hill <- sapply(ts_pred, eps_func_hill, r_eps = 7)
-# ggplot()+
-#   geom_line(aes(x = ts_pred, y=eps_vec_hill), col=4)+
-#   geom_line(aes(x = ts_pred, y=eps_vec))+
-#   scale_x_log10(limits=c(0.01, 30), breaks=c(0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30))
-
 
 eps_func <- function(Time, r_eps){
   #eps_func_exp(Time, r_eps)
   eps_func_hill(Time, r_eps)
 }
+
+asinsq_inv <- function(x){sin(x)^2}
+
 ode_func <- function (Time, y, parms) {
   pro_pos = (131619) #counts_df %>% filter(subpop == "BrdU_Pro_B") %>%
     #summarise(mean(cell_counts))
@@ -186,28 +178,28 @@ ode_func <- function (Time, y, parms) {
     delta = exp(delta_log)
     rho = exp(rho_log)
     rho_dko = exp(rho_dko_log)
-    delta_dko = exp(delta_log)
-    r_eps =6
-      
+    delta_dko = exp(delta_dko_log)
+    r_eps = 2
+    
     theta = (rho - delta) * (y1+y2+y3)/(pro_neg+pro_pos)
     theta_dko = (rho_dko - delta_dko) * (y4+y5+y6)/(pro_neg+pro_pos)
-    alpha = 0.5
+    alpha = asinsq_inv(alpha_log)
     
     ## in WT
     # L2 pop
     dy1 <- rho * eps_func(Time, r_eps) * (2*y2 + y1) - rho * (1-eps_func(Time, r_eps)) * y1 - delta * y1
     # L1 pop
-    dy2 <- theta * alpha * pro_neg + rho * eps_func(Time, r_eps) * (2*y3 - y1) + 2 * rho * (1-eps_func(Time, r_eps)) * y1 - delta * y2
+    dy2 <- theta * (pro_pos+pro_neg) + rho * eps_func(Time, r_eps) * (2*y3 - y1) + 2 * rho * (1-eps_func(Time, r_eps)) * y1 - delta * y2
     # U pop
-    dy3 <- theta * (1 - alpha) * pro_neg - rho * eps_func(Time, r_eps) * y3 + rho * (1-eps_func(Time, r_eps)) * (y2 + y3) - delta * y3
+    dy3 <- - rho * eps_func(Time, r_eps) * y3 + rho * (1-eps_func(Time, r_eps)) * (y2 + y3) - delta * y3
     
     ## in DKO
     # L2 pop
     dy4 <- rho_dko * eps_func(Time, r_eps) * (2*y5+ y4) - rho_dko * (1-eps_func(Time, r_eps)) * y4 - delta_dko * y4
     # L1 pop
-    dy5 <- theta_dko * alpha * pro_neg + rho_dko * eps_func(Time, r_eps) * (2*y6 - y4) + 2 * rho_dko * (1-eps_func(Time, r_eps)) * y4 - delta_dko * y5
+    dy5 <- theta_dko * (pro_pos+pro_neg) + rho_dko * eps_func(Time, r_eps) * (2*y6 - y4) + 2 * rho_dko * (1-eps_func(Time, r_eps)) * y4 - delta_dko * y5
     # U pop
-    dy6 <- theta_dko * (1 - alpha) *  pro_neg - rho_dko * eps_func(Time, r_eps) * y6 + rho_dko * (1-eps_func(Time, r_eps)) * (y5 + y6) - delta_dko * y6
+    dy6 <- - rho_dko * eps_func(Time, r_eps) * y6 + rho_dko * (1-eps_func(Time, r_eps)) * (y5 + y6) - delta_dko * y6
 
     list(c(dy1, dy2, dy3, dy4, dy5, dy6))
   })
@@ -216,7 +208,7 @@ ode_func <- function (Time, y, parms) {
 init_cond_wt <- c("y1" = 0.0, "y2" = 0, "y3" = 372151)
 init_cond_dko <- c("y4" = 0.0, "y5" = 0, "y6" = 83027)
 init_cond <- c(init_cond_wt, init_cond_dko)
-params <- c("rho_log" = -3, "delta_log" = -5, "rho_dko_log" = -4)#, "r_eps" = 0.5)
+params <- c("rho_log" = -3, "delta_log" = -5, "rho_dko_log" = -4, "delta_dko_log" = -6, "alpha_log" = 1)
 asin_transf <- function(x){asin(sqrt(x))}
 
 pred_df <- data.frame(ode(y=init_cond, times=c(0, 4, 18, 30), func=ode_func, parms=params))%>%
@@ -268,8 +260,11 @@ fit_LL <- optim(par=params, fn=LL_func,
 
 fit_LL
 par_est <- fit_LL$par
-exp(fit_LL$par)
-
+exp(fit_LL$par[1:3])
+aic_val <-  2 * length(fit_LL$par) + 2 * fit_LL$value
+aic_val
+exp(fit_LL$par[1])/exp(fit_LL$par[3])
+asinsq_inv(fit_LL$par[4])
 
 ## predictions
 pred_df <- data.frame(ode(y=init_cond, times=seq(0, 30, by=0.01), func=ode_func, parms=par_est))%>%
@@ -290,10 +285,22 @@ ggplot()+
   labs(x = "Time post BrdU injection (hours)", y= paste0("% BrdU+ cells"))+
   xlim(0, 31) + ylim(0, 100)
 
-modelName <- "M3.2"
+modelName <- "M3"
 ggsave(file.path("output_fit", paste0("P1_", modelName, ".pdf")), last_plot(), device = "pdf", width = 9, height = 4.5)
 
-eps_vec_pred <- sapply(ts_pred, eps_func, r_eps = 1.5)
+ptable <- data.frame("Model" = modelName,
+                     "AIC" = aic_val,
+                     "parname" = c("rho", "delta", "rho_dko", "alpha"),
+                     "pars" = c(exp(fit_LL$par[1:3]), 
+                     asinsq_inv(fit_LL$par[4])
+                     ))
+
+write.table(ptable, file = file.path("output_fit", "par_table.csv"),
+            sep = ",", append = T, quote = FALSE,
+            col.names = F, row.names = FALSE)
+
+ts_pred <- seq(0.1, 30, 0.05)
+eps_vec_pred <- sapply(ts_pred, eps_func, r_eps = 15)
 ggplot()+
   geom_line(aes(x = ts_pred, y=eps_vec_pred), col=4) +
   scale_x_log10(limits=c(0.1, 30), breaks=c(0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30)) +
