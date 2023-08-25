@@ -126,7 +126,8 @@ brdu_df <- read_excel("datafiles/BrdU_data.xlsx", sheet =2) %>%
   select(sample_id, Time_h, Genotype, 
          BrdU_Pro_B, BrdU_large_pre_B, BrdU_small_pre_B) %>%
   mutate(prop_large_PreB = BrdU_large_pre_B/100,
-         prop_small_PreB = BrdU_small_pre_B/100)
+         prop_small_PreB = BrdU_small_pre_B/100)%>%
+  filter(sample_id != "03-19__BM_13.fcs")
 
 fracs_wt <- brdu_df %>%
   filter(Genotype == "WT") 
@@ -178,17 +179,16 @@ ode_func <- function (Time, y, parms) {
     #summarise(mean(cell_counts))
   pro_neg = (378491.4) #counts_df %>% filter(subpop == "Pro_B") %>%
     #summarise(mean(cell_counts)) - pro_pos
-  
   with(as.list(c(y, parms)),{
-    delta = 0.068596569 #exp(delta_log)
-    rho = 0.174598914# exp(rho_log)
-    rho_dko = 0.076515208 #exp(rho_dko_log)
-    delta_dko = 0.068596569
+    rho = 0.192868923# exp(rho_log)
+    delta = 0.078966709 #exp(delta_log)
+    rho_dko = 0.090248636 #exp(rho_dko_log)
+    delta_dko = 0.078966709
     lambda = exp(lambda_log)
     alpha = exp(alpha_log)
     mu = exp(mu_log)
     mu_dko = exp(mu_dko_log)
-    r_eps = 3.5s
+    r_eps = 1.64255675#1.64255675
     del = delta - mu
     del_dko = delta_dko - mu_dko
       
@@ -203,17 +203,17 @@ ode_func <- function (Time, y, parms) {
     
     ## in WT
     # L2 pop in large Pre B
-    dy1 <- rho * eps_func(Time, r_eps) * (2*y2 + y1) - rho * (1-eps_func(Time, r_eps)) * y1 - (mu + del) * y1
+    dy1 <- theta * (pro_pos) + rho * eps_func(Time, r_eps) * (2*y2 + y1) - rho * (1-eps_func(Time, r_eps)) * y1 - (mu + del) * y1
     # L1 pop in large Pre B
-    dy2 <- theta * (pro_pos + pro_neg) + rho * eps_func(Time, r_eps) * (2*y3 - y1) + 2 * rho * (1-eps_func(Time, r_eps)) * y1 - (mu + del) * y2
+    dy2 <- theta * (pro_neg) + rho * eps_func(Time, r_eps) * (2*y3 - y1) + 2 * rho * (1-eps_func(Time, r_eps)) * y1 - (mu + del) * y2
     # U pop in large Pre B
     dy3 <- - rho * eps_func(Time, r_eps) * y3 + rho * (1-eps_func(Time, r_eps)) * (y2 + y3) - (mu + del) * y3
     
     ## in DKO
     # L2 pop in large Pre B
-    dy4 <- rho_dko * eps_func(Time, r_eps) * (2*y5+ y4) - rho_dko * (1-eps_func(Time, r_eps)) * y4 - (mu_dko + del_dko) * y4
+    dy4 <-  theta_dko * (pro_pos) + rho_dko * eps_func(Time, r_eps) * (2*y5+ y4) - rho_dko * (1-eps_func(Time, r_eps)) * y4 - (mu_dko + del_dko) * y4
     # L1 pop in large Pre B
-    dy5 <- theta * (pro_pos + pro_neg) + rho_dko * eps_func(Time, r_eps) * (2*y6 - y4) + 2 * rho_dko * (1-eps_func(Time, r_eps)) * y4 - (mu_dko + del_dko) * y5
+    dy5 <- theta_dko * (pro_neg) + rho_dko * eps_func(Time, r_eps) * (2*y6 - y4) + 2 * rho_dko * (1-eps_func(Time, r_eps)) * y4 - (mu_dko + del_dko) * y5
     # U pop in large Pre B
     dy6 <- - rho_dko * eps_func(Time, r_eps) * y6 + rho_dko * (1-eps_func(Time, r_eps)) * (y5 + y6) - (mu_dko + del_dko) * y6
     
@@ -289,8 +289,8 @@ fit_LL <- optim(par=params, fn=LL_func,
 fit_LL
 par_est <- fit_LL$par
 exp(fit_LL$par)
-
-
+aic_val <- 2* length(fit_LL$par) + 2*fit_LL$value
+aic_val
 ## predictions
 pred_df <- data.frame(ode(y=init_cond, times=seq(0, 30, 0.1), func=ode_func, parms=par_est))%>%
   mutate(
@@ -310,7 +310,7 @@ pred_df <- data.frame(ode(y=init_cond, times=seq(0, 30, 0.1), func=ode_func, par
          subpop = ifelse(grepl("large", genotype), "Large_Pre_B", "Small_Pre_B"))
 
 brdu_plot <- brdu_df %>%
-  select(-BrdU_Pro_B) %>%
+  select(sample_id, Time_h, Genotype, BrdU_small_pre_B) %>%
   gather(-c(sample_id, Time_h, Genotype), key = "SubPop", value = "prop_brdu") %>%
   mutate(subpop = ifelse(grepl("large",SubPop), "Large_Pre_B", "Small_Pre_B"))
 
@@ -320,8 +320,9 @@ brdu_plot <- brdu_df %>%
 #   facet_wrap(.~ subpop)+
 #   xlim(0, 31) + ylim(0, 80)
 
-small_preB_df <- brdu_plot %>%
-  filter(subpop == "Small_Pre_B")
+small_preB_df <- brdu_df %>%
+  select(sample_id, Time_h, Genotype, BrdU_small_pre_B) %>%
+  rename(prop_brdu = BrdU_small_pre_B)
 
 ggplot()+
   geom_point(data = small_preB_df, aes(x=Time_h, y=prop_brdu, col=Genotype))+
@@ -330,11 +331,12 @@ ggplot()+
   labs(x = "Time post BrdU injection (hours)", y= paste0("% BrdU+ cells"))+
   xlim(0, 31) + ylim(0, 60)
 
-modelName <- "M0"
+modelName <- "M0v2.1"
 ggsave(file.path("output_fit", paste0("P3_", modelName, ".pdf")), last_plot(), device = "pdf", width = 9, height = 4.5)
 
-eps_vec_pred <- sapply(ts_pred, eps_func, r_eps = 3.5)
+ts_pred <- seq(0.1, 30, 0.05)
+eps_vec_pred <- sapply(ts_pred, eps_func, r_eps = 2.5)
 ggplot()+
   geom_line(aes(x = ts_pred, y=eps_vec_pred), col=4)+
-  scale_x_log10(limits=c(0.01, 30), breaks=c(0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30))
+  scale_x_log10(limits=c(0.1, 30), breaks=c(0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30))
 

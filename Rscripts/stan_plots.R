@@ -25,14 +25,12 @@ LooDir <- file.path('loo_fit')
 source(file.path(toolsDir, "stanTools.R"))                # save results in new folder
 
 # compiling multiple stan objects together that ran on different nodes
-stanfit1 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_", ".csv")))
+stanfit1 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_1", ".csv")))
 stanfit2 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_2",".csv")))
 stanfit3 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_3", ".csv")))
 stanfit4 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_4",".csv")))
-stanfit5 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_5", ".csv")))
-stanfit6 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_6",".csv")))
 
-fit <- sflist2stanfit(list(stanfit1))
+fit <- sflist2stanfit(list(stanfit1, stanfit2, stanfit3, stanfit4))
 
 # finding the parameters used in the model 
 # using the last parameter("sigma4") in the array to get the total number of parameters set in the model
@@ -55,26 +53,18 @@ fracs_df <- read_excel("datafiles/BrdU_data.xlsx", sheet =2) %>%
 
 # ################################################################################################
 # calculating PSIS-L00-CV for the fit
-MZ_fractions_loglik <- extract_log_lik(fit, parameter_name = "log_lik2", merge_chains = TRUE)
-GC_fractions_loglik <- extract_log_lik(fit, parameter_name = "log_lik1", merge_chains = TRUE)
-MZN2_fractions_loglik <- extract_log_lik(fit, parameter_name = "log_lik4", merge_chains = TRUE)
-GCN2_fractions_loglik <- extract_log_lik(fit, parameter_name = "log_lik3", merge_chains = TRUE)
+wt_loglik <- extract_log_lik(fit, parameter_name = "log_lik1", merge_chains = TRUE)
+dko_loglik <- extract_log_lik(fit, parameter_name = "log_lik2", merge_chains = TRUE)
 
-log_lik_comb <- cbind(MZ_fractions_loglik, GC_fractions_loglik,
-                      MZN2_fractions_loglik, GCN2_fractions_loglik)
+log_lik_comb <- cbind(wt_loglik, dko_loglik)
 # optional but recommended
 ll_array <- extract_log_lik(fit, parameter_name = "log_lik1", merge_chains = FALSE)
 r_eff <- relative_eff(exp(ll_array))
 
 # loo-ic values
 loo_loglik <- loo(log_lik_comb, save_psis = FALSE, cores = 8)
-loofilename <- paste0("loosave_", modelName, "_", data_der, ".rds")
-write_rds(loo_loglik, file  = file.path(LooDir, loofilename))
-
-
-# Widely applicable AIC
-AICw_lok <- waic(MZ_fractions_loglik, GC_counts_loglik, GC_fractions_loglik)
-loo_loglik
+#loofilename <- paste0("loosave_", modelName, "_", data_der, ".rds")
+#write_rds(loo_loglik, file  = file.path(LooDir, loofilename))
 
 ploocv <- data.frame("Model" = modelName,
                      "LooIC" = loo_loglik$estimates[3],
@@ -145,23 +135,6 @@ Y2pred <- as.data.frame(fit, pars = "y2_mean_pred") %>%
             ub = quantile(value, probs = 0.955))%>%
   bind_cols("timeseries" = ts_pred)
 
-Y3pred <- as.data.frame(fit, pars = "y3_mean_pred") %>%
-  gather(factor_key = TRUE) %>%
-  group_by(key) %>%
-  summarize(lb = quantile(value, probs = 0.045),
-            median = quantile(value, probs = 0.5),
-            ub = quantile(value, probs = 0.955)) %>%
-  bind_cols("timeseries" = ts_pred)
-
-
-Y4pred <- as.data.frame(fit, pars = "y4_mean_pred") %>%
-  gather(factor_key = TRUE) %>%
-  group_by(key) %>%
-  summarize(lb = quantile(value, probs = 0.045),
-            median = quantile(value, probs = 0.5),
-            ub = quantile(value, probs = 0.955)) %>%
-  bind_cols("timeseries" = ts_pred)
-
 
 ### data munging
 
@@ -172,28 +145,12 @@ brdu_plot <- fracs_df %>%
 ggplot() +
   #geom_hline(yintercept = exp(10.8))+
   geom_line(data = Y1pred, aes(x = timeseries, y = median*100), col =2) +
-  geom_ribbon(data = Y1pred, aes(x = timeseries, ymin = lb*100, ymax = ub*100), fill=2, alpha = 0.25)+
+  #geom_ribbon(data = Y1pred, aes(x = timeseries, ymin = lb*100, ymax = ub*100), fill=2, alpha = 0.25)+
   geom_line(data = Y2pred, aes(x = timeseries, y = median*100), col =4) +
-  geom_ribbon(data = Y2pred, aes(x = timeseries, ymin = lb*100, ymax = ub*100), fill=4, alpha = 0.25)+
-  geom_point(data =brdu_plot, aes(x = Time_h, y = prop_brdu, col=Genotype)) 
-  labs(title=paste("CAR positive MZ B cells"),  y=NULL, x="Days post immunization") + 
-  xlim(0, 30) +
-  scale_y_continuous(limits = c(2e3, 3e5), trans="log10", breaks=c(1e4, 1e5, 1e6, 1e3, 1e8), minor_breaks = log10minorbreaks, labels =fancy_scientific) +
-  myTheme + theme(legend.position = c(0.5, 0.85), legend.direction = "horizontal")
-
-p2 <- ggplot() +
-  geom_line(data = Y1pred, aes(x = timeseries, y = median), col =2) +
-  geom_ribbon(data = Y1pred, aes(x = timeseries, ymin = lb, ymax = ub), fill=2, alpha = 0.15)+
-  #geom_ribbon(data = MZfractions_pred, aes(x = timeseries, ymin = lb, ymax = ub), fill=2, alpha = 0.25)+
-  geom_point(data = imm_data, aes(x = days_post_imm, y = CARpos_GCB), col=2) +
-  geom_line(data = Y3pred, aes(x = timeseries, y = median), col =2) +
-  geom_ribbon(data = Y3pred, aes(x = timeseries, ymin = lb, ymax = ub), fill="#ba6dd1", alpha = 0.15)+
-  #geom_ribbon(data = MZfractions_pred, aes(x = timeseries, ymin = lb, ymax = ub), fill=2, alpha = 0.25)+
-  geom_point(data = imm_N2ko_data, aes(x = days_post_imm, y = CARpos_GCB), col=4) +
-  labs(title=paste("CAR positive GC B cells"),  y=NULL, x="Days post immunization") + 
-  xlim(0, 30) +
-  scale_y_continuous(limits = c(5e3, 1e7), trans="log10", breaks=c(1e4, 1e5, 1e6, 1e7, 1e8), minor_breaks = log10minorbreaks, labels =fancy_scientific) +
-  myTheme + theme(legend.position = c(0.5, 0.85), legend.direction = "horizontal")
+  #geom_ribbon(data = Y2pred, aes(x = timeseries, ymin = lb*100, ymax = ub*100), fill=4, alpha = 0.25)+
+  geom_point(data =brdu_plot, aes(x = Time_h, y = prop_brdu, col=Genotype)) +
+  labs(title="BrdU+ cells (%)",  y=NULL, x="Days post Brdu administration") + 
+  xlim(0, 30) +  myTheme + theme(legend.position = c(0.85, 0.85))
 
 
 ### Residual plots

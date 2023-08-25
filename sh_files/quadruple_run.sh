@@ -7,8 +7,8 @@ do
     esac
 done
 
-for i in 1 2 3 4 5 6
+for i in 1 2 3 4
     do
-      ./stan_models/${modelname} sample num_warmup=500 num_samples=2500 data file=datafiles/Bcell_Imm.Rdump \
+      ./stan_models/${modelname} sample num_warmup=500 num_samples=2500 data file=datafiles/brdu_stanfit.Rdump \
       output file=save_csv/${modelname}_${i}.csv &
     done

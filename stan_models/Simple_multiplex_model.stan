@@ -1,43 +1,38 @@
 functions{
   // function that describes the changes in CAR+ counts in FO B cells
   real eps_function(real time, real[] params){
-    real r_eps = params[1];
+    real r_eps = 3.62; //params[1];
     //real value = exp(-r_eps * time);
-    real value = 1.0/(1+(time/r_eps)^1);
+    real value = 1.0/(1+(time/r_eps)^2);
     return value;
    }
 
    // function that contains the ODE equations to be used in ODE solver
    real[] ODE_sys(real time,  real[] y, real[] parms, real[] rdata, int[] idata) {
      // the array of parameters invloved in ode equations
-     real rho = parms[2];
-     real delta = parms[3];
-     real rho_dko = parms[4];
+     real rho = parms[1];
+     real delta = parms[2];
+     real rho_dko = parms[3];
 
      real x_pos= 131619;
      real x_neg = 378491.4;
 
-    //  real phi = (rho - delta) * (y[1]+y[2]+y[3]) / (x_pos + x_neg);
-    //  real phi_dko = (rho_dko - delta) * (y[4]+y[5]+y[6]) / (x_pos + x_neg);
-    //  real mu = (alpha - lambda) * (y[7]+y[8]+y[9]) / (y[1]+y[2]+y[3]);
-    //  real mu_dko = (alpha_dko - lambda) * (y[10]+y[11]+y[12]) / (y[4]+y[5]+y[6]);
      real phi = (rho - delta) * (372151) / (x_pos + x_neg);
      real phi_dko = (rho_dko - delta) * (83027) / (x_pos + x_neg);
-     real psi = 0.0;
 
      // the system of ODEs
      real dydt[6];
      // L2 large pre B cells in WT
-     dydt[1] = phi * psi * x_pos + rho * eps_function(time, parms) * (2 * y[2] + y[1]) - rho * (1 - eps_function(time, parms)) * y[1] - delta * y[1];
+     dydt[1] = phi * x_pos + rho * eps_function(time, parms) * (2 * y[2] + y[1]) - rho * (1 - eps_function(time, parms)) * y[1] - delta * y[1];
      // L1 large pre B cells in WT
-     dydt[2] = phi * (1 - psi) * x_pos + rho * eps_function(time, parms) * (2 * y[3] - y[2]) + rho * (1 - eps_function(time, parms)) * (2 *  y[1]) - delta * y[2];
+     dydt[2] = phi * x_neg + rho * eps_function(time, parms) * (2 * y[3] - y[2]) + rho * (1 - eps_function(time, parms)) * (2 *  y[1]) - delta * y[2];
      // U large pre B cells in WT
-     dydt[3] = phi * x_neg - rho * eps_function(time, parms) * y[3] + rho * (1 - eps_function(time, parms)) * (y[2] + y[3]) - delta * y[3];
+     dydt[3] = - rho * eps_function(time, parms) * y[3] + rho * (1 - eps_function(time, parms)) * (y[2] + y[3]) - delta * y[3];
 
      // L2 large pre B cells in dko
-     dydt[4] = phi_dko * psi * x_pos + rho_dko * eps_function(time, parms) * (2 * y[5] + y[4]) - rho_dko * (1 - eps_function(time, parms)) * y[4] - delta * y[4];
+     dydt[4] = phi_dko * x_pos + rho_dko * eps_function(time, parms) * (2 * y[5] + y[4]) - rho_dko * (1 - eps_function(time, parms)) * y[4] - delta * y[4];
      // L1 large pre B cells in dko
-     dydt[5] = phi_dko * (1 - psi) * x_pos + rho_dko * eps_function(time, parms) * (2 * y[6] - y[5]) + rho_dko * (1 - eps_function(time, parms)) * (2 * y[4]) - delta * y[5];
+     dydt[5] = phi_dko * x_neg + rho_dko * eps_function(time, parms) * (2 * y[6] - y[5]) + rho_dko * (1 - eps_function(time, parms)) * (2 * y[4]) - delta * y[5];
      // U large pre B cells in dko
      dydt[6] = phi_dko * x_neg - rho_dko * eps_function(time, parms) * y[6] + rho_dko * (1 - eps_function(time, parms)) * (y[5] + y[6]) - delta * y[6];
      
@@ -71,7 +66,7 @@ parameters{
   real<lower = 0> rho;
   real<lower = 0, upper=rho> rho_dko;
   real<lower = 0, upper=rho_dko> delta;
-  real<lower = 0> r_eps;
+  //real<lower = 0> r_eps;
 
   // stdev within individual datasets to be estimated
   real<lower = 0> sigma1;
@@ -83,9 +78,9 @@ transformed parameters{
   real y_hat[n_shards, 6];     // declaring the array for ODE solution
   real largePreB_wt_mean[numObs1];
   real largePreB_dko_mean[numObs2];
-  real smallPreB_wt_mean[numObs1];
-  real smallPreB_dko_mean[numObs2];
-  real parms[4];                  // declaring the array for parameters
+  //real smallPreB_wt_mean[numObs1];
+  //real smallPreB_dko_mean[numObs2];
+  real parms[3];                  // declaring the array for parameters
   real init_cond[6];              // declaring the array for state variables
 
   // initial conditions and parameters
@@ -96,10 +91,10 @@ transformed parameters{
   init_cond[5] = 0.0;     // L1 cells in WT at t0
   init_cond[6] = 83027;   // U cell in WT at t0
 
-  parms[1] = r_eps;
-  parms[2] = rho;
-  parms[3] = delta;
-  parms[4] = rho_dko;
+  //parms[1] = r_eps;
+  parms[1] = rho;
+  parms[2] = delta;
+  parms[3] = rho_dko;
 
   y_hat[1] = init_cond;
   // solution of the system of ODEs for the predictor values
@@ -115,7 +110,7 @@ transformed parameters{
 
 model{
   // prior distribution for model parameters
-  r_eps ~ normal(5, 1);
+  //r_eps ~ normal(5, 1);
   rho ~ normal(0.2, 0.5);
   delta ~ normal(0.1, 0.5);
   rho_dko ~ normal(0.1, 0.5);
@@ -157,14 +152,14 @@ generated quantities{
    }
 
 //    // calculating the log predictive accuracy for each point
-//    for (n in 1:numObs1) {
-//      resid_d1[n] = logit(largePreB_wt[n]) - logit(largePreB_wt_mean[n]);
-//      log_lik1[n] = normal_lpdf(logit(largePreB_wt[n]) | logit(largePreB_wt_mean[n]), sigma1);
-//    }
-
-//    // calculating the log predictive accuracy for each point
-//    for (n in 1:numObs2) {
-//      resid_d2[n] = logit(largePreB_dko[n]) - logit(largePreB_dko_mean[n]);
-//      log_lik2[n] = normal_lpdf(logit(largePreB_dko[n]) | logit(largePreB_dko_mean[n]), sigma2);
-//    }
+    //for (n in 1:numObs1) {
+    //  resid_d1[n] = logit(largePreB_wt[n]) - logit(largePreB_wt_mean[n]);
+    //  log_lik1[n] = normal_lpdf(logit(largePreB_wt[n]) | logit(largePreB_wt_mean[n]), sigma1);
+    //}
+    //
+    //// calculating the log predictive accuracy for each point
+    //for (n in 1:numObs2) {
+    //  resid_d2[n] = logit(largePreB_dko[n]) - logit(largePreB_dko_mean[n]);
+    //  log_lik2[n] = normal_lpdf(logit(largePreB_dko[n]) | logit(largePreB_dko_mean[n]), sigma2);
+    //}
 }
