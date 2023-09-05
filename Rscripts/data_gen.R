@@ -35,6 +35,16 @@ fracs_wt <- fracs_df %>%
 fracs_dko <- fracs_df %>%
   filter(Genotype == "dKO") 
 
+brdu_plot <- fracs_df %>%
+  gather(-c(sample_id, Time_h, Genotype), key = 'subpop', value = "prop_brdu") %>%
+  filter(subpop == "BrdU_large_pre_B") 
+
+ggplot()+
+  geom_point(data = brdu_plot, aes(x=Time_h, y=prop_brdu, col=Genotype))+
+  facet_wrap(.~ Genotype)+
+  labs(x = "Time post BrdU injection (hours)", y= paste0("% BrdU+ cells"))+
+  xlim(0, 31) + ylim(0, 100) 
+
 ## Unique time points with indices to map
 solve_time <- c(4, 18, 30)
 time_index1 <- purrr::map_dbl(fracs_wt$Time_h, function(x) which(x == solve_time))     # keeping track of index of time point in relation to solve_time

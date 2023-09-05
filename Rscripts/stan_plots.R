@@ -9,7 +9,7 @@ library(readxl)
 ####################################################################################
 
 ## model specific details that needs to be change for every run
-modelName <- "simple_multiplex_model"
+modelName <- "multiplex_M1"
 
 ## Setting all the directories for opeartions
 projectDir <- getwd()
@@ -25,12 +25,12 @@ LooDir <- file.path('loo_fit')
 source(file.path(toolsDir, "stanTools.R"))                # save results in new folder
 
 # compiling multiple stan objects together that ran on different nodes
-stanfit1 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_1", ".csv")))
-stanfit2 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_2",".csv")))
-stanfit3 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_3", ".csv")))
-stanfit4 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_4",".csv")))
+stanfit1 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_", ".csv")))
+#stanfit2 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_2",".csv")))
+#stanfit3 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_3", ".csv")))
+#stanfit4 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_4",".csv")))
 
-fit <- sflist2stanfit(list(stanfit1, stanfit2, stanfit3, stanfit4))
+fit <- sflist2stanfit(list(stanfit1))
 
 # finding the parameters used in the model 
 # using the last parameter("sigma4") in the array to get the total number of parameters set in the model
@@ -124,7 +124,8 @@ Y1pred <- as.data.frame(fit, pars = "y1_mean_pred") %>%
   summarize(lb = quantile(value, probs = 0.045),
             median = quantile(value, probs = 0.5),
             ub = quantile(value, probs = 0.955)) %>%
-  bind_cols("timeseries" = ts_pred)
+  bind_cols("Time_h" = ts_pred,
+            "Genotype" = "WT")
 
 
 Y2pred <- as.data.frame(fit, pars = "y2_mean_pred") %>%
@@ -133,24 +134,24 @@ Y2pred <- as.data.frame(fit, pars = "y2_mean_pred") %>%
   summarize(lb = quantile(value, probs = 0.045),
             median = quantile(value, probs = 0.5),
             ub = quantile(value, probs = 0.955))%>%
-  bind_cols("timeseries" = ts_pred)
+  bind_cols("Time_h" = ts_pred,
+            "Genotype" = "dKO")
 
 
+Ypred <- rbind(Y1pred, Y2pred)
 ### data munging
 
 brdu_plot <- fracs_df %>%
   filter(subpop == "BrdU_large_pre_B") 
 
-#### plots
-ggplot() +
-  #geom_hline(yintercept = exp(10.8))+
-  geom_line(data = Y1pred, aes(x = timeseries, y = median*100), col =2) +
-  #geom_ribbon(data = Y1pred, aes(x = timeseries, ymin = lb*100, ymax = ub*100), fill=2, alpha = 0.25)+
-  geom_line(data = Y2pred, aes(x = timeseries, y = median*100), col =4) +
-  #geom_ribbon(data = Y2pred, aes(x = timeseries, ymin = lb*100, ymax = ub*100), fill=4, alpha = 0.25)+
-  geom_point(data =brdu_plot, aes(x = Time_h, y = prop_brdu, col=Genotype)) +
-  labs(title="BrdU+ cells (%)",  y=NULL, x="Days post Brdu administration") + 
-  xlim(0, 30) +  myTheme + theme(legend.position = c(0.85, 0.85))
+ggplot()+
+  geom_point(data = brdu_plot, aes(x=Time_h, y=prop_brdu, col=Genotype))+
+  geom_line(data = Ypred, aes(x=Time_h, y=median*100, col=Genotype)) +
+  geom_ribbon(data = Ypred, aes(x = Time_h, ymin = lb*100, ymax = ub*100, fill=Genotype), alpha = 0.25)+
+  #facet_wrap(.~ Genotype)+
+  labs(x = "Time post BrdU injection (hours)", y= paste0("% BrdU+ cells"))+
+  xlim(0, 31) + ylim(0, 100) + myTheme + theme(legend.position = c(0.85, 0.85))
+
 
 
 ### Residual plots
