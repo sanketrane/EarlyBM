@@ -13,12 +13,13 @@ functions{
      real rho = parms[1];
      real delta = parms[2];
      real rho_dko = parms[3];
+     real delta_dko = parms[4];
 
      real x_pos= 131619;
      real x_neg = 378491;
 
      real phi = (rho - delta) * (y[1] + y[2] + y[3]) / (x_pos + x_neg);
-     real phi_dko = (rho_dko - delta) * (y[4] + y[5] + y[6]) / (x_pos + x_neg);
+     real phi_dko = (rho_dko - delta_dko) * (y[4] + y[5] + y[6]) / (x_pos + x_neg);
 
      // the system of ODEs
      real dydt[6];
@@ -30,11 +31,11 @@ functions{
      dydt[3] = phi * x_neg - rho * eps_function(time, parms) * y[3] + rho * (1 - eps_function(time, parms)) * (y[2] + y[3]) - delta * y[3];
 
      // L2 large pre B cells in dko
-     dydt[4] =  rho_dko * eps_function(time, parms) * (2 * y[5] + y[4]) - rho_dko * (1 - eps_function(time, parms)) * y[4] - delta * y[4];
+     dydt[4] =  rho_dko * eps_function(time, parms) * (2 * y[5] + y[4]) - rho_dko * (1 - eps_function(time, parms)) * y[4] - delta_dko * y[4];
      // L1 large pre B cells in dko
-     dydt[5] = phi_dko * x_pos + rho_dko * eps_function(time, parms) * (2 * y[6] - y[5]) + rho_dko * (1 - eps_function(time, parms)) * (2 * y[4]) - delta * y[5];
+     dydt[5] = phi_dko * x_pos + rho_dko * eps_function(time, parms) * (2 * y[6] - y[5]) + rho_dko * (1 - eps_function(time, parms)) * (2 * y[4]) - delta_dko * y[5];
      // U large pre B cells in dko
-     dydt[6] = phi_dko * x_neg - rho_dko * eps_function(time, parms) * y[6] + rho_dko * (1 - eps_function(time, parms)) * (y[5] + y[6]) - delta * y[6];
+     dydt[6] = phi_dko * x_neg - rho_dko * eps_function(time, parms) * y[6] + rho_dko * (1 - eps_function(time, parms)) * (y[5] + y[6]) - delta_dko * y[6];
      
      return dydt;
    }
@@ -91,8 +92,9 @@ parameters{
   // parameters to sample with boundary conditions
   real<lower = 0> rho;
   real<lower = 0, upper=rho> rho_dko;
-  real<lower = 0, upper=rho_dko> delta;
-  real<lower = 0> r_eps;
+  real<lower = 0> delta;
+  real<lower = 0> delta_dko;
+  //real<lower = 0> r_eps;
 
   // stdev within individual datasets to be estimated
   real<lower = 0> sigma1;
@@ -106,7 +108,7 @@ transformed parameters{
   real largePreB_dko_mean[numObs2];
   //real smallPreB_wt_mean[numObs1];
   //real smallPreB_dko_mean[numObs2];
-  real parms[3];                  // declaring the array for parameters
+  real parms[4];                  // declaring the array for parameters
   real init_cond[6];              // declaring the array for state variables
 
   // initial conditions and parameters
@@ -121,7 +123,7 @@ transformed parameters{
   parms[1] = rho;
   parms[2] = delta;
   parms[3] = rho_dko;
-  //parms[4] = r_eps;
+  parms[4] = delta_dko;
 
   y_hat[1] = init_cond;
   // solution of the system of ODEs for the predictor values
@@ -140,6 +142,7 @@ model{
   rho ~ normal(0.2, 0.5);
   delta ~ normal(0.1, 0.5);
   rho_dko ~ normal(0.1, 0.5);
+  delta_dko ~ normal(0.1, 0.5);
   //r_eps ~ normal(5, 2);
 
   sigma1 ~ normal(0, 2.5);
