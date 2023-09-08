@@ -9,7 +9,7 @@ library(readxl)
 ####################################################################################
 
 ## model specific details that needs to be change for every run
-modelName <- "multiplex_M1_artf"
+modelName <- "multiplex_M1"
 
 ## Setting all the directories for opeartions
 projectDir <- getwd()
@@ -25,8 +25,8 @@ LooDir <- file.path('loo_fit')
 source(file.path(toolsDir, "stanTools.R"))                # save results in new folder
 
 # compiling multiple stan objects together that ran on different nodes
-stanfit1 <- read_stan_csv(file.path(saveDir, paste0(modelName, ".csv")))
-#stanfit1 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_1", ".csv")))
+#stanfit1 <- read_stan_csv(file.path(saveDir, paste0(modelName, ".csv")))
+stanfit1 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_", ".csv")))
 #stanfit2 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_2",".csv")))
 #stanfit3 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_3", ".csv")))
 #stanfit4 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_4",".csv")))
@@ -72,9 +72,9 @@ ploocv <- data.frame("Model" = modelName,
                      "SE" = loo_loglik$estimates[6], 
                      "PLoo" = loo_loglik$estimates[2])
 
-write.table(ploocv, file = file.path(outputDir, 'timeinfluxfit', "stat_table_MZB1.csv"),
-            sep = ",", append = T, quote = FALSE,
-            col.names = F, row.names = FALSE)
+#write.table(ploocv, file = file.path(outputDir, 'timeinfluxfit', "stat_table_MZB1.csv"),
+#            sep = ",", append = T, quote = FALSE,
+#            col.names = F, row.names = FALSE)
 
 
 ################################################################################################
@@ -83,7 +83,7 @@ write.table(ploocv, file = file.path(outputDir, 'timeinfluxfit', "stat_table_MZB
 ### parameters table
 ptable <- monitor(as.array(fit, pars = parametersToPlot), warmup = 0, print = FALSE)
 out_table <- ptable[1:num_pars, c(1, 3, 4, 8)]
-write.csv(out_table, file = file.path(outputDir, paste0('params_', modelName, "_", data_derived1, ".csv")))
+out_table
 
 # time sequence for predictions 
 ts_pred <- 10^seq(log10(0.1), log10(30), length.out = 300)
@@ -145,25 +145,25 @@ Ypred <- rbind(Y1pred, Y2pred)
 brdu_plot <- fracs_df %>%
   filter(subpop == "BrdU_large_pre_B") 
 
-artf_df <- read.csv("datafiles/artf_df.csv")
-
-artf_df %>%
-  rename(dKO = dko_brdu, WT = wt_brdu) %>%
-  gather(-time_h, key = "Genotype", value = "prop_brdu") %>%
-  ggplot() +
-  geom_point(aes(x=time_h, y=prop_brdu, col=Genotype), size=1.2) + facet_wrap(.~ Genotype) +
-  geom_line(data = Ypred, aes(x=Time_h, y=median, col=Genotype)) +
-  geom_ribbon(data = Ypred, aes(x = Time_h, ymin = lb, ymax = ub, fill=Genotype), alpha = 0.25) +
-  #facet_wrap(.~ Genotype)+
-  labs(x = "Time post BrdU injection (hours)", y= paste0("% BrdU+ cells"))+
-  xlim(0, 31) + ylim(0, 1) + myTheme + theme(legend.position = c(0.85, 0.85))
-  
+#artf_df <- read.csv("datafiles/artf_df.csv")
+#
+#artf_df %>%
+#  rename(dKO = dko_brdu, WT = wt_brdu) %>%
+#  gather(-time_h, key = "Genotype", value = "prop_brdu") %>%
+#  ggplot() +
+#  geom_point(aes(x=time_h, y=prop_brdu, col=Genotype), size=1.2) + facet_wrap(.~ Genotype) +
+#  geom_line(data = Ypred, aes(x=Time_h, y=median, col=Genotype)) +
+#  geom_ribbon(data = Ypred, aes(x = Time_h, ymin = lb, ymax = ub, fill=Genotype), alpha = 0.25) +
+#  #facet_wrap(.~ Genotype)+
+#  labs(x = "Time post BrdU injection (hours)", y= paste0("% BrdU+ cells"))+
+#  xlim(0, 31) + ylim(0, 1) + myTheme + theme(legend.position = c(0.85, 0.85))
+#  
 
 ggplot()+
   geom_point(data = brdu_plot, aes(x=Time_h, y=prop_brdu, col=Genotype))+
   geom_line(data = Ypred, aes(x=Time_h, y=median*100, col=Genotype)) +
   geom_ribbon(data = Ypred, aes(x = Time_h, ymin = lb*100, ymax = ub*100, fill=Genotype), alpha = 0.25)+
-  #facet_wrap(.~ Genotype)+
+  facet_wrap(.~ Genotype)+
   labs(x = "Time post BrdU injection (hours)", y= paste0("% BrdU+ cells"))+
   xlim(0, 31) + ylim(0, 100) + myTheme + theme(legend.position = c(0.85, 0.85))
 

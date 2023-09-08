@@ -1,9 +1,9 @@
 functions{
   // function that describes the changes in CAR+ counts in FO B cells
   real eps_function(real time, real[] params){
-    real r_eps = 1.64;//params[4];
+    real r_eps = params[5];
     //real value = exp(-r_eps * time);
-    real value = 1.0/(1+(time/r_eps)^1);
+    real value = 1.0/(1+(time/r_eps)^2);
     return value;
    }
 
@@ -36,6 +36,20 @@ functions{
      dydt[5] = phi_dko * x_pos + rho_dko * eps_function(time, parms) * (2 * y[6] - y[5]) + rho_dko * (1 - eps_function(time, parms)) * (2 * y[4]) - delta_dko * y[5];
      // U large pre B cells in dko
      dydt[6] = phi_dko * x_neg - rho_dko * eps_function(time, parms) * y[6] + rho_dko * (1 - eps_function(time, parms)) * (y[5] + y[6]) - delta_dko * y[6];
+
+     //// L2 small pre B cells in WT
+     //dydt[1] = mu * y[1] + alpha * eps_function(time, parms) * (2 * y[8] + y[7]) - alpha * (1 - eps_function(time, parms)) * y[7] - lambda * y[7];
+     //// L1 small pre B cells in WT
+     //dydt[2] = mu * y[2] + alpha * eps_function(time, parms) * (2 * y[9] - y[8]) + rho * (1 - eps_function(time, parms)) * (2 *  y[1]) - delta * y[2];
+     //// U small pre B cells in WT
+     //dydt[3] = phi * x_neg - rho * eps_function(time, parms) * y[3] + rho * (1 - eps_function(time, parms)) * (y[2] + y[3]) - delta * y[3];
+//
+     //// L2 small pre B cells in dko
+     //dydt[4] =  rho_dko * eps_function(time, parms) * (2 * y[5] + y[4]) - rho_dko * (1 - eps_function(time, parms)) * y[4] - delta_dko * y[4];
+     //// L1 small pre B cells in dko
+     //dydt[5] = phi_dko * x_pos + rho_dko * eps_function(time, parms) * (2 * y[6] - y[5]) + rho_dko * (1 - eps_function(time, parms)) * (2 * y[4]) - delta_dko * y[5];
+     //// U small pre B cells in dko
+     //dydt[6] = phi_dko * x_neg - rho_dko * eps_function(time, parms) * y[6] + rho_dko * (1 - eps_function(time, parms)) * (y[5] + y[6]) - delta_dko * y[6];
      
      return dydt;
    }
@@ -90,11 +104,11 @@ data{
 
 parameters{
   // parameters to sample with boundary conditions
-  real<lower = 0> rho;
-  real<lower = 0, upper=rho> rho_dko;
-  real<lower = 0> delta;
-  real<lower = 0> delta_dko;
-  //real<lower = 0> r_eps;
+  real rho_dko_Log;
+  real<lower=rho_dko_Log>rho_Log;
+  real delta_Log;
+  real delta_dko_Log;
+  real<lower = 0> r_eps;
 
   // stdev within individual datasets to be estimated
   real<lower = 0> sigma1;
@@ -108,7 +122,7 @@ transformed parameters{
   real largePreB_dko_mean[numObs2];
   //real smallPreB_wt_mean[numObs1];
   //real smallPreB_dko_mean[numObs2];
-  real parms[4];                  // declaring the array for parameters
+  real parms[5];                  // declaring the array for parameters
   real init_cond[6];              // declaring the array for state variables
 
   // initial conditions and parameters
@@ -119,15 +133,17 @@ transformed parameters{
   init_cond[5] = 0.0;     // L1 cells in dko at t0
   init_cond[6] = 83027;   // U cell in dko at t0
 
-  //parms[1] = r_eps;
-  parms[1] = rho;
-  parms[2] = delta;
-  parms[3] = rho_dko;
-  parms[4] = delta_dko;
+  
+  parms[1] = exp(rho_Log);
+  parms[2] = exp(delta_Log);
+  parms[3] = exp(rho_dko_Log);
+  parms[4] = exp(delta_dko_Log);
+  parms[5] = r_eps;
 
   y_hat[1] = init_cond;
   // solution of the system of ODEs for the predictor values
   y_hat[2:] = solve_ODE_sys(solve_time[2:], init_cond, parms);
+  
 
   for (i in 1:numObs1){
     largePreB_wt_mean[i] = (y_hat[time_index1[i], 1] + y_hat[time_index1[i], 2])/(y_hat[time_index1[i], 1] + y_hat[time_index1[i], 2] + y_hat[time_index1[i], 3]);
@@ -135,18 +151,23 @@ transformed parameters{
   for (i in 1:numObs2){
     largePreB_dko_mean[i] = (y_hat[time_index2[i], 4] + y_hat[time_index2[i], 5])/(y_hat[time_index2[i], 4] + y_hat[time_index2[i], 5] + y_hat[time_index2[i], 6]);
   }
+
+  print(largePreB_wt);
+  print(largePreB_wt_mean);
+  print(largePreB_dko);
+  print(largePreB_dko_mean);
 }
 
 model{
   // prior distribution for model parameters
-  rho ~ normal(0.2, 0.5);
-  delta ~ normal(0.1, 0.5);
-  rho_dko ~ normal(0.1, 0.5);
-  delta_dko ~ normal(0.1, 0.5);
-  //r_eps ~ normal(5, 2);
+  rho_Log ~ normal(-4, 1);
+  delta_Log ~ normal(-4, 1);
+  rho_dko_Log ~ normal(-4, 1);
+  delta_dko_Log ~ normal(-4, 1);
+  r_eps ~ normal(5, 2);
 
-  sigma1 ~ normal(0, 2.5);
-  sigma2 ~ normal(0, 2.5);
+  sigma1 ~ normal(0.1, 0.5);
+  sigma2 ~ normal(0.2, 0.5);
 
   // model fitting on to data
   asinsqrt_array(largePreB_wt) ~ normal(asinsqrt_array(largePreB_wt_mean), sigma1);

@@ -185,27 +185,28 @@ ode_func <- function (Time, y, parms) {
     rho_dko = 0.090248636 #exp(rho_dko_log)
     delta_dko = 0.078966709
     lambda = exp(lambda_log)
-    alpha = exp(alpha_log)
+    lambda_dko = exp(lambda_log)
+    alpha = 0# exp(alpha_log)
     mu = exp(mu_log)
-    mu_dko = exp(mu_dko_log)
+    mu_dko = exp(mu_log)
     r_eps = 1.64255675#1.64255675
+    
+    theta = (rho - delta) * (372151) / (pro_neg+pro_pos);
+    theta_dko = (rho_dko - delta) * (83027) / (pro_neg+pro_pos);
+    #lambda = (alpha - mu) * (4318182) / (372151);
+    #lambda_dko = (alpha - mu_dko) * (607546) / (83027);
+    
     del = delta - mu
     del_dko = delta_dko - mu_dko
       
     #theta = (rho - delta) * (y1+y2+y3)/(pro_neg+pro_pos)
     #theta_dko = (rho_dko - delta_dko) * (y4+y5+y6)/(pro_neg+pro_pos)
     
-    theta = (rho - delta) * (372151) / (pro_neg+pro_pos);
-    theta_dko = (rho_dko - delta) * (83027) / (pro_neg+pro_pos);
-    #mu = (alpha - lambda) * (4318182) / (372151);
-    #mu_dko = (alpha - lambda) * (607546) / (83027);
-    #psi = asinsq_inv(psi_tarnsf)
-    
     ## in WT
     # L2 pop in large Pre B
     dy1 <- theta * (pro_pos) + rho * eps_func(Time, r_eps) * (2*y2 + y1) - rho * (1-eps_func(Time, r_eps)) * y1 - (mu + del) * y1
     # L1 pop in large Pre B
-    dy2 <- theta * (pro_neg) + rho * eps_func(Time, r_eps) * (2*y3 - y1) + 2 * rho * (1-eps_func(Time, r_eps)) * y1 - (mu + del) * y2
+    dy2 <- theta * (pro_neg) + rho * eps_func(Time, r_eps) * (2*y3 - y2) + 2 * rho * (1-eps_func(Time, r_eps)) * y1 - (mu + del) * y2
     # U pop in large Pre B
     dy3 <- - rho * eps_func(Time, r_eps) * y3 + rho * (1-eps_func(Time, r_eps)) * (y2 + y3) - (mu + del) * y3
     
@@ -221,17 +222,17 @@ ode_func <- function (Time, y, parms) {
     # L2 pop in small Pre B
     dy7 <- mu * y1 + alpha * eps_func(Time, r_eps) * (2*y8 + y7) - alpha * (1-eps_func(Time, r_eps)) * y7 - lambda * y7
     # L1 pop in small Pre B
-    dy8 <- mu * y2 + alpha * eps_func(Time, r_eps) * (2*y9 - y7) + 2 * alpha * (1-eps_func(Time, r_eps)) * y7 - lambda * y8
+    dy8 <- mu * y2 + alpha * eps_func(Time, r_eps) * (2*y9 - y8) + 2 * alpha * (1-eps_func(Time, r_eps)) * y7 - lambda * y8
     # U pop in small Pre B
     dy9 <- mu * y3 - alpha * eps_func(Time, r_eps) * y9 + alpha * (1-eps_func(Time, r_eps)) * (y8 + y9) - lambda * y9
     
     ##in DKO
     # L2 pop in small PreB
-    dy10 <- mu_dko * y4 + alpha * eps_func(Time, r_eps) * (2*y11 + y10) - alpha * (1-eps_func(Time, r_eps)) * y10 - lambda * y10
+    dy10 <- mu_dko * y4 + alpha * eps_func(Time, r_eps) * (2*y11 + y10) - alpha * (1-eps_func(Time, r_eps)) * y10 - lambda_dko * y10
     # L1 pop in small Pre B
-    dy11 <- mu_dko * y5 + alpha * eps_func(Time, r_eps) * (2*y12 - y10) + 2 * alpha * (1-eps_func(Time, r_eps)) * y10 - lambda * y11
+    dy11 <- mu_dko * y5 + alpha * eps_func(Time, r_eps) * (2*y12 - y10) + 2 * alpha * (1-eps_func(Time, r_eps)) * y10 - lambda_dko * y11
     # U pop in small Pre B
-    dy12 <- mu_dko * y6 - alpha * eps_func(Time, r_eps) * y12 + alpha * (1-eps_func(Time, r_eps)) * (y11 + y12) - lambda * y12
+    dy12 <- mu_dko * y6 - alpha * eps_func(Time, r_eps) * y12 + alpha * (1-eps_func(Time, r_eps)) * (y11 + y12) - lambda_dko * y12
 
     list(c(dy1, dy2, dy3, dy4, dy5, dy6, dy7, dy8, dy9, dy10, dy11, dy12))
   })
@@ -242,7 +243,7 @@ init_cond_dko <- c("y4" = 0.0, "y5" = 0, "y6" = 83027)
 init_cond_wt2 <- c("y7" = 0.0, "y8" = 0, "y9" = 4318182)
 init_cond_dko2 <- c("y10" = 0.0, "y11" = 0, "y12" = 607546)
 init_cond <- c(init_cond_wt, init_cond_dko, init_cond_wt2, init_cond_dko2)
-params <- c("alpha_log" = -2, "lambda_log" = -4, "mu_log" = -4, "mu_dko_log" = -4)
+params <- c("lambda_log" = -4,  "mu_log" = -4)
 asin_transf <- function(x){asin(sqrt(x))}
 
 
@@ -288,7 +289,6 @@ fit_LL <- optim(par=params, fn=LL_func,
 
 fit_LL
 par_est <- fit_LL$par
-exp(fit_LL$par)
 aic_val <- 2* length(fit_LL$par) + 2*fit_LL$value
 aic_val
 ## predictions
@@ -324,6 +324,8 @@ small_preB_df <- brdu_df %>%
   select(sample_id, Time_h, Genotype, BrdU_small_pre_B) %>%
   rename(prop_brdu = BrdU_small_pre_B)
 
+
+exp(fit_LL$par)
 ggplot()+
   geom_point(data = small_preB_df, aes(x=Time_h, y=prop_brdu, col=Genotype))+
   geom_line(data = pred_df, aes(x=Time_h, y=prop_brdu*100, col=Genotype)) +
