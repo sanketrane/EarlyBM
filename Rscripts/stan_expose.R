@@ -4,10 +4,12 @@ library(rstan)
 library(tidyverse)
 
 ## model
-modelName <- "Simple_multiplex_model"
+modelName <- "multiplex_M1"
 rstan::expose_stan_functions(file.path("stan_models", paste0(modelName, ".stan")))
-params <- c(0.1, 0.01, 0.04)
+#params <- c(0.1, 0.01, 0.02, 0.02, 5)
+params <- c(exp(-2), exp(-4), exp(-4), exp(-4), 5)
 params1 <- c(0.21, 0.34, 0.18)
+
 set.seed(5454)
 timeseq <- seq(0.1, 30, 0.1)
 time_set <- round(runif(25, 1, 30), 0) %>% sort() 
@@ -17,11 +19,11 @@ time_obs
 time_index <- purrr::map_dbl(time_set, function(x) which(x == time_obs))
 init_cond <- c("y1" = 0.0, "y2" = 0, "y3" = 372151, "y4" = 0.0, "y5" = 0, "y6" = 83027)
 ode_df <- solve_ODE_sys(time_obs, init_cond, params)
-ode_pred <- solve_ODE_sys(time_obs, init_cond, params1)
+#ode_pred <- solve_ODE_sys(time_obs, init_cond, params1)
 
 
 noise1 <- rnorm(length(time_set), 0.1, 0.05)
-noise2 <- rnorm(length(time_set), 0.15, 0.05)
+noise2 <- rnorm(length(time_set), 0.1, 0.05)
 
 stan_pred_df <- data.frame("time_h" = time_obs,
                             "y_pred" = matrix(unlist(ode_df), nrow = length(time_obs), byrow = TRUE)) %>%
@@ -29,12 +31,12 @@ stan_pred_df <- data.frame("time_h" = time_obs,
          dko_brdu = (y_pred.4 + y_pred.5)/(y_pred.4 + y_pred.5 + y_pred.6)) %>%
   select(time_h, wt_brdu, dko_brdu)
 
-fit_pred <- data.frame("time_h" = time_obs,
-                           "y_pred" = matrix(unlist(ode_pred), nrow = length(time_obs), byrow = TRUE)) %>%
-  mutate(wt_brdu = (y_pred.1 + y_pred.2)/(y_pred.1 + y_pred.2 + y_pred.3),
-         dko_brdu = (y_pred.4 + y_pred.5)/(y_pred.4 + y_pred.5 + y_pred.6)) %>%
-  select(time_h, wt_brdu, dko_brdu) %>%
-  gather(-time_h, key = "Genotype", value = "prop_brdu")
+#fit_pred <- data.frame("time_h" = time_obs,
+#                           "y_pred" = matrix(unlist(ode_pred), nrow = length(time_obs), byrow = TRUE)) %>%
+#  mutate(wt_brdu = (y_pred.1 + y_pred.2)/(y_pred.1 + y_pred.2 + y_pred.3),
+#         dko_brdu = (y_pred.4 + y_pred.5)/(y_pred.4 + y_pred.5 + y_pred.6)) %>%
+#  select(time_h, wt_brdu, dko_brdu) %>%
+#  gather(-time_h, key = "Genotype", value = "prop_brdu")
 
 artf_df <- data.frame("time_h" = time_set,
                       wt_brdu = stan_pred_df$wt_brdu[time_index] + noise1,
@@ -44,7 +46,8 @@ artf_df %>%
   gather(-time_h, key = "Genotype", value = "prop_brdu") %>%
   ggplot(aes(x=time_h, y=prop_brdu, col=Genotype)) +
   geom_point(size=1.2) + facet_wrap(.~ Genotype)+
-  geom_line(data = fit_pred) + facet_wrap(.~ Genotype)
+  #geom_line(data = fit_pred) + 
+  facet_wrap(.~ Genotype)
 
 write.csv(artf_df, "artf_df.csv", row.names = F)
 

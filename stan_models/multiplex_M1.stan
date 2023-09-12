@@ -151,27 +151,22 @@ transformed parameters{
   for (i in 1:numObs2){
     largePreB_dko_mean[i] = (y_hat[time_index2[i], 4] + y_hat[time_index2[i], 5])/(y_hat[time_index2[i], 4] + y_hat[time_index2[i], 5] + y_hat[time_index2[i], 6]);
   }
-
-  print(largePreB_wt);
-  print(largePreB_wt_mean);
-  print(largePreB_dko);
-  print(largePreB_dko_mean);
 }
 
 model{
   // prior distribution for model parameters
-  rho_Log ~ normal(-4, 1);
-  delta_Log ~ normal(-4, 1);
-  rho_dko_Log ~ normal(-4, 1);
-  delta_dko_Log ~ normal(-4, 1);
-  r_eps ~ normal(5, 2);
+  rho_Log ~ normal(-2, 0.5);
+  delta_Log ~ normal(-3, 0.5);
+  rho_dko_Log ~ normal(-4, 0.5);
+  delta_dko_Log ~ normal(-3, 0.5);
+  r_eps ~ normal(5, 1);
 
   sigma1 ~ normal(0.1, 0.5);
-  sigma2 ~ normal(0.2, 0.5);
+  sigma2 ~ normal(0.1, 0.5);
 
   // model fitting on to data
-  asinsqrt_array(largePreB_wt) ~ normal(asinsqrt_array(largePreB_wt_mean), sigma1);
-  asinsqrt_array(largePreB_dko) ~ normal(asinsqrt_array(largePreB_dko_mean), sigma2);
+  (largePreB_wt) ~ normal((largePreB_wt_mean), sigma1);
+  (largePreB_dko) ~ normal((largePreB_dko_mean), sigma2);
 }
 
 generated quantities{
@@ -195,23 +190,23 @@ generated quantities{
    for (i in 1:numPred){
      //WT predictions
      y1_mean_pred[i] = (y_hat_pred[i, 1] + y_hat_pred[i, 2])/(y_hat_pred[i, 1] + y_hat_pred[i, 2] + y_hat_pred[i, 3]); // large Pre B
-     largePreB_wt_pred[i] = asinsqrt_inv(normal_rng(asinsqrt_real(y1_mean_pred[i]), sigma1));
+     largePreB_wt_pred[i] = (normal_rng((y1_mean_pred[i]), sigma1));
      //smallPreB_wt_pred[i] = inv_logit(normal_rng(logit(y2_mean_pred[i]), sigma2));
      //dKO predictions
      y2_mean_pred[i] = (y_hat_pred[i, 4] + y_hat_pred[i, 5])/(y_hat_pred[i, 4] + y_hat_pred[i, 5] + y_hat_pred[i, 6]); // large Pre B
-     largePreB_dko_pred[i] = asinsqrt_inv(normal_rng(asinsqrt_real(y2_mean_pred[i]), sigma2));
+     largePreB_dko_pred[i] = (normal_rng((y2_mean_pred[i]), sigma2));
      //smallPreB_dko_pred[i] = inv_logit(normal_rng(logit(y4_mean_pred[i]), sigma4));
    }
 
     // calculating the log predictive accuracy for each point
     for (n in 1:numObs1) {
     //  resid_d1[n] = logit(largePreB_wt[n]) - logit(largePreB_wt_mean[n]);
-      log_lik1[n] = normal_lpdf(asinsqrt_real(largePreB_wt[n]) | asinsqrt_real(largePreB_wt_mean[n]), sigma1);
+      log_lik1[n] = normal_lpdf((largePreB_wt[n]) | (largePreB_wt_mean[n]), sigma1);
     }
     //
     //// calculating the log predictive accuracy for each point
     for (n in 1:numObs2) {
     //  resid_d2[n] = logit(largePreB_dko[n]) - logit(largePreB_dko_mean[n]);
-      log_lik2[n] = normal_lpdf(asinsqrt_real(largePreB_dko[n]) | asinsqrt_real(largePreB_dko_mean[n]), sigma2);
+      log_lik2[n] = normal_lpdf((largePreB_dko[n]) | (largePreB_dko_mean[n]), sigma2);
     }
 }

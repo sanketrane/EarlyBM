@@ -26,12 +26,12 @@ source(file.path(toolsDir, "stanTools.R"))                # save results in new 
 
 # compiling multiple stan objects together that ran on different nodes
 #stanfit1 <- read_stan_csv(file.path(saveDir, paste0(modelName, ".csv")))
-stanfit1 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_", ".csv")))
-#stanfit2 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_2",".csv")))
-#stanfit3 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_3", ".csv")))
+stanfit1 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_1", ".csv")))
+stanfit2 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_2",".csv")))
+stanfit3 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_3", ".csv")))
 #stanfit4 <- read_stan_csv(file.path(saveDir, paste0(modelName, "_4",".csv")))
 
-fit <- sflist2stanfit(list(stanfit1))
+fit <- sflist2stanfit(list(stanfit1, stanfit2, stanfit3))
 
 # finding the parameters used in the model 
 # using the last parameter("sigma4") in the array to get the total number of parameters set in the model
@@ -142,22 +142,22 @@ Y2pred <- as.data.frame(fit, pars = "y2_mean_pred") %>%
 Ypred <- rbind(Y1pred, Y2pred)
 ### data munging
 
-brdu_plot <- fracs_df %>%
-  filter(subpop == "BrdU_large_pre_B") 
+#brdu_plot <- fracs_df %>%
+#  filter(subpop == "BrdU_large_pre_B") 
 
-#artf_df <- read.csv("datafiles/artf_df.csv")
-#
-#artf_df %>%
-#  rename(dKO = dko_brdu, WT = wt_brdu) %>%
-#  gather(-time_h, key = "Genotype", value = "prop_brdu") %>%
-#  ggplot() +
-#  geom_point(aes(x=time_h, y=prop_brdu, col=Genotype), size=1.2) + facet_wrap(.~ Genotype) +
-#  geom_line(data = Ypred, aes(x=Time_h, y=median, col=Genotype)) +
-#  geom_ribbon(data = Ypred, aes(x = Time_h, ymin = lb, ymax = ub, fill=Genotype), alpha = 0.25) +
-#  #facet_wrap(.~ Genotype)+
-#  labs(x = "Time post BrdU injection (hours)", y= paste0("% BrdU+ cells"))+
-#  xlim(0, 31) + ylim(0, 1) + myTheme + theme(legend.position = c(0.85, 0.85))
-#  
+artf_df <- read.csv("datafiles/artf_df.csv")
+
+artf_df %>%
+ rename(dKO = dko_brdu, WT = wt_brdu) %>%
+ gather(-time_h, key = "Genotype", value = "prop_brdu") %>%
+ ggplot() +
+ geom_point(aes(x=time_h, y=prop_brdu, col=Genotype), size=1.2) + facet_wrap(.~ Genotype) +
+ geom_line(data = Ypred, aes(x=Time_h, y=median, col=Genotype)) +
+ geom_ribbon(data = Ypred, aes(x = Time_h, ymin = lb, ymax = ub, fill=Genotype), alpha = 0.25) +
+ #facet_wrap(.~ Genotype)+
+ labs(x = "Time post BrdU injection (hours)", y= paste0("% BrdU+ cells"))+
+ xlim(0, 31) + ylim(0, 1) + myTheme + theme(legend.position = c(0.85, 0.85))
+
 
 ggplot()+
   geom_point(data = brdu_plot, aes(x=Time_h, y=prop_brdu, col=Genotype))+

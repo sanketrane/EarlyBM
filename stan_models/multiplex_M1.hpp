@@ -8,7 +8,7 @@ using namespace stan::math;
 
 
 stan::math::profile_map profiles__;
-static constexpr std::array<const char*, 136> locations_array__ = 
+static constexpr std::array<const char*, 132> locations_array__ = 
 {" (found before start of program)",
  " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 107, column 2 to column 19)",
  " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 108, column 2 to column 33)",
@@ -41,40 +41,36 @@ static constexpr std::array<const char*, 136> locations_array__ =
  " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 152, column 4 to column 163)",
  " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 151, column 22 to line 153, column 3)",
  " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 151, column 2 to line 153, column 3)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 155, column 2 to column 22)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 156, column 2 to column 27)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 157, column 2 to column 23)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 174, column 3 to column 31)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 176, column 3 to column 30)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 176, column 31 to column 58)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 178, column 3 to column 35)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 178, column 36 to column 69)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 183, column 3 to column 28)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 183, column 29 to column 54)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 186, column 3 to column 29)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 187, column 3 to column 65)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 192, column 5 to column 118)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 193, column 5 to column 68)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 196, column 5 to column 118)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 197, column 5 to column 69)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 190, column 23 to line 199, column 4)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 190, column 3 to line 199, column 4)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 204, column 6 to column 84)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 202, column 25 to line 205, column 5)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 202, column 4 to line 205, column 5)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 210, column 6 to column 86)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 208, column 25 to line 211, column 5)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 208, column 4 to line 211, column 5)",
  " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 158, column 2 to column 28)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 179, column 3 to column 31)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 181, column 3 to column 30)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 181, column 31 to column 58)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 183, column 3 to column 35)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 183, column 36 to column 69)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 188, column 3 to column 28)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 188, column 29 to column 54)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 191, column 3 to column 29)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 192, column 3 to column 65)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 197, column 5 to column 118)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 198, column 5 to column 93)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 201, column 5 to column 118)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 202, column 5 to column 94)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 195, column 23 to line 204, column 4)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 195, column 3 to line 204, column 4)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 209, column 6 to column 110)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 207, column 25 to line 210, column 5)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 207, column 4 to line 210, column 5)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 215, column 6 to column 112)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 213, column 25 to line 216, column 5)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 213, column 4 to line 216, column 5)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 163, column 2 to column 26)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 159, column 2 to column 30)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 160, column 2 to column 32)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 161, column 2 to column 34)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 162, column 2 to column 23)",
  " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 164, column 2 to column 28)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 165, column 2 to column 30)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 166, column 2 to column 32)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 167, column 2 to column 23)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 169, column 2 to column 28)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 170, column 2 to column 28)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 173, column 2 to column 83)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 174, column 2 to column 85)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 165, column 2 to column 28)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 168, column 2 to column 55)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 169, column 2 to column 57)",
  " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 93, column 2 to column 26)",
  " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 94, column 2 to column 26)",
  " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 95, column 2 to column 27)",
@@ -94,13 +90,13 @@ static constexpr std::array<const char*, 136> locations_array__ =
  " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 120, column 13 to column 21)",
  " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 121, column 25 to column 32)",
  " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 122, column 26 to column 33)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 179, column 19 to column 26)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 181, column 21 to column 28)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 181, column 49 to column 56)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 183, column 26 to column 33)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 183, column 60 to column 67)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 188, column 10 to column 17)",
- " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 188, column 36 to column 43)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 174, column 19 to column 26)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 176, column 21 to column 28)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 176, column 49 to column 56)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 178, column 26 to column 33)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 178, column 60 to column 67)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 183, column 10 to column 17)",
+ " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 183, column 36 to column 43)",
  " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 4, column 4 to column 27)",
  " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 6, column 4 to column 40)",
  " (in 'EarlyB_BM/stan_models/multiplex_M1.stan', line 7, column 4 to column 17)",
@@ -208,13 +204,13 @@ template <typename T0__, typename T1__,
     (void) DUMMY_VAR__;  // suppress unused var warning
     try {
       local_scalar_t__ r_eps = DUMMY_VAR__;
-      current_statement__ = 92;
+      current_statement__ = 88;
       r_eps = stan::model::rvalue(params, "params",
                 stan::model::index_uni(5));
       local_scalar_t__ value = DUMMY_VAR__;
-      current_statement__ = 93;
+      current_statement__ = 89;
       value = (1.0 / (1 + stan::math::pow((time / r_eps), 2)));
-      current_statement__ = 94;
+      current_statement__ = 90;
       return value;
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -237,34 +233,34 @@ template <typename T0__, typename T1__, typename T2__, typename T3__,
     (void) DUMMY_VAR__;  // suppress unused var warning
     try {
       local_scalar_t__ rho = DUMMY_VAR__;
-      current_statement__ = 96;
+      current_statement__ = 92;
       rho = stan::model::rvalue(parms, "parms", stan::model::index_uni(1));
       local_scalar_t__ delta = DUMMY_VAR__;
-      current_statement__ = 97;
+      current_statement__ = 93;
       delta = stan::model::rvalue(parms, "parms", stan::model::index_uni(2));
       local_scalar_t__ rho_dko = DUMMY_VAR__;
-      current_statement__ = 98;
+      current_statement__ = 94;
       rho_dko = stan::model::rvalue(parms, "parms",
                   stan::model::index_uni(3));
       local_scalar_t__ delta_dko = DUMMY_VAR__;
-      current_statement__ = 99;
+      current_statement__ = 95;
       delta_dko = stan::model::rvalue(parms, "parms",
                     stan::model::index_uni(4));
       local_scalar_t__ x_pos = DUMMY_VAR__;
-      current_statement__ = 100;
+      current_statement__ = 96;
       x_pos = 131619;
       local_scalar_t__ x_neg = DUMMY_VAR__;
-      current_statement__ = 101;
+      current_statement__ = 97;
       x_neg = 378491;
       local_scalar_t__ phi = DUMMY_VAR__;
-      current_statement__ = 102;
+      current_statement__ = 98;
       phi = (((rho - delta) *
                ((stan::model::rvalue(y, "y", stan::model::index_uni(1)) +
                   stan::model::rvalue(y, "y", stan::model::index_uni(2))) +
                  stan::model::rvalue(y, "y", stan::model::index_uni(3)))) /
               (x_pos + x_neg));
       local_scalar_t__ phi_dko = DUMMY_VAR__;
-      current_statement__ = 103;
+      current_statement__ = 99;
       phi_dko = (((rho_dko - delta_dko) *
                    ((stan::model::rvalue(y, "y", stan::model::index_uni(4)) +
                       stan::model::rvalue(y, "y", stan::model::index_uni(5)))
@@ -273,7 +269,7 @@ template <typename T0__, typename T1__, typename T2__, typename T3__,
                   / (x_pos + x_neg));
       std::vector<local_scalar_t__> dydt =
          std::vector<local_scalar_t__>(6, DUMMY_VAR__);
-      current_statement__ = 105;
+      current_statement__ = 101;
       stan::model::assign(dydt,
         ((((rho * eps_function(time, parms, pstream__)) *
             ((2 * stan::model::rvalue(y, "y", stan::model::index_uni(2))) +
@@ -282,7 +278,7 @@ template <typename T0__, typename T1__, typename T2__, typename T3__,
              stan::model::rvalue(y, "y", stan::model::index_uni(1)))) -
           (delta * stan::model::rvalue(y, "y", stan::model::index_uni(1)))),
         "assigning variable dydt", stan::model::index_uni(1));
-      current_statement__ = 106;
+      current_statement__ = 102;
       stan::model::assign(dydt,
         ((((phi * x_pos) +
             ((rho * eps_function(time, parms, pstream__)) *
@@ -292,7 +288,7 @@ template <typename T0__, typename T1__, typename T2__, typename T3__,
              (2 * stan::model::rvalue(y, "y", stan::model::index_uni(1))))) -
           (delta * stan::model::rvalue(y, "y", stan::model::index_uni(2)))),
         "assigning variable dydt", stan::model::index_uni(2));
-      current_statement__ = 107;
+      current_statement__ = 103;
       stan::model::assign(dydt,
         ((((phi * x_neg) -
             ((rho * eps_function(time, parms, pstream__)) *
@@ -302,7 +298,7 @@ template <typename T0__, typename T1__, typename T2__, typename T3__,
                stan::model::rvalue(y, "y", stan::model::index_uni(3))))) -
           (delta * stan::model::rvalue(y, "y", stan::model::index_uni(3)))),
         "assigning variable dydt", stan::model::index_uni(3));
-      current_statement__ = 108;
+      current_statement__ = 104;
       stan::model::assign(dydt,
         ((((rho_dko * eps_function(time, parms, pstream__)) *
             ((2 * stan::model::rvalue(y, "y", stan::model::index_uni(5))) +
@@ -312,7 +308,7 @@ template <typename T0__, typename T1__, typename T2__, typename T3__,
           (delta_dko *
             stan::model::rvalue(y, "y", stan::model::index_uni(4)))),
         "assigning variable dydt", stan::model::index_uni(4));
-      current_statement__ = 109;
+      current_statement__ = 105;
       stan::model::assign(dydt,
         ((((phi_dko * x_pos) +
             ((rho_dko * eps_function(time, parms, pstream__)) *
@@ -323,7 +319,7 @@ template <typename T0__, typename T1__, typename T2__, typename T3__,
           (delta_dko *
             stan::model::rvalue(y, "y", stan::model::index_uni(5)))),
         "assigning variable dydt", stan::model::index_uni(5));
-      current_statement__ = 110;
+      current_statement__ = 106;
       stan::model::assign(dydt,
         ((((phi_dko * x_neg) -
             ((rho_dko * eps_function(time, parms, pstream__)) *
@@ -334,7 +330,7 @@ template <typename T0__, typename T1__, typename T2__, typename T3__,
           (delta_dko *
             stan::model::rvalue(y, "y", stan::model::index_uni(6)))),
         "assigning variable dydt", stan::model::index_uni(6));
-      current_statement__ = 111;
+      current_statement__ = 107;
       return dydt;
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -356,19 +352,19 @@ template <typename T0__, typename T1__, typename T2__,
     (void) DUMMY_VAR__;  // suppress unused var warning
     try {
       int numdim = std::numeric_limits<int>::min();
-      current_statement__ = 113;
+      current_statement__ = 109;
       numdim = stan::math::size(solve_time);
-      current_statement__ = 114;
+      current_statement__ = 110;
       stan::math::validate_non_negative_index("y_sol", "numdim", numdim);
       std::vector<std::vector<local_scalar_t__>> y_sol =
          std::vector<std::vector<local_scalar_t__>>(numdim, 
            std::vector<local_scalar_t__>(6, DUMMY_VAR__));
-      current_statement__ = 116;
+      current_statement__ = 112;
       stan::model::assign(y_sol,
         stan::math::integrate_ode_rk45(ODE_sys_functor__(), init_cond, 0.0,
           solve_time, parms, std::vector<double>{0.0}, std::vector<int>{0},
           pstream__), "assigning variable y_sol");
-      current_statement__ = 117;
+      current_statement__ = 113;
       return y_sol;
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -386,18 +382,18 @@ template <typename T0__,
     (void) DUMMY_VAR__;  // suppress unused var warning
     try {
       int ndims = std::numeric_limits<int>::min();
-      current_statement__ = 119;
+      current_statement__ = 115;
       ndims = stan::math::size(x);
-      current_statement__ = 120;
+      current_statement__ = 116;
       stan::math::validate_non_negative_index("answer", "ndims", ndims);
       std::vector<local_scalar_t__> answer =
          std::vector<local_scalar_t__>(ndims, DUMMY_VAR__);
       local_scalar_t__ a = DUMMY_VAR__;
-      current_statement__ = 122;
+      current_statement__ = 118;
       a = 1.2;
-      current_statement__ = 125;
+      current_statement__ = 121;
       for (int i = 1; i <= ndims; ++i) {
-        current_statement__ = 123;
+        current_statement__ = 119;
         stan::model::assign(answer,
           stan::math::asin(
             (stan::math::sqrt(
@@ -405,7 +401,7 @@ template <typename T0__,
               stan::math::sqrt(a))),
           "assigning variable answer", stan::model::index_uni(i));
       }
-      current_statement__ = 126;
+      current_statement__ = 122;
       return answer;
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -423,12 +419,12 @@ template <typename T0__,
     (void) DUMMY_VAR__;  // suppress unused var warning
     try {
       local_scalar_t__ a = DUMMY_VAR__;
-      current_statement__ = 128;
+      current_statement__ = 124;
       a = 1.2;
       local_scalar_t__ answer = DUMMY_VAR__;
-      current_statement__ = 129;
+      current_statement__ = 125;
       answer = stan::math::asin((stan::math::sqrt(x) / stan::math::sqrt(a)));
-      current_statement__ = 130;
+      current_statement__ = 126;
       return answer;
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -446,12 +442,12 @@ template <typename T0__,
     (void) DUMMY_VAR__;  // suppress unused var warning
     try {
       local_scalar_t__ a = DUMMY_VAR__;
-      current_statement__ = 132;
+      current_statement__ = 128;
       a = 1.2;
       local_scalar_t__ answer = DUMMY_VAR__;
-      current_statement__ = 133;
+      current_statement__ = 129;
       answer = (a * stan::math::pow(stan::math::sin(x), 2));
-      current_statement__ = 134;
+      current_statement__ = 130;
       return answer;
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -561,80 +557,80 @@ class multiplex_M1_model final : public model_base_crtp<multiplex_M1_model> {
     try {
       int pos__ = std::numeric_limits<int>::min();
       pos__ = 1;
-      current_statement__ = 66;
+      current_statement__ = 62;
       context__.validate_dims("data initialization","numObs1","int",
            std::vector<size_t>{});
       numObs1 = std::numeric_limits<int>::min();
       
       
-      current_statement__ = 66;
+      current_statement__ = 62;
       numObs1 = context__.vals_i("numObs1")[(1 - 1)];
-      current_statement__ = 66;
+      current_statement__ = 62;
       stan::math::check_greater_or_equal(function__, "numObs1", numObs1, 1);
-      current_statement__ = 67;
+      current_statement__ = 63;
       context__.validate_dims("data initialization","numObs2","int",
            std::vector<size_t>{});
       numObs2 = std::numeric_limits<int>::min();
       
       
-      current_statement__ = 67;
+      current_statement__ = 63;
       numObs2 = context__.vals_i("numObs2")[(1 - 1)];
-      current_statement__ = 67;
+      current_statement__ = 63;
       stan::math::check_greater_or_equal(function__, "numObs2", numObs2, 1);
-      current_statement__ = 68;
+      current_statement__ = 64;
       context__.validate_dims("data initialization","n_shards","int",
            std::vector<size_t>{});
       n_shards = std::numeric_limits<int>::min();
       
       
-      current_statement__ = 68;
+      current_statement__ = 64;
       n_shards = context__.vals_i("n_shards")[(1 - 1)];
-      current_statement__ = 68;
+      current_statement__ = 64;
       stan::math::check_greater_or_equal(function__, "n_shards", n_shards, 1);
-      current_statement__ = 69;
+      current_statement__ = 65;
       context__.validate_dims("data initialization","numPred","int",
            std::vector<size_t>{});
       numPred = std::numeric_limits<int>::min();
       
       
-      current_statement__ = 69;
+      current_statement__ = 65;
       numPred = context__.vals_i("numPred")[(1 - 1)];
-      current_statement__ = 69;
+      current_statement__ = 65;
       stan::math::check_greater_or_equal(function__, "numPred", numPred, 1);
-      current_statement__ = 70;
+      current_statement__ = 66;
       stan::math::validate_non_negative_index("time_index1", "numObs1",
                                               numObs1);
-      current_statement__ = 71;
+      current_statement__ = 67;
       context__.validate_dims("data initialization","time_index1","int",
            std::vector<size_t>{static_cast<size_t>(numObs1)});
       time_index1 = 
         std::vector<int>(numObs1, std::numeric_limits<int>::min());
       
       
-      current_statement__ = 71;
+      current_statement__ = 67;
       time_index1 = context__.vals_i("time_index1");
-      current_statement__ = 71;
+      current_statement__ = 67;
       stan::math::check_greater_or_equal(function__, "time_index1",
                                             time_index1, 1);
-      current_statement__ = 72;
+      current_statement__ = 68;
       stan::math::validate_non_negative_index("time_index2", "numObs2",
                                               numObs2);
-      current_statement__ = 73;
+      current_statement__ = 69;
       context__.validate_dims("data initialization","time_index2","int",
            std::vector<size_t>{static_cast<size_t>(numObs2)});
       time_index2 = 
         std::vector<int>(numObs2, std::numeric_limits<int>::min());
       
       
-      current_statement__ = 73;
+      current_statement__ = 69;
       time_index2 = context__.vals_i("time_index2");
-      current_statement__ = 73;
+      current_statement__ = 69;
       stan::math::check_greater_or_equal(function__, "time_index2",
                                             time_index2, 1);
-      current_statement__ = 74;
+      current_statement__ = 70;
       stan::math::validate_non_negative_index("solve_time", "n_shards",
                                               n_shards);
-      current_statement__ = 75;
+      current_statement__ = 71;
       context__.validate_dims("data initialization","solve_time","double",
            std::vector<size_t>{static_cast<size_t>(n_shards)});
       solve_time = 
@@ -642,15 +638,15 @@ class multiplex_M1_model final : public model_base_crtp<multiplex_M1_model> {
           std::numeric_limits<double>::quiet_NaN());
       
       
-      current_statement__ = 75;
+      current_statement__ = 71;
       solve_time = context__.vals_r("solve_time");
-      current_statement__ = 75;
+      current_statement__ = 71;
       stan::math::check_greater_or_equal(function__, "solve_time",
                                             solve_time, 0);
-      current_statement__ = 76;
+      current_statement__ = 72;
       stan::math::validate_non_negative_index("largePreB_wt", "numObs1",
                                               numObs1);
-      current_statement__ = 77;
+      current_statement__ = 73;
       context__.validate_dims("data initialization","largePreB_wt","double",
            std::vector<size_t>{static_cast<size_t>(numObs1)});
       largePreB_wt = 
@@ -658,15 +654,15 @@ class multiplex_M1_model final : public model_base_crtp<multiplex_M1_model> {
           std::numeric_limits<double>::quiet_NaN());
       
       
-      current_statement__ = 77;
+      current_statement__ = 73;
       largePreB_wt = context__.vals_r("largePreB_wt");
-      current_statement__ = 77;
+      current_statement__ = 73;
       stan::math::check_greater_or_equal(function__, "largePreB_wt",
                                             largePreB_wt, 0);
-      current_statement__ = 78;
+      current_statement__ = 74;
       stan::math::validate_non_negative_index("largePreB_dko", "numObs2",
                                               numObs2);
-      current_statement__ = 79;
+      current_statement__ = 75;
       context__.validate_dims("data initialization","largePreB_dko","double",
            std::vector<size_t>{static_cast<size_t>(numObs2)});
       largePreB_dko = 
@@ -674,14 +670,14 @@ class multiplex_M1_model final : public model_base_crtp<multiplex_M1_model> {
           std::numeric_limits<double>::quiet_NaN());
       
       
-      current_statement__ = 79;
+      current_statement__ = 75;
       largePreB_dko = context__.vals_r("largePreB_dko");
-      current_statement__ = 79;
+      current_statement__ = 75;
       stan::math::check_greater_or_equal(function__, "largePreB_dko",
                                             largePreB_dko, 0);
-      current_statement__ = 80;
+      current_statement__ = 76;
       stan::math::validate_non_negative_index("ts_pred", "numPred", numPred);
-      current_statement__ = 81;
+      current_statement__ = 77;
       context__.validate_dims("data initialization","ts_pred","double",
            std::vector<size_t>{static_cast<size_t>(numPred)});
       ts_pred = 
@@ -689,34 +685,34 @@ class multiplex_M1_model final : public model_base_crtp<multiplex_M1_model> {
           std::numeric_limits<double>::quiet_NaN());
       
       
-      current_statement__ = 81;
+      current_statement__ = 77;
       ts_pred = context__.vals_r("ts_pred");
-      current_statement__ = 82;
+      current_statement__ = 78;
       stan::math::validate_non_negative_index("y_hat", "n_shards", n_shards);
-      current_statement__ = 83;
+      current_statement__ = 79;
       stan::math::validate_non_negative_index("largePreB_wt_mean", "numObs1",
                                               numObs1);
-      current_statement__ = 84;
+      current_statement__ = 80;
       stan::math::validate_non_negative_index("largePreB_dko_mean",
                                               "numObs2", numObs2);
-      current_statement__ = 85;
+      current_statement__ = 81;
       stan::math::validate_non_negative_index("y_hat_pred", "numPred",
                                               numPred);
-      current_statement__ = 86;
+      current_statement__ = 82;
       stan::math::validate_non_negative_index("y1_mean_pred", "numPred",
                                               numPred);
-      current_statement__ = 87;
+      current_statement__ = 83;
       stan::math::validate_non_negative_index("y2_mean_pred", "numPred",
                                               numPred);
-      current_statement__ = 88;
+      current_statement__ = 84;
       stan::math::validate_non_negative_index("largePreB_wt_pred", "numPred",
                                               numPred);
-      current_statement__ = 89;
+      current_statement__ = 85;
       stan::math::validate_non_negative_index("largePreB_dko_pred",
                                               "numPred", numPred);
-      current_statement__ = 90;
+      current_statement__ = 86;
       stan::math::validate_non_negative_index("log_lik1", "numObs1", numObs1);
-      current_statement__ = 91;
+      current_statement__ = 87;
       stan::math::validate_non_negative_index("log_lik2", "numObs2", numObs2);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -883,52 +879,31 @@ class multiplex_M1_model final : public model_base_crtp<multiplex_M1_model> {
                   stan::model::index_uni(6)))),
           "assigning variable largePreB_dko_mean", stan::model::index_uni(i));
       }
-      current_statement__ = 32;
-      if (pstream__) {
-        stan::math::stan_print(pstream__, largePreB_wt);
-        stan::math::stan_print(pstream__, "\n");
-      }
-      current_statement__ = 33;
-      if (pstream__) {
-        stan::math::stan_print(pstream__, largePreB_wt_mean);
-        stan::math::stan_print(pstream__, "\n");
-      }
-      current_statement__ = 34;
-      if (pstream__) {
-        stan::math::stan_print(pstream__, largePreB_dko);
-        stan::math::stan_print(pstream__, "\n");
-      }
-      current_statement__ = 35;
-      if (pstream__) {
-        stan::math::stan_print(pstream__, largePreB_dko_mean);
-        stan::math::stan_print(pstream__, "\n");
-      }
       {
+        current_statement__ = 53;
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(rho_Log, -2, 0.5));
+        current_statement__ = 54;
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(delta_Log, -3, 0.5));
+        current_statement__ = 55;
+        lp_accum__.add(
+          stan::math::normal_lpdf<propto__>(rho_dko_Log, -4, 0.5));
+        current_statement__ = 56;
+        lp_accum__.add(
+          stan::math::normal_lpdf<propto__>(delta_dko_Log, -3, 0.5));
         current_statement__ = 57;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(rho_Log, -4, 1));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(r_eps, 5, 1));
         current_statement__ = 58;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(delta_Log, -4, 1));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(sigma1, 0.1, 0.5));
         current_statement__ = 59;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(rho_dko_Log, -4, 1));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(sigma2, 0.1, 0.5));
         current_statement__ = 60;
         lp_accum__.add(
-          stan::math::normal_lpdf<propto__>(delta_dko_Log, -4, 1));
+          stan::math::normal_lpdf<propto__>(largePreB_wt, largePreB_wt_mean,
+            sigma1));
         current_statement__ = 61;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(r_eps, 5, 2));
-        current_statement__ = 62;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(sigma1, 0.1, 0.5));
-        current_statement__ = 63;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(sigma2, 0.2, 0.5));
-        current_statement__ = 64;
         lp_accum__.add(
-          stan::math::normal_lpdf<propto__>(
-            asinsqrt_array(largePreB_wt, pstream__),
-            asinsqrt_array(largePreB_wt_mean, pstream__), sigma1));
-        current_statement__ = 65;
-        lp_accum__.add(
-          stan::math::normal_lpdf<propto__>(
-            asinsqrt_array(largePreB_dko, pstream__),
-            asinsqrt_array(largePreB_dko_mean, pstream__), sigma2));
+          stan::math::normal_lpdf<propto__>(largePreB_dko,
+            largePreB_dko_mean, sigma2));
       }
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -1116,26 +1091,6 @@ class multiplex_M1_model final : public model_base_crtp<multiplex_M1_model> {
                   stan::model::index_uni(6)))),
           "assigning variable largePreB_dko_mean", stan::model::index_uni(i));
       }
-      current_statement__ = 32;
-      if (pstream__) {
-        stan::math::stan_print(pstream__, largePreB_wt);
-        stan::math::stan_print(pstream__, "\n");
-      }
-      current_statement__ = 33;
-      if (pstream__) {
-        stan::math::stan_print(pstream__, largePreB_wt_mean);
-        stan::math::stan_print(pstream__, "\n");
-      }
-      current_statement__ = 34;
-      if (pstream__) {
-        stan::math::stan_print(pstream__, largePreB_dko);
-        stan::math::stan_print(pstream__, "\n");
-      }
-      current_statement__ = 35;
-      if (pstream__) {
-        stan::math::stan_print(pstream__, largePreB_dko_mean);
-        stan::math::stan_print(pstream__, "\n");
-      }
       if (emit_transformed_parameters__) {
         for (int sym1__ = 1; sym1__ <= 6; ++sym1__) {
           for (int sym2__ = 1; sym2__ <= n_shards; ++sym2__) {
@@ -1171,18 +1126,18 @@ class multiplex_M1_model final : public model_base_crtp<multiplex_M1_model> {
       Eigen::Matrix<double, -1, 1> log_lik2 =
          Eigen::Matrix<double, -1, 1>::Constant(numObs2,
            std::numeric_limits<double>::quiet_NaN());
-      current_statement__ = 43;
+      current_statement__ = 39;
       stan::model::assign(y_hat_pred, init_cond,
         "assigning variable y_hat_pred", stan::model::index_uni(1));
-      current_statement__ = 44;
+      current_statement__ = 40;
       stan::model::assign(y_hat_pred,
         solve_ODE_sys(
           stan::model::rvalue(ts_pred, "ts_pred", stan::model::index_min(2)),
           init_cond, parms, pstream__),
         "assigning variable y_hat_pred", stan::model::index_min(2));
-      current_statement__ = 50;
+      current_statement__ = 46;
       for (int i = 1; i <= numPred; ++i) {
-        current_statement__ = 45;
+        current_statement__ = 41;
         stan::model::assign(y1_mean_pred,
           ((stan::model::rvalue(y_hat_pred, "y_hat_pred",
               stan::model::index_uni(i), stan::model::index_uni(1)) +
@@ -1195,15 +1150,13 @@ class multiplex_M1_model final : public model_base_crtp<multiplex_M1_model> {
               stan::model::rvalue(y_hat_pred, "y_hat_pred",
                 stan::model::index_uni(i), stan::model::index_uni(3)))),
           "assigning variable y1_mean_pred", stan::model::index_uni(i));
-        current_statement__ = 46;
+        current_statement__ = 42;
         stan::model::assign(largePreB_wt_pred,
-          asinsqrt_inv(
-            stan::math::normal_rng(
-              asinsqrt_real(
-                stan::model::rvalue(y1_mean_pred, "y1_mean_pred",
-                  stan::model::index_uni(i)), pstream__), sigma1, base_rng__), pstream__),
+          stan::math::normal_rng(
+            stan::model::rvalue(y1_mean_pred, "y1_mean_pred",
+              stan::model::index_uni(i)), sigma1, base_rng__),
           "assigning variable largePreB_wt_pred", stan::model::index_uni(i));
-        current_statement__ = 47;
+        current_statement__ = 43;
         stan::model::assign(y2_mean_pred,
           ((stan::model::rvalue(y_hat_pred, "y_hat_pred",
               stan::model::index_uni(i), stan::model::index_uni(4)) +
@@ -1216,39 +1169,33 @@ class multiplex_M1_model final : public model_base_crtp<multiplex_M1_model> {
               stan::model::rvalue(y_hat_pred, "y_hat_pred",
                 stan::model::index_uni(i), stan::model::index_uni(6)))),
           "assigning variable y2_mean_pred", stan::model::index_uni(i));
-        current_statement__ = 48;
+        current_statement__ = 44;
         stan::model::assign(largePreB_dko_pred,
-          asinsqrt_inv(
-            stan::math::normal_rng(
-              asinsqrt_real(
-                stan::model::rvalue(y2_mean_pred, "y2_mean_pred",
-                  stan::model::index_uni(i)), pstream__), sigma2, base_rng__), pstream__),
+          stan::math::normal_rng(
+            stan::model::rvalue(y2_mean_pred, "y2_mean_pred",
+              stan::model::index_uni(i)), sigma2, base_rng__),
           "assigning variable largePreB_dko_pred", stan::model::index_uni(i));
       }
-      current_statement__ = 53;
+      current_statement__ = 49;
       for (int n = 1; n <= numObs1; ++n) {
-        current_statement__ = 51;
+        current_statement__ = 47;
         stan::model::assign(log_lik1,
           stan::math::normal_lpdf<false>(
-            asinsqrt_real(
-              stan::model::rvalue(largePreB_wt, "largePreB_wt",
-                stan::model::index_uni(n)), pstream__),
-            asinsqrt_real(
-              stan::model::rvalue(largePreB_wt_mean, "largePreB_wt_mean",
-                stan::model::index_uni(n)), pstream__), sigma1),
+            stan::model::rvalue(largePreB_wt, "largePreB_wt",
+              stan::model::index_uni(n)),
+            stan::model::rvalue(largePreB_wt_mean, "largePreB_wt_mean",
+              stan::model::index_uni(n)), sigma1),
           "assigning variable log_lik1", stan::model::index_uni(n));
       }
-      current_statement__ = 56;
+      current_statement__ = 52;
       for (int n = 1; n <= numObs2; ++n) {
-        current_statement__ = 54;
+        current_statement__ = 50;
         stan::model::assign(log_lik2,
           stan::math::normal_lpdf<false>(
-            asinsqrt_real(
-              stan::model::rvalue(largePreB_dko, "largePreB_dko",
-                stan::model::index_uni(n)), pstream__),
-            asinsqrt_real(
-              stan::model::rvalue(largePreB_dko_mean, "largePreB_dko_mean",
-                stan::model::index_uni(n)), pstream__), sigma2),
+            stan::model::rvalue(largePreB_dko, "largePreB_dko",
+              stan::model::index_uni(n)),
+            stan::model::rvalue(largePreB_dko_mean, "largePreB_dko_mean",
+              stan::model::index_uni(n)), sigma2),
           "assigning variable log_lik2", stan::model::index_uni(n));
       }
       for (int sym1__ = 1; sym1__ <= 6; ++sym1__) {
