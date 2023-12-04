@@ -4,7 +4,7 @@
 *.jpg
 *.png
 *.csv
-
+*.rds
 *.out
 *.err
 
