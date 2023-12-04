@@ -9,6 +9,6 @@ done
 
 for i in 1 2 3 4
     do
-      ./stan_models/${modelname} sample num_warmup=500 num_samples=2500 data file=datafiles/brdu_stanfit.Rdump \
+      ./stan_models/${modelname} sample num_warmup=300 num_samples=500 data file=datafiles/Brdu_stanfit.Rdump \
       output file=save_csv/${modelname}_${i}.csv &
     done

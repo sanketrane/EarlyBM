@@ -77,8 +77,8 @@ ggplot(counts_df, aes(x= Time_h, y=cell_counts, col = BrdU_status)) +
 ggplot(counts_df, aes(x= Time_h, y=cell_counts, col = Genotype)) +
   geom_point()+ xlim(0, 35)+
   scale_y_log10() + 
-  geom_hline(yintercept = 510111, col="darkblue")+
-  geom_hline(yintercept = 131619, col="darkred")+
+  #geom_hline(yintercept = 510111, col="darkblue")+
+  #geom_hline(yintercept = 131619, col="darkred")+
   labs(x='Days post trabsfer', y=NULL)+
   facet_grid(BrdU_status ~ factor(pop_id, levels = c("Pro_B", "large_pre_B", "small_pre_B",
                                                   "BrdU_Pro_B", "BrdU_large_pre_B", "BrdU_small_pre_B"))) +
@@ -96,10 +96,10 @@ fracs_df <- read_excel("datafiles/BrdU_data.xlsx", sheet =2) %>%
 
 
 ggplot(fracs_df, aes(x= Time_h, y=prop_brdu, col = Genotype)) +
-  geom_point()+ xlim(0, 35) + scale_y_continuous(trans = "log10", limits = c(1, 100))+
-  labs(x='Days post trabsfer', y=NULL) +
-  facet_wrap(~ factor(subpop, levels = c("BrdU_Pro_B", "BrdU_large_pre_B", "BrdU_small_pre_B"))) +
-  myTheme
+  geom_point()+ xlim(0, 35) + ylim(0, 100)+ #scale_y_continuous(trans = "log10", limits = c(1, 100))+
+  labs(x="Hours post BrdU injection", y="% BrdU+ cells") +
+  facet_grid(Genotype ~ factor(subpop, levels = c("BrdU_Pro_B", "BrdU_large_pre_B", "BrdU_small_pre_B"))) +
+  myTheme + guides(col="none")
 
 
 counts_df %>%
