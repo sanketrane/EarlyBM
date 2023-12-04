@@ -9,4 +9,6 @@
 *.err
 *.xlsx
 
+/datafiles
+
 .Rproj.user
